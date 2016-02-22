@@ -9,10 +9,11 @@ function fill_list_events(id_container, events) {
 }
 
 function creat_block(event) {
+   date_format(event.begin_date);
    return "<div class='event'> <div class='event_all'> <div class='event_ava'>" +
    "<img src='" + event.pictures + "' class='round' width='64px' height='64px'>" +
    "</div> <div class='event_title'> <div class='event_name'>" + event.name + "</div>" +
-   "<div class='event_date'>" + event.begin_date + "</div> </div> </div>" + 
-   "<div class='clearer'>&nbsp;</div> <div class='vent_content'>" + 
+   "<div class='event_date'>" + date_format(event.begin_date) + "</div> </div> </div>" + 
+   "<div class='clearer'>&nbsp;</div> <div class='event_content'>" + 
    event.information + "</div> </div>";
 }
