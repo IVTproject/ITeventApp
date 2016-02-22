@@ -5,6 +5,12 @@
   	/* Путь к файлу со шрифтом */
 }
 
+.pages {
+	font-family: Arial, sans-serif;
+	font-stretch: condensed;
+  	font-size: 15pt;
+}
+
 #heading {
 	background-color: #1e96f5;
 	border-bottom: 3px solid #e46f9b;
@@ -83,8 +89,93 @@
 	padding: 10px;	
 }
 
+#filter_black {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: rgba(0, 0, 0, 0.8);	
+	z-index: 1;
+}
+
+.filter_white {	
+	background-color: white;	
+	margin-left: 9px;
+	margin-right: 9px;
+	margin-top: 10px;
+	height: 280px;
+	-webkit-box-shadow: 0px 4px 6px -1px rgba(50, 50, 50, 0.87);
+	-moz-box-shadow:    0px 4px 6px -1px rgba(50, 50, 50, 0.87);
+	box-shadow:         0px 4px 6px -1px rgba(50, 50, 50, 0.87);
+	z-index: 2;
+}
+
+#filter_city {
+	z-index: 3;
+	position: absolute;
+	top: 10px;	
+	height: 280px;
+	width: 100%;
+	background-color: white;	
+	-webkit-box-shadow: 0px 4px 6px -1px rgba(50, 50, 50, 0.87);
+	-moz-box-shadow:    0px 4px 6px -1px rgba(50, 50, 50, 0.87);
+	box-shadow:         0px 4px 6px -1px rgba(50, 50, 50, 0.87);
+}
+
+#close {
+	float:right;
+	margin-right: 4px;
+	margin-top: 4px;
+}
+
+.filter_text {	
+	display: block;
+	float:left;
+	color: black;
+	font-size: 15pt;
+	margin-left: 13px;
+	margin-top: 40px;	
+	font-weight: 600;
+}
+
+.filter_block, input[type=date]  {	
+	display: block;
+	float:left;	
+	border: 1px solid #b7b7b7;
+	font-weight: bold;
+	font-size: 14pt;
+	color: #6e6e6e;	 
+	text-align: center;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding-top: 5px;
+}
+
+div .filter_block {
+	height: 34px;
+	width: 95px;
+	margin-left: 13px;
+	margin-top: 40px;	
+	white-space: nowrap;
+	text-overflow: ellipsis; 
+	overflow: hidden;
+}
+
+input[type=date]  {	
+	width: 80%;
+	margin-top: 5px;
+	margin-left: 40px;
+}
+
+#list_city {
+	color: black;
+	margin-left: 10px;
+	font-size: 16pt;
+}
+
 #item1 {
 	background-color: #dee5eb;
+	padding: 0;	
 }
 
 .clearer {
