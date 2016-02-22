@@ -1,3 +1,5 @@
+
+function reqest() {
 $.get(
     "http://it-event.esy.es/api.php", 
     { 
@@ -5,9 +7,10 @@ $.get(
     },
     success
 )
+}
 
 //функция, которая работает с данными, которые пришли с сервера
 function success(data)
 {
-    alert(data);
+    fill_list_events("item1", data);
 }
