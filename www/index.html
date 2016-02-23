@@ -15,14 +15,20 @@
         <script type="text/javascript" charset="utf-8" src="lib/jquery.min.js"></script>
         <script type="text/javascript" charset="utf-8" src="lib/fastclick.min.js"></script>
         <script type="text/javascript" charset="utf-8" src="lib/appframework/appframework.ui.min.js"></script>
+			<script type="text/javascript" charset="utf-8" src="js/script.js"></script>
+			<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 		<script src="cordova.js" id="xdkJScordova_"></script>
 		<script src="js/app.js"></script>           <!-- for your event code, see README and file comments for details -->
 		<script src="js/init-app.js"></script>      <!-- for your init code, see README and file comments for details -->
+<<<<<<< HEAD
 		<script src="xdk/init-dev.js"></script>     <!-- normalizes device and document ready events, see file for details -->
             <script src="js/utils.js"></script> 
             <script src="js/create_events.js"></script> 
             
             <script src="js/get_events.js"></script>
+=======
+		<script src="xdk/init-dev.js"></script>     <!-- normalizes device and document ready events, see file for details -->	
+>>>>>>> feature/index_design_feature
     </head>
     <body onload="reqest();">
         
@@ -38,11 +44,39 @@
         <div class="view">
             <header id="heading">
                 <div id="name_page">Мероприятия</div>
-                <img src="img/filter.png" class="settings">
+                <img src="img/filter.png" class="settings" onclick="show('#filter_black');">
                 <img src="img/refresh.png" class="settings">
             </header>
-            <div class="pages">
+            <div class="pages">				
                 <div class="panel" id="item1">
+					
+					<div id="filter_black" style="display: none">
+						
+						<div id="filter_city" style="display: none">
+							<form id="list_city">
+								<img src="img/close.png" id="close" onclick="hide('#filter_city');">
+								<div class="clearer">&nbsp;</div>
+								<input type="checkbox" class="checkbox" id="checkbox" />
+								<label for="checkbox">Я переключаю чекбокс</label>					  				   
+							</form>
+						</div>
+						
+						<div class="filter_white">
+							<form>
+								<img src="img/close.png" id="close" onclick="hide('#filter_black');">
+								<div class="filter_text">Город:</div>
+								<div class="filter_block" onclick="show('#filter_city');">Все</div>
+
+								<div class="clearer">&nbsp;</div>
+								<div class="filter_text">Дата проведения:</div>
+								<div class="clearer">&nbsp;</div>
+								<input type="date" class="filter_block" name="calendar_start" value="2016-02-22">
+								<input type="date" class="filter_block" name="calendar_end" value="2017-02-22">
+							</form>
+						</div>					
+						
+					</div>
+					
 					<!--Начало блока мероприятия ULCAMP-->
                     <div class="event">
                         <div class="event_all">
@@ -85,10 +119,15 @@
                             «Стачка» – международная профессиональная IT-конференция, которая уже пятый год подряд собирает в Поволжье лучших российских и западных экспертов из мира информационных технологий.В 2016 году «Стачка» пройдет 22 — 23 апреля в Ульяновске в «Ленинском мемориале».
                         </div>
                     </div>
+<<<<<<< HEAD
 					
                     <div class="event">Лол1</div>
                     <div class="event">Лол2</div>
                     -->
+=======
+					<!--Конец блока мероприятия ULCAMP-->
+                   
+>>>>>>> feature/index_design_feature
                 </div>
             </div>
         </div>
