@@ -1,7 +1,7 @@
 function fill_list_events(id_container, events) {
     var json = JSON.parse(events);
     var container = document.getElementById(id_container);
-    container.innerHTML = "";
+    //container.innerHTML = "";
     var array_event = json.list_events;
     for(var i = 0; array_event[i]; i++) {
         container.innerHTML += creat_block(array_event[i]);
