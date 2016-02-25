@@ -22,14 +22,12 @@
 		<script src="js/init-app.js"></script> 
 		<script src="xdk/init-dev.js"></script> 
             <script src="js/utils.js"></script> 
-            <script src="js/create_events.js"></script> 
-            
-            <script src="js/get_events.js"></script>
+            <script src="js/create_events.js"></script>
+			<script src="js/filter.js"></script>
+            <script src="js/requests_manager.js"></script>
 		<script src="xdk/init-dev.js"></script>
     </head>
-    <body onload="reqest();">
-        
-        <script src="js/get_events.js"></script>
+    <body onload="list_all_events();">
         
         <div id="splashscreen" class='ui-loader heavy'>
             App Framework - Single View
@@ -51,29 +49,30 @@
 						
 						<div id="filter_city" style="display: none">
 							<form id="list_city">
-								<img src="img/close.png" id="close" onclick="hide('#filter_city');">
-								<div class="clearer">&nbsp;</div>
-								<input type="checkbox" class="checkbox" id="checkbox" />
-								<label for="checkbox">Я переключаю чекбокс</label>					  				   
+								<img src='img/close.png' id='close' onclick="hide('#filter_city');">
+								<div class='clearer'>&nbsp;</div>
+								<script>get_list_city();</script>
 							</form>
 						</div>
 						
 						<div class="filter_white">
 							<form>
-								<img src="img/close.png" id="close" onclick="hide('#filter_black');">
+								<img src="img/close.png" id="close" onclick="hide('#filter_black'); list_filter_events();">
 								<div class="filter_text">Город:</div>
 								<div class="filter_block" onclick="show('#filter_city');">Все</div>
 
 								<div class="clearer">&nbsp;</div>
 								<div class="filter_text">Дата проведения:</div>
 								<div class="clearer">&nbsp;</div>
-								<input type="date" class="filter_block" name="calendar_start" value="2016-02-22">
-								<input type="date" class="filter_block" name="calendar_end" value="2017-02-22">
+								<input type="date" id="begin_date" class="filter_block" name="calendar_start" value="2016-02-22">
+								<input type="date" id="end_date" class="filter_block" name="calendar_end" value="2017-02-22">
 							</form>
 						</div>					
 						
 					</div>
+					<div id='events_write'>
 					
+					</div>
 					<!--
                     <div class="event">
                         <div class="event_all">
