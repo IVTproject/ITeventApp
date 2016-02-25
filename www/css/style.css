@@ -38,6 +38,7 @@
 
 #events_write {
 	overflow: hidden;
+	background-color: #dee5eb;
 }
 
 .event {

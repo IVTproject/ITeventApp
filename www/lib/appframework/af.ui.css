@@ -480,13 +480,13 @@
 .android .view,
 .android .view .pages {
   font: 14px 'Roboto', sans-serif;
-  background: #000;
+  background: #dee5eb;
   color: #fff;
   border-color: #fff;
 }
 .android.light .view,
 .android.light .view .pages {
-  background: #FDFDFD;
+  background: #dee5eb;
   color: #000;
 }
 .android .view header {
@@ -3851,7 +3851,7 @@ p {
   -moz-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  background: #ffffff;
+  background: #dee5eb;
   color: #000000;
   overflow: hidden;
 }
@@ -3861,8 +3861,7 @@ p {
   position: absolute;
   top: 0px;
   left: 0px;
-  display: none;
-  padding: 10px;
+  display: none;  
   padding-top: 0px;
   overflow-x: hidden;
   overflow-y: auto;
@@ -4056,14 +4055,14 @@ header .menuButton:after {
 .tizen .view,
 .tizen .view .pages {
   font: 14px 'TizenSans', sans-serif;
-  background: #000;
+  background: #dee5eb;
   color: #fff;
   border-color: #fff;
 }
 .tizen.light,
 .tizen.light .view,
 .tizen.light .view .pages {
-  background: #FDFDFD;
+  background: #dee5eb;
   color: #000;
 }
 .tizen .view header {
@@ -4274,13 +4273,13 @@ header .menuButton:after {
 .win8 .view .pages {
   font: 14px "Segoe UI Semilight", "HelveticaNeue-light", Helvetica, Arial, sans-serif;
   font-size: 14px;
-  background: #000;
+  background: #dee5eb;
   color: #fff;
 }
 .win8.light,
 .win8.light .view,
 .win8.light .view .pages {
-  background: #fff;
+  background: #dee5eb;
   color: #000;
 }
 .win8 .view header {

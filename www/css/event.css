@@ -7,6 +7,11 @@
 	overflow:hidden;
 }
 
+#events_content {
+	background-color: #dee5eb;	
+	color:black;	
+}
+
 #ava_event {	
 	float: left;	
 	width:115px;
@@ -33,6 +38,7 @@
 	text-align:left;
 	font-weight:600;
 	font-size: 15pt;
+	color: black;
 	font-family: "Helvetica Neue", "Roboto", sans-serif;
 }
 
@@ -48,12 +54,14 @@
 	margin-left: 15px;
 	font-weight: bold;
 	font-family: "Helvetica Neue", "Roboto", sans-serif;
+	color: black;
 }
 
 .content_event {
 	margin-left: 30px;
 	margin-right: 15px;
-	font-size: 13pt;
+	font-size: 12pt;
+	color: black;
 }
 
 .redme {
@@ -73,7 +81,7 @@ input[type="submit"] {
 	text-align: center;	
 }
 
-input[type="text"] {
+#inputtext {
    	border: 1px solid #b7b7b7; //цвет рамки   
 	background: #ffffff !important; // желательно прописывать, так как в Chrome при сохранных данных оно может быть желтым
    	outline: none; // удаляет обводку в браузерах хром(желтая) и сафари(синяя)
@@ -83,4 +91,5 @@ input[type="text"] {
    	font-size: 11px; // Размер шрифта 	
 	text-align: center;
 	padding-left:15px;
+	background-color: white;
 }
