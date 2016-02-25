@@ -3240,13 +3240,12 @@ li .icon:before {
   font-size: 14px;
   font-weight: normal;
 }
-.ios7 .view header h1 {
-  color: inherit;
+.ios7 .view header h1 {  
   text-shadow: none;
 }
 .ios7 .view header .backButton {
   background: #f8f8f8;
-  color: #157dfb;
+  color: #fff;
   display: block;
   position: absolute;
   line-height: 44px;
