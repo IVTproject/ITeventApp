@@ -1,0 +1,82 @@
+.paragraph {
+	width: 100%;
+	height: 15px;	
+}
+
+#head_event{	
+	overflow:hidden;
+}
+
+#ava_event {	
+	float: left;	
+	width:115px;
+	margin-left:15px; 
+	overflow:hidden;
+	position: relative;
+}
+
+#date_event {
+	background-color: rgba(0, 0, 0, 0.7);
+	width: 109px;
+	height: 20px;
+	position: absolute;
+	top: 94px;
+	left:3px;
+	color: white;
+	text-align: center;
+}
+
+#name_event {	
+	margin-left:145px; 
+	margin-right:15px;	
+	text-align:left;
+	font-weight:600;
+	font-size: 15pt;
+}
+
+.border_ava {
+	border: 3px solid #cbcfd6;
+}
+
+.info_event {	
+	overflow:hidden;
+}
+
+.name_block {	
+	margin-left: 15px;
+	font-weight: bold;
+}
+
+.content_event {
+	margin-left: 30px;
+	margin-right: 15px;
+}
+
+.redme {
+	color: #e46f9b;
+	text-decoration: none;
+}
+
+input[type="submit"] {  
+  	color: #ffffff;
+  	font-size: 18px;
+  	background: #3498db;
+  	padding: 10px 20px 10px 20px;
+  	text-decoration: none;
+	border: none;
+	width: 100%;
+	display: block;
+	text-align: center;	
+}
+
+input[type="text"] {
+   	border: 1px solid #b7b7b7; //цвет рамки   
+	background: #ffffff !important; // желательно прописывать, так как в Chrome при сохранных данных оно может быть желтым
+   	outline: none; // удаляет обводку в браузерах хром(желтая) и сафари(синяя)
+   	height: 44px; // высота на свое усмотрение
+	width: 100%; // ширина на свое усмотрение
+   	color: #878787; //цвет шрифта в обычном состоянии
+   	font-size: 11px; // Размер шрифта 	
+	text-align: center;
+	padding-left:15px;
+}
