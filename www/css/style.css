@@ -209,3 +209,17 @@ input[type=date]  {
   	/* Радиус скругления */
   	border: 3px solid #d8dbe0;
 }
+.a_event {
+	text-decoration: none;
+	display: block;
+}
+#preloader_event, #preloader_events {
+	background: url(http://it-event.tk/img/preloader.gif);
+	background-repeat: no-repeat;
+	width: 64px;
+	height: 64px;
+   	text-align: center;
+	margin-top: 40px;
+	margin-left: auto;
+	margin-right: auto;
+}

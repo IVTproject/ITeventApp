@@ -2,7 +2,10 @@ function date_format(date) {
     var date_form = date.split("-");
 	return date_form[2].split(" ")[0] + " " + get_month(date_form[1]) + " " + date_form[0];
 }
-
+function date_deg_format(date) {
+	var date_form = date.split("-");
+	return date_form[2].split(" ")[0] + "." + date_form[1] + "." + date_form[0];
+}
 function get_month(mm) {
 	switch(mm) {
 		case "01":

@@ -15,18 +15,19 @@
         <script type="text/javascript" charset="utf-8" src="lib/jquery.min.js"></script>
         <script type="text/javascript" charset="utf-8" src="lib/fastclick.min.js"></script>
         <script type="text/javascript" charset="utf-8" src="lib/appframework/appframework.ui.min.js"></script>
-			<script type="text/javascript" charset="utf-8" src="js/script.js"></script>
-			<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+		<script type="text/javascript" charset="utf-8" src="js/script.js"></script>
+		
 		<script src="cordova.js" id="xdkJScordova_"></script>
 		<script src="js/app.js"></script> 
 		<script src="js/init-app.js"></script> 
 		<script src="xdk/init-dev.js"></script> 
-            <script src="js/utils.js"></script> 
-            <script src="js/create_events.js"></script>
-			<script src="js/filter.js"></script>
-            <script src="js/requests_manager.js"></script>
+        <script src="js/utils.js"></script> 
+        <script src="js/create_events.js"></script>
+		<script src="js/filter.js"></script>
+        <script src="js/requests_manager.js"></script>
 		<script src="xdk/init-dev.js"></script>
     </head>
+		
     <body onload="list_all_events();">
         
         <div id="splashscreen" class='ui-loader heavy'>
@@ -36,14 +37,19 @@
             <span class='ui-icon ui-icon-loading spin'></span>
             <h1>Starting app</h1>
         </div>
+		
         <div class="view">
+			
             <header id="heading">
                 <h1>Мероприятия</h1>
                 <img src="img/filter.png" class="settings" onclick="show('#filter_black');">
                 <img src="img/refresh.png" class="settings">
             </header>
+			
             <div class="pages">				
                 <div class="panel" id="item1">
+					
+					<div id="preloader_events"></div>
 					
 					<div id="filter_black" style="display: none">
 						
@@ -64,37 +70,15 @@
 								<div class="clearer">&nbsp;</div>
 								<div class="filter_text">Дата проведения:</div>
 								<div class="clearer">&nbsp;</div>
-								<input type="date" id="begin_date" class="filter_block" name="calendar_start" value="2016-02-22">
+								<input type="date" id="begin_date" class="filter_block" name="calendar_start" value="2015-02-22">
 								<input type="date" id="end_date" class="filter_block" name="calendar_end" value="2017-02-22">
 							</form>
 						</div>					
 						
 					</div>
-					<a href="1.html">11</a>
-					<div id='events_write'>
 					
-					</div>
-					<!--
-                    <div class="event">
-                        <div class="event_all">
-                            <div class="event_ava">
-                                <img src="http://2015.ulcamp.ru/wp-content/themes/ulcamp/images/2014/logo.png" class="round" width="64px" height="64px">
-                            </div>
-                            <div class="event_title">
-                                <div class="event_name">
-                                    ULCAMP.Winter
-                                </div>
-                                <div class="event_date">
-                                    13 февраля 2016
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clearer">&nbsp;</div>
-                        <div class="event_content">
-                            ULCAMP за 5 лет стал крупнейшей площадкой неформального общения для специалистов в области информационных технологий. ULCAMP ежегодно собирает в Ульяновске предпринимателей, программистов, разработчиков, дизайнеров, инвесторов и лидеров мнений, причем не только...
-                        </div>
-                    </div>
-					-->
+					<div id='events_write'></div>
+					
                 </div>
             </div>
         </div>
