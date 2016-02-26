@@ -77,9 +77,107 @@
 						
 					</div>
 					
-					<div id='events_write'></div>
+					<div id='events_write'><!-- Список мероприятий --></div>
 					
                 </div>
+				
+				<!-- Страница конкретного мероприятия -->
+				<div class="panel" id="event_page">
+					
+					<div id="preloader_event"></div>
+	
+					<div id="event_pane">
+						
+						<div class="paragraph"></div>
+						
+						<!--Начало — Аватарка с датой + название материала-->
+						<div id="head_event">
+							<div id="ava_event">
+							   <div id="date_event"><!-- Дата --></div>
+								<img id="img_ava_event" src="" height="115px" width="115px" class="border_ava">
+							</div>
+							<div id="name_event"> <!-- Название мероприятия --> </div>
+						</div>
+						<!--Конец — Аватарка с датой + название материала-->
+						<div class="info_event">
+							<div class="name_block">Описание:</div>
+							<div id="text_event_info" class="content_event">
+								<!-- Опиание -->
+							</div>
+						</div>
+						
+						<div class="paragraph"></div>
+						
+						<div class="info_event">
+							<div class="name_block">Город:</div>
+							<div id="text_city_info" class="content_event">
+							   <!-- Город -->
+							</div>
+						</div>
+						
+						<div class="paragraph"></div>
+
+						<div class="info_event">
+							<div class="name_block">Адрес:</div>
+							<div id="text_adres_info" class="content_event">
+								<!-- Адрес -->
+							</div>
+						</div>
+						
+						<div class="paragraph"></div>
+
+						<div class="info_event">
+							<div class="name_block">Организатор:</div>
+							<div id="text_organizer_info" class="content_event">
+							   <!-- Организатор -->
+							</div>
+						</div>
+						
+						<div class="paragraph"></div>
+	
+						<div class="info_event">
+							<div class="name_block">Дата начала:</div>
+							<div id="text_begin_date_info" class="content_event">
+							   <!-- Дата начала -->
+							</div>
+						</div>
+						
+						<div class="paragraph"></div>
+
+						<div class="info_event">
+							<div class="name_block">Дата конца:</div>
+							<div id="text_end_date_info" class="content_event">
+							   <!-- Дата конца -->
+							</div>
+						</div>
+						
+						<div class="paragraph"></div>
+
+						<div class="info_event">
+							<div class="name_block">Сайт мероприятия:</div>
+							<div class="content_event">
+								<a id="site_info" class="redme" href=""></a>
+							</div>
+						</div>
+						
+						<div class="paragraph"></div>
+
+						<div class="info_event">
+							<div class="name_block">Авторизация:</div>
+							<div class="content_event">
+								<form name="auth">
+									<input type="text" class="textbox" name="first_name" placeholder="Имя" id="inputtext">
+									<input type="text" class="textbox" name="second_name" placeholder="Фамилия" id="inputtext">
+									<input type="submit" name="enter" value="Войти">
+								</form>
+							</div>
+						</div>
+						
+						<div class="paragraph"></div>
+
+					</div>
+
+				</div>
             </div>
         </div>
     </body>
