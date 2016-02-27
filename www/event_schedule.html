@@ -1,0 +1,28 @@
+<script>
+	$('#heading').css( "border-bottom","none" );	
+	$('#3087256678').attr('data-title', 'Название мероприятия');
+	$('.active').css( "border-bottom","3px solid #e46f9b" );	
+	hide("#filter_button");
+	
+	$("#heading").click(function() {		
+		show("#filter_button");
+		$('#3087256678').attr('data-title', 'Мероприятия');		
+	});
+	
+	$("#scroll_menu li").click(function() {				
+		$("#scroll_menu li").removeClass("active1");
+		$(this).addClass("active1");
+	});
+	
+</script>
+<ul id="scroll_menu">
+	<li class="active1"><a href="#schedule.html">Расписание</a></li>
+	<li><a href="#ads.html">Объявления</a></li>
+	<li><a href="#hangout.html">Тусовка</a></li>
+</ul>
+
+<div id="content">
+	<div class="block_schedule">
+		<b>9:00 — Официальное открытие</b> / основная сцена
+	</div>
+</div>

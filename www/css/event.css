@@ -1,3 +1,4 @@
+/*Начало - Кокретное мероприятие до регистрации*/
 .paragraph {
 	width: 100%;
 	height: 10px;	
@@ -92,4 +93,55 @@ input[type="submit"] {
 	text-align: center;
 	padding-left:15px;
 	background-color: white;
+}
+/*Конец - Кокретное мероприятие до регистрации*/
+
+/*Начало - Кокретное мероприятие после регистрации*/
+#scroll_menu {
+	width: 100%;
+	height: 38px;
+	background-color: #1e96f5;
+}
+
+#scroll_menu li {
+	display: inline-block;
+	float: left;
+	padding-left: 14px;
+	padding-right: 14px;	
+	height: 100%;
+	padding-top: 10px;
+	font-family: 'MyWebFont';
+	font-weight: 600;
+	font-size: 11.8pt;
+}
+
+#scroll_menu a {		
+	height: 100%;	
+	text-decoration: none;
+	color: white;
+}
+
+.active1 {	
+	border-bottom: 3px solid #e46f9b;
+}
+
+.block_schedule {
+	margin: 5px;
+	border: 1px solid #d8dbe0;
+	padding: 15px 20px 15px 20px; 
+	font-family: 'MyWebFont';	
+	background-image: url('../img/bg_schedule.png');
+	font-size: 12pt;
+	-webkit-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.47);
+	-moz-box-shadow:    0px 1px 1px 0px rgba(50, 50, 50, 0.47);
+	box-shadow:         0px 1px 1px 0px rgba(50, 50, 50, 0.47);
+	transition: 0.5s;
+	background-color: #fff;
+	color:black;
+}
+
+.block_schedule:hover {
+	-webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 1);
+	-moz-box-shadow:    0px 0px 4px 0px rgba(0, 0, 0, 1);
+	box-shadow:         0px 0px 4px 0px rgba(0, 0, 0, 1);
 }
