@@ -1,4 +1,8 @@
-<script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script type="text/javascript" language="javascript" src="js/jquery.dotdotdot.js"></script>
+<script type="text/javascript" language="javascript">
+	
+	
 	$('#heading').css( "border-bottom","none" );	
 	$('#3087256678').attr('data-title', 'Название мероприятия');
 	$('.active').css( "border-bottom","3px solid #e46f9b" );	
@@ -14,6 +18,17 @@
 		$(this).addClass("active1");
 	});
 	
+	//Раскрытие и сворачивание конкретной лекции
+	$(".show_hide_schedule").click(function() {
+		var c = $(this).prev().is(":visible");
+		$(this).prev().toggle("slow");
+		$(".arrow_to_down_up_schedule", this).attr("src", c ? "img/arrow_to_down_schedule.png" : "img/arrow_to_up_schedule.png");
+	});
+	//Галочка я пойду или нет
+	$(".im_going").click(function() {		
+		$(this).toggleClass('im_not_going');
+			
+	});
 </script>
 <ul id="scroll_menu">
 	<li class="active1"><a href="#schedule.html">Расписание</a></li>
@@ -22,7 +37,32 @@
 </ul>
 
 <div id="content">
+	<!--Расписание начало-->
+	<div class="What_a_day">День 1</div>
 	<div class="block_schedule">
-		<b>9:00 — Официальное открытие</b> / основная сцена
+		<div class="content_schedule"><b>9:00 — </b>Real Time Bidding. Сбор, хранение и анализ обезличенных данных пользователей мобильных устройств</div>
+		<div class="im_going"></div>
+		<div class="more_info_schedule">
+			<p><b>Тип:</b> Лекция</p>
+			<p><b>Лектор:</b> Сергей Жучков</p>			
+			<p>Директор по решениям, DZ Systems</p>
+			<p><b>На лекцию идёт:</b> 53 человека</p>
+			<p><b>Аудитория:</b> Barcamp №2</p>
+		</div>
+		<div class="show_hide_schedule"><img src="img/arrow_to_down_schedule.png" class="arrow_to_down_up_schedule"></div>
 	</div>
+	
+	<div class="block_schedule">
+		<div class="content_schedule"><b>9:00 — </b>Real Time Bidding. Сбор, хранение и анализ обезличенных данных пользователей мобильных устройств</div>
+		<div class="im_going"></div>
+		<div class="more_info_schedule">
+			<p><b>Тип:</b> Лекция</p>
+			<p><b>Лектор:</b> Сергей Жучков</p>			
+			<p>Директор по решениям, DZ Systems</p>
+			<p><b>На лекцию идёт:</b> 53 человека</p>
+			<p><b>Аудитория:</b> Barcamp №2</p>
+		</div>
+		<div class="show_hide_schedule"><img src="img/arrow_to_down_schedule.png" class="arrow_to_down_up_schedule"></div>
+	</div>
+	<!--Расписание конец-->
 </div>

@@ -15,6 +15,9 @@
         <script type="text/javascript" charset="utf-8" src="lib/jquery.min.js"></script>
         <script type="text/javascript" charset="utf-8" src="lib/fastclick.min.js"></script>
         <script type="text/javascript" charset="utf-8" src="lib/appframework/appframework.ui.min.js"></script>
+		
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script src="http://falbar.ru/uploads/storage/demos/2014/11/NWZmOTljN/jquery.dotdotdot.min.js" type="text/javascript"></script>
 		<script type="text/javascript" charset="utf-8" src="js/script.js"></script>
 		
 		<script src="cordova.js" id="xdkJScordova_"></script>
@@ -55,9 +58,12 @@
 						
 						<div id="filter_city" style="display: none">
 							<form id="list_city">
+								<div id="name_city_list">Список Городов</div>
 								<img src='img/close.png' id='close' onclick="hide('#filter_city');">
 								<div class='clearer'>&nbsp;</div>
-								<script>get_list_city();</script>
+								<div id="content_list_city">
+									<script>get_list_city();</script>
+								</div>								
 							</form>
 						</div>
 						

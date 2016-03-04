@@ -18,7 +18,7 @@ function creat_filter(data) {
 		" onclick=\"filter_city(\'" + array_city[i] + "\');\"/>" +
 			" <label for='" + array_city[i] + "'>" + array_city[i] + "</label>";
 	}
-	document.getElementById('list_city').innerHTML += html_text;
+	document.getElementById('content_list_city').innerHTML += html_text;
 }
 
 function get_text_format_filter() {
