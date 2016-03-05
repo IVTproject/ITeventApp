@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "706d557d-2e00-4c67-ad3d-7542c0740bdb",
-      "lastModifiedDate": 1456299848622,
+      "lastModifiedDate": 1457189043348,
       "creationDate": 1456137696532
     },
     "XDK-app-designer": "true",
@@ -18,24 +18,6 @@
     "serviceMethods": [],
     "cordovaPluginsDirectory": "plugins",
     "cordovaPlugins": [
-      {
-        "id": "cordova-plugin-statusbar",
-        "name": "StatusBar",
-        "version": "2.0.0",
-        "originType": "cordova.io",
-        "origin": "cordova-plugin-statusbar",
-        "gitref": "",
-        "paramvals": {},
-        "selectedState": "Included",
-        "dependsOn": [],
-        "topLevel": true,
-        "cordovaVersion": ">=3.0.0",
-        "permissions": {},
-        "description": "Cordova StatusBar Plugin",
-        "data": {},
-        "dependedBy": [],
-        "checksum": "b92cbbef"
-      },
       {
         "id": "cordova-plugin-device",
         "version": "1.1.0",
@@ -51,24 +33,119 @@
         "gitref": "",
         "name": "Device",
         "description": "Cordova Device Plugin",
-        "checksum": "1eae5d64"
+        "checksum": "1eae5d64",
+        "cordovaVersion": ">=3.0.0"
       },
       {
         "id": "cordova-plugin-splashscreen",
+        "name": "Splashscreen",
         "version": "2.1.0",
-        "selectedState": "Included",
-        "data": {},
-        "paramvals": {},
-        "dependsOn": [],
-        "dependedBy": [],
         "originType": "cordova.io",
         "origin": "cordova-plugin-splashscreen",
-        "permissions": {},
-        "topLevel": true,
         "gitref": "",
-        "name": "Splashscreen",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-splashscreen",
+        "selectedState": "Included",
+        "checksum": "170efb68",
+        "dependsOn": [],
+        "topLevel": true,
+        "permissions": {},
         "description": "Cordova Splashscreen Plugin",
-        "checksum": "170efb68"
+        "data": {},
+        "dependedBy": [],
+        "cordovaVersion": ">=3.0.0"
+      },
+      {
+        "id": "cordova-plugin-statusbar",
+        "name": "StatusBar",
+        "version": "2.0.0",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-statusbar",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-statusbar",
+        "selectedState": "Included",
+        "checksum": "b92cbbef",
+        "dependsOn": [],
+        "topLevel": true,
+        "cordovaVersion": ">=3.0.0",
+        "permissions": {},
+        "description": "Cordova StatusBar Plugin",
+        "data": {},
+        "dependedBy": []
+      },
+      {
+        "id": "android.support.v4",
+        "name": "Android Support v4",
+        "version": "21.0.1",
+        "originType": "cordova.io",
+        "origin": "android.support.v4",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/android.support.v4",
+        "selectedState": "Included",
+        "checksum": "972a48f9",
+        "dependsOn": [],
+        "topLevel": false,
+        "cordovaVersion": ">=3.0.0",
+        "permissions": {},
+        "data": {},
+        "dependedBy": [
+          "de.appplant.cordova.plugin.local-notification"
+        ],
+        "custom": "true"
+      },
+      {
+        "id": "de.appplant.cordova.common.registerusernotificationsettings",
+        "name": "RegisterUserNotificationSettings",
+        "version": "1.0.1",
+        "originType": "cordova.io",
+        "origin": "de.appplant.cordova.common.registerusernotificationsettings",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/de.appplant.cordova.common.registerusernotificationsettings",
+        "selectedState": "Included",
+        "checksum": "82680a64",
+        "dependsOn": [],
+        "topLevel": false,
+        "cordovaVersion": ">=3.0.0",
+        "author": "Sebastián Katzer",
+        "permissions": {},
+        "description": "Implements didRegisterUserNotificationSettings and broadcasts the event.",
+        "data": {},
+        "dependedBy": [
+          "de.appplant.cordova.plugin.local-notification"
+        ],
+        "custom": "true"
+      },
+      {
+        "id": "de.appplant.cordova.plugin.local-notification",
+        "name": "LocalNotification",
+        "version": "0.8.2dev2",
+        "originType": "repo",
+        "origin": "https://github.com/Skysurfer0110/LocalNotification.git",
+        "gitref": "",
+        "subdir": ".",
+        "paramvals": {},
+        "sourceLocation": "plugins/de.appplant.cordova.plugin.local-notification",
+        "selectedState": "Included",
+        "checksum": "3ecd88fa",
+        "dependsOn": [
+          "android.support.v4",
+          "de.appplant.cordova.common.registerusernotificationsettings"
+        ],
+        "topLevel": true,
+        "cordovaVersion": "<4.0.0",
+        "author": "Sebastián Katzer",
+        "permissions": {
+          "android:name": [
+            "android.permission.RECEIVE_BOOT_COMPLETED",
+            "android.permission.WRITE_EXTERNAL_STORAGE"
+          ]
+        },
+        "description": "The plugin supports scheduling local notifications in various ways with a single interface. It also allows you to update, clear or cancel them. There are different interfaces to query for local notifications and a complete set of events to hook into the life cycle of local notifications. To get a deep overview we recommend to read about all the topics in our wiki and try out the Kitchen Sink App",
+        "data": {},
+        "dependedBy": []
       }
     ],
     "buildConfigurations": {
@@ -79,7 +156,8 @@
         "preferences_": {
           "android-minSdkVersion": "14",
           "android-targetSdkVersion": "19",
-          "android-installLocation": "auto"
+          "android-installLocation": "auto",
+          "android-signed": true
         },
         "isActive_": true,
         "appName_": "IT_Event",

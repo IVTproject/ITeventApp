@@ -5,8 +5,7 @@ function list_all_events() {
 		{ 
 			mod: "list_all_events"
 		},
-		function(data){fill_list_events("events_write", data); hide('#preloader_events');}
-	)
+		function(data){fill_list_events("events_write", data); hide('#preloader_events');});
 }
 
 function list_filter_events() {
