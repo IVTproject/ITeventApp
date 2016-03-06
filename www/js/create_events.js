@@ -21,6 +21,9 @@ function creat_block(event) {
 function get_inform_event(event_inform) {
 	//console.log(event_inform);
 	info = JSON.parse(event_inform);
+    change_title(info.name, "Мероприятия");
+    localStorage.setItem("last_evet_id", info.id);
+    localStorage.setItem("last_evet_name", info.name);
     $('#date_event').text(date_deg_format(info.begin_date));
 	$('#img_ava_event').attr("src", info.pictures);
 	$('#name_event').text(info.name);
