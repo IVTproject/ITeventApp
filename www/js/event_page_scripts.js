@@ -4,6 +4,7 @@ function load_schedule() {
 
 function fill_actions(data) {
     change_title(localStorage.getItem('last_evet_name'), localStorage.getItem('last_evet_name'));
+    filter("none");
     var json_array = JSON.parse(data).list_actions;
     var num = 0;
     var number_day = 1;

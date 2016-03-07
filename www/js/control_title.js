@@ -17,5 +17,17 @@ function clear_title() {
 function back(e) {
     if(stack_title.length != 0) {
         document.getElementById('top_title').innerHTML = "<h1>" + stack_title.pop(); + "</h1>";
+        if(stack_title.length == 0)
+            filter("list_events");
+    }
+}
+
+function filter(filter) {
+    if(filter == "list_events") {
+        $('#filter_conteiner').text("");
+        $('#filter_conteiner').append('<img src="img/filter.png" class="settings" onclick="show("#filter_black");>');
+    }
+    if(filter == "none") {
+        $('#filter_conteiner').text("");
     }
 }
