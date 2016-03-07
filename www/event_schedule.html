@@ -1,8 +1,6 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script type="text/javascript" language="javascript" src="js/jquery.dotdotdot.js"></script>
-<script type="text/javascript" language="javascript">
-	
-	
+<script type="text/javascript" language="javascript">	
 	$('#heading').css( "border-bottom","none" );	
 	$('#3087256678').attr('data-title', 'Название мероприятия');
 	$('.active').css( "border-bottom","3px solid #e46f9b" );	
@@ -29,14 +27,25 @@
 		$(this).toggleClass('im_not_going');
 			
 	});
+	
+	$("#1").click(function() {	
+		$('#inform').hide('slow');	
+		$('#content').show('slow');				
+	});
+	
+	$("#3").click(function() {		
+		$('#content').hide('slow');
+		$('#inform').show('slow');			
+	});	
 </script>
 <ul id="scroll_menu">
-	<li class="active1"><a href="#schedule.html">Расписание</a></li>
-	<li><a href="#ads.html">Объявления</a></li>
-	<li><a href="#hangout.html">Тусовка</a></li>
+	<li id="1" class="active1"><a href="#schedule.html">Расписание</a></li>
+	<li id="2"><a href="#ads.html">Объявления</a></li>
+	<li id="3"><a href="#hangout.html">Тусовка</a></li>
 </ul>
-<div id="content">
-	<!--Расписание начало-->
+
+<!--Расписание начало-->
+<div id="content">	
     <div class="What_a_day">День 1</div>
     
 	<div class="block_schedule">
@@ -50,6 +59,47 @@
 			<p><b>Аудитория:</b> Barcamp №2</p>
 		</div>
 		<div class="show_hide_schedule"><img src="img/arrow_to_down_schedule.png" class="arrow_to_down_up_schedule"></div>
-	</div>
-	<!--Расписание конец-->
+	</div>	
 </div>
+<!--Расписание конец-->
+
+
+<!--Тусовка начало-->
+<script type="text/javascript" language="javascript">
+	//Раскрытие и сворачивание конкретной тусовки
+	$(".show_hide_info").click(function() {
+		var c = $(this).prev().is(":visible");
+		$(this).prev().toggle("slow");
+		$(".arrow_to_down_up_schedule", this).attr("src", c ? "img/arrow_to_down_schedule.png" : "img/arrow_to_up_schedule.png");
+	});		
+	var menu_swipe = ['#content', '#inform'];
+	var swipe_menu_count = 0;
+//Функция свайпа!
+	$(function() {
+		$('#3087256678').bind('swipeleft', function(event) {//Если листаем влево (слева направо само меню)		
+			alert(11);
+			/*$('#content').hide();
+			$('#inform').show();*/
+		});
+	});
+//Функция свайпа!
+</script>
+
+
+<div id="inform"  style="display: none;">
+	<a id="add_inform" href="add_inform.html"></a>
+	
+	<div class="inform_block">
+		<div class="visible_inform">
+			<div class="inform_target">Хочу пообщаться</div>
+			<div class="inform_name">Власенко Олег</div>
+		</div>
+		<div class="hide_inform">
+			<div class="info_inform">Побщаюсь со знающими людьми на тему BDSM</div>
+			<div class="place_inform"><b>Место встречи:</b> возле толчка</div>
+		</div>
+		<div class="show_hide_info"><img src="img/arrow_to_down_schedule.png" class="arrow_to_down_up_schedule"></div>
+	</div>
+
+</div>
+<!--Тусовка конец-->

@@ -479,7 +479,6 @@
 .android,
 .android .view,
 .android .view .pages {
-  font: 14px 'Roboto', sans-serif;
   background: #dee5eb;
   color: #fff;
   border-color: #fff;
@@ -753,11 +752,13 @@
 .android input[type="tel"],
 .android input[type="color"],
 .android .input-group {
-  background: inherit;
-  color: inherit;
-  border: none;
-  border-radius: 0;
-  border-bottom: 1px solid #ccc;
+	font-family:'Myriad Pro Condensed';
+	font-size: 15px;
+  background-color: white;
+  color: #a9a9a9;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+	margin-top: 3px;
 }
 .android:not(.light) input[type="radio"]:not(.toggle):checked + label:before {
   background: #33b5e5;
