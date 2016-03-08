@@ -44,6 +44,8 @@
 <script src="js/add_informal-notice.js"></script>
 <script src="js/actions.js"></script>
 <script src="js/requests_manager.js"></script>
+<script src="js/refresh_script.js"></script>
+<script src="js/notification.js"></script>
 <script src="xdk/init-dev.js"></script>
 <script src="js/event_page_scripts.js"></script>
 </head>
@@ -69,7 +71,7 @@
 				<img src="img/filter.png" class="settings"
 					onclick="show('#filter_black');">
 			</div>
-			<img src="img/refresh.png" class="settings" onclick="example_not();">
+            <div id="refresh_button"><img src="img/refresh.png" class="settings" onclick="refresh_events();"></div>
 		</header>
 		<div class="pages">
 			<div class="panel" id="item1" style="background-color: #dee5eb">
