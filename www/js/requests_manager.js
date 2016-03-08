@@ -55,7 +55,7 @@ function add_informal_to_server(id_event, theme, organize, information, place) {
         organize: organize,
         information: information,
         place: place
-    }, function(data) {});
+    }, function(data) {alert(data);});
 }
 
 function get_event_information(id) {
