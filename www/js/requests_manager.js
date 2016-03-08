@@ -47,6 +47,17 @@ function get_informal_from_event(id_event, num_begin, num_end) {
     });
 }
 
+function add_informal_to_server(id_event, theme, organize, information, place) {
+    $.get("http://it-event.esy.es/api.php", {
+        mod: "add_informal",
+        id_event: id_event,
+        theme: theme,
+        organize: organize,
+        information: information,
+        place: place
+    }, function(data) {});
+}
+
 function get_event_information(id) {
     hide("#event_pane");
     show("#preloader_event");
