@@ -66,12 +66,15 @@
 
 <!--Тусовка начало-->
 <script type="text/javascript" language="javascript">
-	//Раскрытие и сворачивание конкретной тусовки
-	$(".show_hide_info").click(function() {
-		var c = $(this).prev().is(":visible");
-		$(this).prev().toggle("slow");
-		$(".arrow_to_down_up_schedule", this).attr("src", c ? "img/arrow_to_down_schedule.png" : "img/arrow_to_up_schedule.png");
-	});		
+    function click_informal() {
+	   //Раскрытие и сворачивание конкретной тусовки
+	   $(".show_hide_info").click(function() {
+		  var c = $(this).prev().is(":visible");
+		  $(this).prev().toggle("slow");
+          $(".arrow_to_down_up_schedule", this).attr("src", c ? "img/arrow_to_down_schedule.png" : 
+            "img/arrow_to_up_schedule.png");
+	   });		
+    }
 	var menu_swipe = ['#content', '#inform'];
 	var swipe_menu_count = 0;
 //Функция свайпа!
@@ -87,8 +90,8 @@
 
 
 <div id="inform"  style="display: none;">
-	<a id="add_inform" href="add_inform.html"></a>
-	
+	<a id="add_inform" href="#add_inform_content" onclick="double_title();"></a>
+	<div id="bloks_informals">
 	<div class="inform_block">
 		<div class="visible_inform">
 			<div class="inform_target">Хочу пообщаться</div>
@@ -100,6 +103,7 @@
 		</div>
 		<div class="show_hide_info"><img src="img/arrow_to_down_schedule.png" class="arrow_to_down_up_schedule"></div>
 	</div>
+    </div>
 
 </div>
 <!--Тусовка конец-->

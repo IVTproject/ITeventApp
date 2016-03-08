@@ -36,6 +36,17 @@ function get_actios_from_event(id_event) {
     });
 }
 
+function get_informal_from_event(id_event, num_begin, num_end) {
+    $.get("http://it-event.esy.es/api.php", {
+        mod: "get_informal",
+        id_event: id_event,
+        begin: num_begin,
+        end: num_end
+    }, function(data) {
+        fill_informal(data);
+    });
+}
+
 function get_event_information(id) {
 	hide("#event_pane");
 	show("#preloader_event");

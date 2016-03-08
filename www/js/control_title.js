@@ -14,6 +14,11 @@ function clear_title() {
     document.getElementById('top_title').innerHTML = "";
 }
 
+function duble_title() {
+    clear_title();
+    change_title(localStorage.getItem('last_evet_name'), localStorage.getItem('last_evet_name'));
+}
+
 function back(e) {
     if(stack_title.length != 0) {
         if(stack_title.length != 1) {
@@ -29,7 +34,7 @@ function back(e) {
 function filter(filter) {
     if(filter == "list_events") {
         $('#filter_conteiner').text("");
-        $('#filter_conteiner').append('<img src="img/filter.png" class="settings" onclick="show("#filter_black");>');
+        $('#filter_conteiner').append("<img src='img/filter.png' class='settings' onclick=\"show('#filter_black');\">");
     }
     if(filter == "none") {
         $('#filter_conteiner').text("");

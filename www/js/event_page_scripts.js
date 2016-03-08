@@ -2,6 +2,19 @@ function load_schedule() {
     get_actios_from_event(localStorage.getItem("last_evet_id"));
 }
 
+function load_informal(begin, end) {
+    get_informal_from_event(localStorage.getItem("last_evet_id"), begin, end);
+}
+
+function fill_informal(data) {
+    var json_array = JSON.parse(data);
+    $('#bloks_informals').text("");
+    for(var i = 0; json_array[i]; i++) {
+        $('#bloks_informals').append(creat_blok_informal(json_array[i]));
+    }
+    click_informal();
+}
+
 function fill_actions(data) {
     change_title(localStorage.getItem('last_evet_name'), localStorage.getItem('last_evet_name'));
     filter("none");
@@ -34,6 +47,31 @@ function show_hide_schedule() {
 			
 	});
 }
+
+function chek_data_user() {
+    var first_name = document.getElementsByName('first_name')[0].value;
+    var second_name = document.getElementsByName('second_name')[0].value;
+    if(first_name.length >= 2 && second_name.length >= 2) {
+        localStorage.setItem("first_name", first_name);
+        localStorage.setItem("second_name", second_name);
+        clear_title(); 
+        load_schedule();
+        load_informal(0, 15);
+        document.getElementById('go_schedule').click();
+    } else {
+        alert("Заполните поля выше");
+    }
+}
+
+function creat_blok_informal(inf) {
+    return '<div class="inform_block"> <div class="visible_inform"> <div class="inform_target">' +
+        inf.theme + '</div> <div class="inform_name">' + inf.organize + '</div></div>' +
+		'<div class="hide_inform"><div class="info_inform">' + inf.information + '</div>' +
+        '<div class="place_inform"><b>Место встречи:</b>' + inf.place + '</div>' + 
+		'</div><div class="show_hide_info"><img src="img/arrow_to_down_schedule.png"' +
+        'class="arrow_to_down_up_schedule"></div></div>';
+}
+
 
 function creat_block_schedule(inf) {
     var result = "";
