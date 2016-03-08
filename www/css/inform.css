@@ -8,7 +8,7 @@
     src: url('../fonts/OpenSans-Light.ttf'); /* Путь к файлу со шрифтом */
 }
 
-.inform_block {
+.inform_block, .ads_content {
 	color: black;
 	background-color: white;
 	overflow:hidden;
@@ -67,7 +67,7 @@
 	font-size: 14px;
 }
 
-#add_inform {
+#add_inform, #add_ads {
 	position: fixed;
 	right: 25px;
 	bottom: 56px;

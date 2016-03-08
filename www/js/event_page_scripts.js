@@ -81,11 +81,11 @@ function creat_block_schedule(inf) {
     var result = "";
     var time = inf.time.split(" ")[1].split(":");
     result +=
-        "<div class='block_schedule'> <div class='content_schedule'> <b> ";
+        "<div class='block_schedule'><div class='visible_schedule'> <div class='content_schedule'> <b> ";
     result += time[0] + " : " + time[1] + " — </b> " + inf.name +
         " </div> ";
     result +=
-        " <div class='im_going'> </div> <div class='more_info_schedule'> ";
+        " <div class='im_going'> </div></div> <div class='more_info_schedule'> ";
     for (var i = 0; inf.additional_fields[i]; i++) {
         result += "<p><b> " + inf.additional_fields[i].name + " :</b> " +
             inf.additional_fields[i].value + " </p>";
