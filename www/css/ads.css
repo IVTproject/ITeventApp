@@ -1,0 +1,25 @@
+.title_ads {
+	font-family: OpenSansSemibold;
+	color: black;
+	font-size: 16px;
+	margin-top: 7px;
+	margin-left: 11px;
+}
+
+.dop_contents_ads {
+	font-family: OpenSansLight; 
+	font-size: 14px;
+	margin-left: 32px;
+	margin-right: 8px;	
+}
+
+.contacts_inf_ads {	
+	float: left;
+}
+
+.contacts_name_blocks_ads {
+	margin-left: 11px;
+	float: left;
+	word-wrap: break-word;
+	margin-bottom: 8px;
+}
