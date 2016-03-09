@@ -63,12 +63,15 @@
                     <img src="img/filter.png" class="settings"
                         onclick="show('#filter_black');">
                 </div>
-                <img src="img/refresh.png" class="settings" onclick="example_not();">
+                <div id="refresh_button"><img src="img/refresh.png" class="settings" onclick="refresh_events();"></div>
             </header>
             <div class="pages">
                 <div class="panel" id="item1" style="background-color: #dee5eb">
+
                     <div id="preloader_events"></div>
+
                     <div id="filter_black" style="display: none">
+
                         <div id="filter_city" style="display: none">
                             <form id="list_city">
                                 <div id="name_city_list">Список Городов</div>
@@ -80,12 +83,14 @@
                                 </div>
                             </form>
                         </div>
+
                         <div class="filter_white">
                             <form>
                                 <img src="img/close.png" id="close"
                                     onclick="hide('#filter_black'); list_filter_events();">
                                 <div class="filter_text">Город:</div>
                                 <div class="filter_block" onclick="show('#filter_city');">Все</div>
+
                                 <div class="clearer">&nbsp;</div>
                                 <div class="filter_text">Дата проведения:</div>
                                 <div class="clearer">&nbsp;</div>
@@ -95,17 +100,24 @@
                                     value="2017-02-22">
                             </form>
                         </div>
+
                     </div>
+
                     <div id='events_write'>
                         <!-- Список мероприятий -->
                     </div>
+
                 </div>
 				
-                <!-- Страница конкретного мероприятия до регистрации начало-->
+			<!-- Страница конкретного мероприятия -->
                 <div class="panel" id="event_page">
+
                     <div id="preloader_event"></div>
+
                     <div id="event_pane">
+
                         <div class="paragraph"></div>
+
                         <!--Начало — Аватарка с датой + название материала-->
                         <div id="head_event">
                             <div id="ava_event">
@@ -126,49 +138,63 @@
                                 <!-- Опиание -->
                             </div>
                         </div>
+
                         <div class="paragraph"></div>
+
                         <div class="info_event">
                             <div class="name_block">Город:</div>
                             <div id="text_city_info" class="content_event">
                                 <!-- Город -->
                             </div>
                         </div>
+
                         <div class="paragraph"></div>
+
                         <div class="info_event">
                             <div class="name_block">Адрес:</div>
                             <div id="text_adres_info" class="content_event">
                                 <!-- Адрес -->
                             </div>
                         </div>
+
                         <div class="paragraph"></div>
+
                         <div class="info_event">
                             <div class="name_block">Организатор:</div>
                             <div id="text_organizer_info" class="content_event">
                                 <!-- Организатор -->
                             </div>
                         </div>
+
                         <div class="paragraph"></div>
+
                         <div class="info_event">
                             <div class="name_block">Дата начала:</div>
                             <div id="text_begin_date_info" class="content_event">
                                 <!-- Дата начала -->
                             </div>
                         </div>
+
                         <div class="paragraph"></div>
+
                         <div class="info_event">
                             <div class="name_block">Дата конца:</div>
                             <div id="text_end_date_info" class="content_event">
                                 <!-- Дата конца -->
                             </div>
                         </div>
+
                         <div class="paragraph"></div>
+
                         <div class="info_event">
                             <div class="name_block">Сайт мероприятия:</div>
                             <div class="content_event">
                                 <a id="site_info" class="redme" href=""></a>
                             </div>
                         </div>
+
                         <div class="paragraph"></div>
+
                         <div class="info_event">
                             <div class="name_block">Авторизация:</div>
                             <div class="content_event">
@@ -182,8 +208,11 @@
                                 </form>
                             </div>
                         </div>
+
                         <div class="paragraph"></div>
+
                     </div>
+
                 </div>
 				<!-- Страница конкретного мероприятия до регистрации конец-->
 				
@@ -191,7 +220,8 @@
 				<!-- Страница конкретного мероприятия после регистрации начало-->
                 <div class="panel" id="event_schedule">
                     <ul id="scroll_menu">
-                        <li id="1" class="active1"><a href="#schedule.html">Расписание</a></li>
+					<li id="1" class="active1"><a href="#schedule.html">Расписание</a>
+					</li>
                         <li id="2"><a href="#ads.html">Объявления</a></li>
                         <li id="3"><a href="#hangout.html">Тусовка</a></li>
                     </ul>
@@ -199,6 +229,7 @@
                     <!--Расписание начало-->
                     <div id="content">
                         <div class="What_a_day">День 1</div>
+
                         <div class="block_schedule">
                             <div class="content_schedule">
                                 <b>9:00 — </b>Real Time Bidding. Сбор, хранение и анализ
@@ -206,6 +237,7 @@
                             </div>
                             <div class="im_going"></div>							
                             <div class="more_info_schedule">
+							<p>
                                 <p><b>Тип:</b> Лекция</p>
                                 <p><b>Лектор:</b> Сергей Жучков
                                 </p><p>Директор по решениям, DZ Systems</p>

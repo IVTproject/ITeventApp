@@ -26,6 +26,7 @@ function get_inform_event(event_inform) {
     //console.log(event_inform);
     info = JSON.parse(event_inform);
     change_title(info.name, "Мероприятия");
+    delete_refresh_button();
     filter("none");
     localStorage.setItem("last_evet_id", info.id);
     localStorage.setItem("last_evet_name", info.name);

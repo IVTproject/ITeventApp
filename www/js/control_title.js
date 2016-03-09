@@ -24,6 +24,7 @@ function back(e) {
         if (stack_title.length == 1) {
             document.getElementById('top_title').innerHTML = "<h1>" +
                 stack_title.pop(); + "</h1>";
+            change_refresh_button("event_list");
         } else {
             stack_title.pop();
         }
