@@ -36,17 +36,32 @@ function fill_actions(data) {
     show_hide_schedule();
 }
 
-function show_hide_schedule() {
-    $(".show_hide_schedule").click(function() {
-        var c = $(this).prev().is(":visible");
-        $(this).prev().toggle("slow");
-        $(".arrow_to_down_up_schedule", this).attr("src", c ?
-            "img/arrow_to_down_schedule.png" :
-            "img/arrow_to_up_schedule.png");
+function show_hide_schedule() {	
+    $(".block_schedule_click").click(function() {
+        var c = $(this).next().is(":visible");		
+		$(this).parent().next().toggle("slow");		
+		$(".arrow_to_down_up_schedule", this).attr("src", c ? "img/arrow_to_down_schedule.svg" : "img/arrow_to_up_schedule.svg");	
     });
+	
+	$(".more_info_schedule").click(function() {
+        var c = $(this).is(":visible");		
+		$(this).toggle("slow");		
+		$(".arrow_to_down_up_schedule", this).attr("src", c ? "img/arrow_to_down_schedule.svg" : "img/arrow_to_up_schedule.svg");	
+    });
+	
     //Галочка я пойду или нет
-    $(".im_going").click(function() {
-        $(this).toggleClass('im_not_going');
+    $(".im_going_block").click(function() {
+        //Галочка я пойду или нет            
+		$(this).children('.im_going').toggleClass('im_not_going');
+		if ($(this).children().is('.im_not_going')) {					
+			$(this).children('.im_going_text').text("Иду"); 
+			$(this).children('.im_going_text').css("color", "#1e96f5");
+			$(this).children('.im_going_text').css("margin-left", "7px");
+		}else {					
+			$(this).children('.im_going_text').text("Не Иду");
+			$(this).children('.im_going_text').css("color", "#c2c2c2") ;					
+			$(this).children('.im_going_text').css("margin-left", "1px");
+		}
     });
 }
 
@@ -81,21 +96,15 @@ function creat_blok_informal(inf) {
 function creat_block_schedule(inf) {
     var result = "";
     var time = inf.time.split(" ")[1].split(":");
-    result +=
-        "<div class='block_schedule'><div class='visible_schedule'> <div class='content_schedule'> <b> ";
-    result += time[0] + " : " + time[1] + " — </b> " + inf.name +
-        " </div> ";
-    result +=
-        " <div class='im_going'> </div></div> <div class='more_info_schedule'> ";
-    for (var i = 0; inf.additional_fields[i]; i++) {
-        result += "<p><b> " + inf.additional_fields[i].name + " :</b> " +
+	var dop = "";
+	for (var i = 0; inf.additional_fields[i]; i++) {
+        dop += "<p><b> " + inf.additional_fields[i].name + " :</b> " +
             inf.additional_fields[i].value + " </p>";
     }
-    result += "<p><b>На лекцию идёт:</b>" + inf.who_is_coming.split(",").length +
-        " человек</p></div><div class='show_hide_schedule'>";
-    result +=
-        "<img src='img/arrow_to_down_schedule.png' class='arrow_to_down_up_schedule'/></div>" +
-        "</div>";
-    console.log(result);
+    dop += "<p><b>На лекцию идёт: </b>" + inf.who_is_coming.split(",").length +
+        " человек</p></div></div>";
+	
+	result += '<div class="block_schedule"><div class="block_schedule_vis"><div class="im_going_block"><div class="im_going"></div><div class="im_going_text">Не Иду</div></div><div class="block_schedule_click"><div class="content_schedule"><b>'+time[0]+':'+time[1]+' — </b>'+inf.name+'</div><div class="show_hide_schedule"><img width="21" src="img/arrow_to_down_schedule.svg" onerror="this.onerror=null; this.src=\'img/arrow_to_down_schedule.png\'" class="arrow_to_down_up_schedule"></div></div></div><div class="more_info_schedule">'+dop+'</div></div>';
+	
     return result;
 }

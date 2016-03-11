@@ -23,3 +23,16 @@
 	word-wrap: break-word;
 	margin-bottom: 8px;
 }
+
+.rate_block_ads {
+	clear:both;
+}
+
+.like_ads, .rate_ads, .dislike_ads {
+	float: left;
+}
+
+.rate_ads {
+	margin-left: 4px;
+	margin-right: 4px;
+}
