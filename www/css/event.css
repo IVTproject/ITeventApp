@@ -167,7 +167,7 @@ input[type="submit"] {
 
 
 .im_going_block { 
-  	width: 50px;
+  	min-width: 50px;
   	overflow: hidden;
 }
 
@@ -199,13 +199,12 @@ input[type="submit"] {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: stretch;
-	width: 100%;
+	flex-grow: 1;
 }
 
 .content_schedule {	
 	flex-grow: 1;
 	padding-top: 15px;	
-	flex-grow: 1;
 	white-space: nowrap;
     overflow: hidden;
 	text-overflow: ellipsis;
@@ -213,7 +212,7 @@ input[type="submit"] {
 }
 
 .show_hide_schedule {	
-	width: 50px;	
+	min-width: 50px;	
 }
 
 .arrow_to_down_up_schedule {	
