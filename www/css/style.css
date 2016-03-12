@@ -236,7 +236,7 @@ input[type=date]  {
 	display: block;
 }
 #preloader_event, #preloader_events {
-	background: url(http://it-event.tk/img/preloader.gif);
+	background: url(../img/preloader.gif);
 	background-repeat: no-repeat;
 	width: 64px;
 	height: 64px;
