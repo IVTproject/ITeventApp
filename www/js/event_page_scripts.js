@@ -100,12 +100,12 @@ function chek_data_user() {
 }
 
 function is_have_assessed(id) {
-    var local = localStorage.getItem("have_assessed_notice");
+    var local = localStorage.getItem("have_assessed_notice_" + localStorage.getItem("last_evet_id"));
     if(local && local != "undefined") {
-        var jsa = JSON.parse(localStorage.getItem("have_assessed_notice"));
+        var jsa = JSON.parse(localStorage.getItem("have_assessed_notice_" + localStorage.getItem("last_evet_id")));
         for(var i = 0; jsa[i]; i++) {
-            if(jsa[i].id == id) {
-                return jsa[i].rang;
+            if(jsa[i] == id) {
+                return -1;
             }
         }
         return 0;
@@ -114,40 +114,28 @@ function is_have_assessed(id) {
     }
 }
 
-function have_assessed(id, rang) {
-    var local = localStorage.getItem("have_assessed_notice");
+function have_assessed(id) {
+    
+    var local = localStorage.getItem("have_assessed_notice_" + localStorage.getItem("last_evet_id"));
     if(local && local != "undefined") {
         var jsa = JSON.parse(local);
-        var em = true;
-        for(var i = 0; jsa[i]; i++) {
-            if(jsa[i].id == id) {
-                jsa[i].rang = rang;
-                em = false;
-            }
-        }
-        if(em) jsa.push({id:id, rang:rang});
-        localStorage.setItem("have_assessed_notice", JSON.stringify(jsa));
+        jsa.push(id);
+        localStorage.setItem("have_assessed_notice_" + localStorage.getItem("last_evet_id"), JSON.stringify(jsa));
     } else {
-        localStorage.setItem("have_assessed_notice", JSON.stringify([{id:id, rang:rang}]));
+        localStorage.setItem("have_assessed_notice_" + localStorage.getItem("last_evet_id"), JSON.stringify([id]));
     }
 }
 
 function dislike_notice(id) {
-    if(is_have_assessed(id) >= 0) {
-        change_rang_notice_server(id, -1);
-        have_assessed(id, -1);
-    }
-}
-
-function change_rang_notice_device(id_notice, data) {
-    load_notice(0, 15);
+    $("#block_notice_" + id).hide("slow", function(){$(this).remove();});
+    have_assessed(id, -1);
 }
 
 function creat_blok_notice(inf) {
     if(is_have_assessed(inf.id) == -1) {
         return "";
     }
-    return '<div id="'+inf.id+'"><div class="ads_content"><div class="title_ads">'+inf.name+'</div><div class="dop_contents_ads"><div class="information_ads">'+inf.information+'</div><div class="contacts_inf_ads"><b>Контактная информация:</b></div><div class="contacts_name_blocks_ads"><div class="contacts_phone_ads">'+inf.contact+'</div><div class="contacts_phone_name">'+inf.FIO+'</div></div></div><div class="rate_block_ads"><div id="rang_'+inf.id+'" class="rate_ads">'+inf.popularity+'</div><div class="dislike_ads" onclick="dislike_notice('+inf.id+');">-</div></div></div></div>';
+    return '<div id="block_notice_'+inf.id+'"><div class="ads_content"><div class="title_ads">'+inf.name+'</div><div class="dop_contents_ads"><div class="information_ads">'+inf.information+'</div><div class="contacts_inf_ads"><b>Контактная информация:</b></div><div class="contacts_name_blocks_ads"><div class="contacts_phone_ads">'+inf.contact+'</div><div class="contacts_phone_name">'+inf.FIO+'</div></div></div><div class="rate_block_ads"><div class="dislike_ads" onclick="dislike_notice('+inf.id+');">-</div></div></div></div>';
 }
 
 function creat_blok_informal(inf) {

@@ -27,15 +27,6 @@ function get_list_city() {
     });
 }
 
-function change_rang_notice_server(id_notice, inc) {
-    $.get("http://it-event.esy.es/api.php", {
-        mod: "change_rang",
-        id_notice: id_notice,
-        inc: inc
-    }, function(data) {
-        change_rang_notice_device(id_notice, data);
-    }); 
-}
 
 function get_notice_from_event(id_event, begin, end) {
     $.get("http://it-event.esy.es/api.php", {
