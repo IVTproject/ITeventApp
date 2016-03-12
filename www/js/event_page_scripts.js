@@ -21,12 +21,17 @@ function fill_informal(data) {
     click_informal();
 }
 
+function click_informal() {
+	   $(".show_hide_info").click(function() {
+		  var c = $(this).prev().is(":visible");
+		  $(this).prev().toggle("slow");
+          $(".arrow_to_down_up_schedule", this).attr("src", c ? "img/arrow_to_down_schedule.png" : "img/arrow_to_up_schedule.png");
+	   });		
+}
+
 function fill_notice(data) {
     var json_array = JSON.parse(data);
     $('#notice_bloks_content').text("");
-    json_array.sort(function(a, b) {
-        return b.popularity - a.popularity;
-    });
     for (var i = 0; json_array[i]; i++) {
         $('#notice_bloks_content').append(creat_blok_notice(json_array[i]));
     }
