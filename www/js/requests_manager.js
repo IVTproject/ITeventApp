@@ -27,6 +27,18 @@ function get_list_city() {
     });
 }
 
+
+function get_notice_from_event(id_event, begin, end) {
+    $.get("http://it-event.esy.es/api.php", {
+        mod: "get_notice_from_event",
+        id_event: id_event,
+        begin: begin,
+        end: end
+    }, function(data) {
+        fill_notice(data);
+    }); 
+}
+
 function get_actios_from_event(id_event) {
     $.get("http://it-event.esy.es/api.php", {
         mod: "list_actios_from_event",

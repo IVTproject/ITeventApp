@@ -7,6 +7,11 @@ function load_informal(begin, end) {
         end);
 }
 
+function load_notice(begin, end) {
+    get_notice_from_event(localStorage.getItem("last_evet_id"), begin,
+        end);
+}
+
 function fill_informal(data) {
     var json_array = JSON.parse(data);
     $('#bloks_informals').text("");
@@ -14,6 +19,22 @@ function fill_informal(data) {
         $('#bloks_informals').append(creat_blok_informal(json_array[i]));
     }
     click_informal();
+}
+
+function click_informal() {
+	   $(".show_hide_info").click(function() {
+		  var c = $(this).prev().is(":visible");
+		  $(this).prev().toggle("slow");
+          $(".arrow_to_down_up_schedule", this).attr("src", c ? "img/arrow_to_down_schedule.png" : "img/arrow_to_up_schedule.png");
+	   });		
+}
+
+function fill_notice(data) {
+    var json_array = JSON.parse(data);
+    $('#notice_bloks_content').text("");
+    for (var i = 0; json_array[i]; i++) {
+        $('#notice_bloks_content').append(creat_blok_notice(json_array[i]));
+    }
 }
 
 function fill_actions(data) {
@@ -38,7 +59,7 @@ function fill_actions(data) {
 
 function show_hide_schedule() {	
     $(".block_schedule_click").click(function() {
-        var c = $(this).next().is(":visible");		
+        var c = $(this).parent().next().is(":visible");		
 		$(this).parent().next().toggle("slow");		
 		$(".arrow_to_down_up_schedule", this).attr("src", c ? "img/arrow_to_down_schedule.svg" : "img/arrow_to_up_schedule.svg");	
     });
@@ -46,7 +67,7 @@ function show_hide_schedule() {
 	$(".more_info_schedule").click(function() {
         var c = $(this).is(":visible");		
 		$(this).toggle("slow");		
-		$(".arrow_to_down_up_schedule", this).attr("src", c ? "img/arrow_to_down_schedule.svg" : "img/arrow_to_up_schedule.svg");	
+		$(".arrow_to_down_up_schedule", $(this).parent()).attr("src", c ? "img/arrow_to_down_schedule.svg" : "img/arrow_to_up_schedule.svg");	
     });
 	
     //Галочка я пойду или нет
@@ -76,10 +97,50 @@ function chek_data_user() {
         'last_evet_name'));
         load_schedule();
         load_informal(0, 15);
+        load_notice(0, 15);
         document.getElementById('go_schedule').click();
     } else {
         alert("Заполните поля выше");
     }
+}
+
+function is_have_assessed(id) {
+    var local = localStorage.getItem("have_assessed_notice_" + localStorage.getItem("last_evet_id"));
+    if(local && local != "undefined") {
+        var jsa = JSON.parse(localStorage.getItem("have_assessed_notice_" + localStorage.getItem("last_evet_id")));
+        for(var i = 0; jsa[i]; i++) {
+            if(jsa[i] == id) {
+                return -1;
+            }
+        }
+        return 0;
+    } else {
+        return 0;
+    }
+}
+
+function have_assessed(id) {
+    
+    var local = localStorage.getItem("have_assessed_notice_" + localStorage.getItem("last_evet_id"));
+    if(local && local != "undefined") {
+        var jsa = JSON.parse(local);
+        jsa.push(id);
+        localStorage.setItem("have_assessed_notice_" + localStorage.getItem("last_evet_id"), JSON.stringify(jsa));
+    } else {
+        localStorage.setItem("have_assessed_notice_" + localStorage.getItem("last_evet_id"), JSON.stringify([id]));
+    }
+}
+
+function dislike_notice(id) {
+    $("#block_notice_" + id).hide("slow", function(){$(this).remove();});
+    have_assessed(id, -1);
+}
+
+function creat_blok_notice(inf) {
+    if(is_have_assessed(inf.id) == -1) {
+        return "";
+    }
+    return '<div id="block_notice_'+inf.id+'"><div class="ads_content"><div class="title_ads">'+inf.name+'</div><div class="dop_contents_ads"><div class="information_ads">'+inf.information+'</div><div class="contacts_inf_ads"><b>Контактная информация:</b></div><div class="contacts_name_blocks_ads"><div class="contacts_phone_ads">'+inf.contact+'</div><div class="contacts_phone_name">'+inf.FIO+'</div></div></div><div class="rate_block_ads"><div class="dislike_ads" onclick="dislike_notice('+inf.id+');">-</div></div></div></div>';
 }
 
 function creat_blok_informal(inf) {
