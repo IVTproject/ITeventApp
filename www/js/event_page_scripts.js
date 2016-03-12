@@ -58,7 +58,13 @@ function fill_actions(data) {
 }
 
 function show_hide_schedule() {	
-    $(".block_schedule_click").click(function() {
+    $(".content_schedule").click(function() {
+        var c = $(this).parent().next().is(":visible");		
+		$(this).parent().next().toggle("slow");		
+		$($(this).next().children()).attr("src", c ? "img/arrow_to_down_schedule.svg" : "img/arrow_to_up_schedule.svg");	
+    });
+	
+	$(".show_hide_schedule").click(function() {
         var c = $(this).parent().next().is(":visible");		
 		$(this).parent().next().toggle("slow");		
 		$(".arrow_to_down_up_schedule", this).attr("src", c ? "img/arrow_to_down_schedule.svg" : "img/arrow_to_up_schedule.svg");	
@@ -165,7 +171,7 @@ function creat_block_schedule(inf) {
     dop += "<p><b>На лекцию идёт: </b>" + inf.who_is_coming.split(",").length +
         " человек</p></div></div>";
 	
-	result += '<div class="block_schedule"><div class="block_schedule_vis"><div class="im_going_block"><div class="im_going"></div><div class="im_going_text">Не Иду</div></div><div class="block_schedule_click"><div class="content_schedule"><b>'+time[0]+':'+time[1]+' — </b>'+inf.name+'</div><div class="show_hide_schedule"><img width="21" src="img/arrow_to_down_schedule.svg" onerror="this.onerror=null; this.src=\'img/arrow_to_down_schedule.png\'" class="arrow_to_down_up_schedule"></div></div></div><div class="more_info_schedule">'+dop+'</div></div>';
+	result += '<div class="block_schedule"><div class="block_schedule_vis"><div class="im_going_block"><div class="im_going"></div><div class="im_going_text">Не Иду</div></div><div class="content_schedule"><b>'+time[0]+':'+time[1]+' — </b>'+inf.name+'</div><div class="show_hide_schedule"><img width="21" src="img/arrow_to_down_schedule.svg" onerror="this.onerror=null; this.src=\'img/arrow_to_down_schedule.png\'" class="arrow_to_down_up_schedule"></div></div><div class="more_info_schedule">'+dop+'</div></div>';
 	
     return result;
 }

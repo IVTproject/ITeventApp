@@ -194,14 +194,6 @@ input[type="submit"] {
 }
 
 
-.block_schedule_click {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: stretch;
-	flex-grow: 1;
-}
-
 .content_schedule {	
 	flex-grow: 1;
 	padding-top: 15px;	
@@ -212,7 +204,7 @@ input[type="submit"] {
 }
 
 .show_hide_schedule {	
-	min-width: 50px;	
+	width: 50px;	
 }
 
 .arrow_to_down_up_schedule {	
