@@ -117,14 +117,18 @@
 
 .filter_white {	
 	background-color: white;
-	top: 50px;	
-	height: 280px;
-	width: 100%;
+	top: 55px;	
+	left: 10px;
+	right: 10px;
+	height: 280px;	
 	position: fixed; 
 	-webkit-box-shadow: 0px 4px 6px -1px rgba(50, 50, 50, 0.87);
 	-moz-box-shadow:    0px 4px 6px -1px rgba(50, 50, 50, 0.87);
 	box-shadow:         0px 4px 6px -1px rgba(50, 50, 50, 0.87);
 	z-index: 2;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 }
 
 #filter_city {

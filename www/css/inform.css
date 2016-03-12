@@ -70,11 +70,11 @@
 #add_inform, #add_ads {
 	position: fixed;
 	right: 25px;
-	bottom: 56px;
-	width: 46px;
-	height: 46px;
-	background-image: url('../img/add_inform.png');
-	cursor: pointer;
+	bottom: 25px;
+	width: 50px;
+	height: 50px;
+	background: url('../img/add.svg') no-repeat;
+  	background-size: 49px 50px;
 }
 
 /*Добавить встречу*/
