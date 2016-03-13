@@ -38,6 +38,13 @@
   	background-size: 21px 13px;
 }
 
+.right_inform_block_up {
+	min-width: 34px;
+	background: url('../img/arrow_to_up_schedule.svg') no-repeat center center;
+  	background-size: 21px 13px;
+}
+
+
 .left_inform_block {	
 	font-family: OpenSansLight;	
 	overflow:hidden;		

@@ -12,6 +12,13 @@ function change_title(new_title, prev_title) {
         "<h1><marquee scrollamount='3'>" + new_title + "</marquee></h1>";
 }
 
+function click_back_button() {
+    var backButton = document.getElementsByClassName('backButton');
+    if (backButton) {
+        backButton[0].click();
+    }
+}
+
 function clear_title() {
     document.getElementById('top_title').innerHTML = "";
 }

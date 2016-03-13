@@ -59,6 +59,33 @@ function get_informal_from_event(id_event, num_begin, num_end) {
     });
 }
 
+function change_rang_informal(id_informal, inc, is_throwing) {
+    $.get("http://it-event.esy.es/api.php", {
+        mod: "change_rang_informal",
+        id_informal: id_informal,
+        inc: inc,
+        is_throwing: is_throwing
+    }, function(data) {
+        change_rangs_to_informal(id_informal, data);
+    });
+}
+
+function add_notice_to_server(id_event, name, FIO, type, information, contact) {
+    $.get("http://it-event.esy.es/api.php", {
+        mod: "add_notice_form_event",
+        id_event: id_event,
+        name: name,
+        FIO: FIO,
+        type: type,
+        information: information,
+        contact: contact
+    }, function(data) {
+        load_notice(0, 15);
+        click_back_button();
+    });
+}
+
+
 function add_informal_to_server(id_event, theme, organize, information, place) {
     $.get("http://it-event.esy.es/api.php", {
         mod: "add_informal",
@@ -67,7 +94,18 @@ function add_informal_to_server(id_event, theme, organize, information, place) {
         organize: organize,
         information: information,
         place: place
-    }, function(data) {alert(data);});
+    }, function(data) {
+        remember_id_informal(data);
+        load_informal(0, 15);
+        click_back_button();
+    });
+}
+
+function make_inactive_informal(id_informal) {
+    $.get("http://it-event.esy.es/api.php", {
+        mod: "make_inactive_informal",
+        id_informal: id_informal
+    }, function(data) {});
 }
 
 function get_event_information(id) {

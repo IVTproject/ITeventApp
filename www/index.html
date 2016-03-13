@@ -98,44 +98,6 @@
                     </div>
 					
 					<!--Вёрстка тусовки-->
-					<div class="inform_block"><!--Вид для не моего поста-->
-						<div class="visible_inform">
-							<div class="left_inform_block">
-								<div class="name_inform">Власенко Олег</div>
-								<div class="title_inform">Пообщаюсь: На тему говнокодинга</div>
-								<div class="more_info_inform">
-									<div class="description_inform">Продам говнокодера в хорошие руки, не гадит, приучен к горшку, умеет самостоятельно запускать компьютер.</div>
-									<div class="place_inform"><b>Место встречи:</b> у главного входа</div>
-								</div>
-							</div>						
-							<div class="right_inform_block"></div>
-						</div>
-						<div class="rate_inform">							
-							<div class="like_inform"></div>
-							<div class="rate_like">5</div>							
-							<div class="dislike_inform"></div>
-							<div class="rate_dislike">5</div>
-						</div>
-					</div>
-					
-					
-					<div class="inform_block"><!--Вид для моего поста-->
-						<div class="visible_inform">
-							<div class="left_inform_block">
-								<div class="name_inform">Власенко Олег</div>
-								<div class="title_inform">Пообщаюсь: На тему говнокодинга</div>
-								<div class="more_info_inform">
-									<div class="description_inform">Продам говнокодера в хорошие руки, не гадит, приучен к горшку, умеет самостоятельно запускать компьютер.</div>
-									<div class="place_inform"><b>Место встречи:</b> у главного входа</div>
-								</div>
-							</div>						
-							<div class="right_inform_block"></div>
-						</div>
-						<div class="hide_block_inform">
-							<p class="hide_inform">Завершить общение</p>
-						</div>
-					</div>
-					<!--Вёрстка тусовки-->
                     <div id='events_write'>
                         <!-- Список мероприятий -->
                     </div>
@@ -261,35 +223,7 @@
 					
                     <!--Расписание начало-->
                     <div id="content">
-                        <div class="What_a_day">День 1</div>
-
-                        <div class="block_schedule">
-							<div class="im_going_block">
-								<div class="im_going"></div>
-								<div class="im_going_text">Иду</div>
-							  </div>
-							  <div class="content_schedule">
-								<b>9:00 — </b>Real Time Bidding. Сбор, хранение и анализ обезличенных данных пользователей мобильных устройств
-							  </div>
-							
-                            <div class="more_info_schedule">
-							<p>
-                                <p><b>Тип:</b> Лекция</p>
-                                <p><b>Лектор:</b> Сергей Жучков
-                                </p><p>Директор по решениям, DZ Systems</p>
-                                <p>
-                                    <b>На лекцию идёт:</b> 53 человека
-                                </p>
-                                <p>
-                                    <b>Аудитория:</b> Barcamp №2
-                                </p>
-                            </div>
-							
-                            <div class="show_hide_schedule">
-                                <img src="img/arrow_to_down_schedule.png"
-                                    class="arrow_to_down_up_schedule">
-                            </div>
-                        </div>
+                     
                     </div>
                     <!--Расписание конец-->
                     <!--Объявления начало-->
@@ -305,24 +239,6 @@
                         <a id="add_inform" href="#add_inform_content"
                             onclick="duble_title();"></a>
                         <div id="bloks_informals">
-                            <div class="inform_block">
-                                <div class="visible_inform">
-                                    <div class="inform_target">Хочу пообщаться</div>
-                                    <div class="inform_name">Власенко Олег</div>
-                                </div>
-                                <div class="hide_inform">
-                                    <div class="info_inform">Побщаюсь со знающими людьми на тему
-                                        BDSM
-                                    </div>
-                                    <div class="place_inform">
-                                        <b>Место встречи:</b> возле толчка
-                                    </div>
-                                </div>
-                                <div class="show_hide_info">
-                                    <img src="img/arrow_to_down_schedule.png"
-                                        class="arrow_to_down_up_schedule">
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <!--Тусовка конец-->
@@ -343,7 +259,7 @@
                     <div class="info_event">
                         <div class="name_block">Категория:</div>
                         <div class="content_event">
-                            <select name="categories">
+                            <select id="type_notice" name="categories">
 								<option disabled selected>Выберите категорию</option>
 								<option value="Работа">Работа</option>
 								<option value="Купить">Купить</option>
@@ -365,7 +281,7 @@
                         </div>
                     </div>
                     <div class="content_event">
-                        <input type="submit" name="create_ads" onclick="chek_and_write_informal();"
+                        <input type="submit" name="create_ads" onclick="chek_and_write_notice();"
                             style="margin-right: 10px" value="Добавить объявление">
                     </div>
                 </div>
@@ -404,10 +320,7 @@
             </div>
         </div>
         <script type="text/javascript" language="javascript">          
-			$(".visible_inform").click(function() {
-				var c = $($(this).children().children().next().next()).is(":visible");
-				$($(this).children().children().next().next()).toggle("slow");
-			});
+			
             var menu_swipe = ['#content', '#ads', '#inform'];
 			var content_swipe = ['#1', '#2', '#3'];
             var swipe_menu_count = 0;

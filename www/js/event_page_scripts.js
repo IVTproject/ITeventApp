@@ -16,17 +16,38 @@ function fill_informal(data) {
     var json_array = JSON.parse(data);
     $('#bloks_informals').text("");
     for (var i = 0; json_array[i]; i++) {
-        $('#bloks_informals').append(creat_blok_informal(json_array[i]));
+        if(is_my_informal(json_array[i].id))
+            $('#bloks_informals').append(creat_blok_informal(json_array[i]));
     }
+    var a = [];
+    for(var i = 0; json_array[i]; i++) {
+        var pos = json_array[i].like;
+        var n = json_array[i].like + json_array[i].dislike;
+        if(n != 0) {
+            phat = 1.0*pos/n;
+            var z = 1.96*1.96;
+            var x = (phat + z/(2*n) - 1.96 * Math.sqrt((phat*(1-phat)+z/(4*n))/n))/(1+z/n);
+            a[json_array[i].id] = x;
+        } else  {
+            a[json_array[i].id] = 0;
+        }
+    }
+    json_array.sort(function(x, y){return a[y.id] - a[x.id]});
+    for (var i = 0; json_array[i]; i++) {
+        if(!is_my_informal(json_array[i].id))
+            $('#bloks_informals').append(creat_blok_informal(json_array[i]));
+    }
+    
     click_informal();
 }
 
 function click_informal() {
-	   $(".show_hide_info").click(function() {
-		  var c = $(this).prev().is(":visible");
-		  $(this).prev().toggle("slow");
-          $(".arrow_to_down_up_schedule", this).attr("src", c ? "img/arrow_to_down_schedule.png" : "img/arrow_to_up_schedule.png");
-	   });		
+    $(".visible_inform").click(function() {
+        var c = $($(this).children().children().next().next()).is(":visible");
+        $($(this).children().children().next().next()).toggle("slow");
+        $(this).children().next().toggleClass('right_inform_block_up');
+        
+    });	
 }
 
 function fill_notice(data) {
@@ -148,25 +169,73 @@ function have_assessed(id) {
 
 function dislike_notice(id) {
     $("#block_notice_" + id).hide("slow", function(){$(this).remove();});
-    have_assessed(id, -1);
+    have_assessed(id);
+}
+
+function is_my_informal(id) {
+    if(localStorage.getItem("my_informals_" + localStorage.getItem("last_evet_id")) &&
+    localStorage.getItem("my_informals_" + localStorage.getItem("last_evet_id")) != "undefined") {
+    var my_informals = JSON.parse(localStorage.getItem("my_informals_" + localStorage.getItem("last_evet_id")));
+    for(var i = 0; my_informals[i]; i++) {
+        if(my_informals[i] == id) {
+            return true;
+        }
+    }
+    }
+    return false;
 }
 
 function creat_blok_notice(inf) {
     if(is_have_assessed(inf.id) == -1) {
         return "";
     }
-    return '<div id="block_notice_'+inf.id+'"><div class="ads_content"><div class="title_ads">'+inf.name+'</div><div class="dop_contents_ads"><div class="information_ads">'+inf.information+'</div><div class="contacts_inf_ads"><b>Контактная информация:</b></div><div class="contacts_name_blocks_ads"><div class="contacts_phone_ads">'+inf.contact+'</div><div class="contacts_phone_name">'+inf.FIO+'</div></div></div><div class="hide_block_ads" onclick="dislike_notice('+inf.id+');"><p class="hide_ads">Скрыть объявление</p></div></div></div>';
+    return '<div id="block_notice_'+inf.id+'"><div class="ads_content"><div class="title_ads">'+inf.type+': '+inf.name+'</div><div class="dop_contents_ads"><div class="information_ads">'+inf.information+'</div><div class="contacts_inf_ads"><b>Контактная информация:</b></div><div class="contacts_name_blocks_ads"><div class="contacts_phone_ads">'+inf.contact+'</div><div class="contacts_phone_name">'+inf.FIO+'</div></div></div><div class="hide_block_ads" onclick="dislike_notice('+inf.id+');"><p class="hide_ads">Скрыть объявление</p></div></div></div>';
+}
+
+function complete_informsl(id) {
+    $("#block_informal_" + id).hide("slow", function(){$(this).remove();});
+    make_inactive_informal(id);
+}
+
+function like_and_dislike(id_informal, assessed) {
+    var local = localStorage.getItem("have_assessed_informal_" + localStorage.getItem("last_evet_id"));
+    if(local && local != "undefined") {
+        var jsa = JSON.parse(local);
+        var em = true;
+        for(var i = 0; jsa[i]; i++) {
+            if(jsa[i].id == id_informal) {
+                em = false;
+                if(jsa[i].rang != assessed) {
+                    change_rang_informal(id_informal, assessed, 1);
+                    jsa[i].rang = assessed;
+                }
+            }
+        }
+        if(em) {
+            jsa.push({id:id_informal, rang: assessed});
+            change_rang_informal(id_informal, assessed, 0);
+        }
+        localStorage.setItem("have_assessed_informal_" + localStorage.getItem("last_evet_id"), JSON.stringify(jsa));
+    } else {
+        localStorage.setItem("have_assessed_informal_" + localStorage.getItem("last_evet_id"), JSON.stringify([{id:id_informal, rang: assessed}]));
+        change_rang_informal(id_informal, assessed, 0);
+    }
+}
+
+function change_rangs_to_informal(id_informal, data) {
+    data = JSON.parse(data);
+    $("#rate_like_" + id_informal).text(data.like);
+    $("#rate_dislike_" + id_informal).text(data.dislike);
 }
 
 function creat_blok_informal(inf) {
-    return '<div class="inform_block"> <div class="visible_inform"> <div class="inform_target">' +
-        inf.theme + '</div> <div class="inform_name">' + inf.organize +
-        '</div></div>' +
-        '<div class="hide_inform"><div class="info_inform">' + inf.information +
-        '</div>' + '<div class="place_inform"><b>Место встречи:</b>' + inf.place +
-        '</div>' +
-        '</div><div class="show_hide_info"><img src="img/arrow_to_down_schedule.png"' +
-        'class="arrow_to_down_up_schedule"></div></div>';
+    var left_down_blok = '';
+    if(is_my_informal(inf.id)) {
+        left_down_blok = '<div onclick="complete_informsl(\''+inf.id+'\');" class="hide_block_inform"><p class="hide_inform">Завершить общение</p></div>';
+    } else {
+        left_down_blok = '<div class="rate_inform"><div onclick="like_and_dislike(\''+inf.id+'\', 1);" class="like_inform"></div><div id="rate_like_'+inf.id+'"  class="rate_like">'+inf.like+'</div><div onclick="like_and_dislike(\''+inf.id+'\', -1);" class="dislike_inform"></div><div class="rate_dislike"  id="rate_dislike_'+inf.id+'">'+inf.dislike+'</div></div>';
+    }
+    return '<div id="block_informal_'+inf.id+'" class="inform_block"><div class="visible_inform"><div class="left_inform_block"><div class="name_inform">'+inf.organize+'</div><div class="title_inform">'+inf.theme+'</div><div class="more_info_inform"><div class="description_inform">'+inf.information+'</div><div class="place_inform"><b>Место встречи:</b>'+inf.place+'</div></div></div><div class="right_inform_block"></div></div>'+left_down_blok+'</div>';
 }
 
 function creat_block_schedule(inf) {
@@ -180,8 +249,7 @@ function creat_block_schedule(inf) {
     dop += "<p><b>На лекцию идёт: </b>" + inf.who_is_coming.split(",").length +
         " человек</p>";
 	
-	result += 
-		'<div class="block_schedule">'+
+	result += '<div class="block_schedule">'+
 			'<div class="block_schedule_vis">'+				
 				'<div class="content_schedule"><b>'+time[0]+':'+time[1]+' — </b>'+inf.name+'</div>'+
 				'<div class="im_going_block">'+
@@ -194,6 +262,5 @@ function creat_block_schedule(inf) {
 				'<img width="21" src="img/arrow_to_down_schedule.svg" onerror="this.onerror=null; this.src=\'img/arrow_to_down_schedule.png\'" class="arrow_to_down_up_schedule">'+
 			'</div>'+
 		'</div>';
-	
     return result;
 }
