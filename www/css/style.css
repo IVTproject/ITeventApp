@@ -100,7 +100,7 @@
 
 .event_content {	
 	padding: 10px;	
-	font-size: 12.5pt;
+	font-size: 18px;
 	font-weight: normal;
 }
 
@@ -120,7 +120,7 @@
 	top: 55px;	
 	left: 10px;
 	right: 10px;
-	height: 280px;	
+	height: 300px;	
 	position: fixed; 
 	-webkit-box-shadow: 0px 4px 6px -1px rgba(50, 50, 50, 0.87);
 	-moz-box-shadow:    0px 4px 6px -1px rgba(50, 50, 50, 0.87);
@@ -129,21 +129,6 @@
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
-}
-
-#filter_city {
-	z-index: 3;
-	position: fixed; 
-	top: 50px;	
-	height: 300px;
-	width: 100%;
-	background-color: white;	
-	-webkit-box-shadow: 0px 4px 6px -1px rgba(50, 50, 50, 0.87);
-	-moz-box-shadow:    0px 4px 6px -1px rgba(50, 50, 50, 0.87);
-	box-shadow:         0px 4px 6px -1px rgba(50, 50, 50, 0.87);
-	font-family:'Myriad Pro Condensed';
-	font-size: 14pt;	
-	overflow: hidden;
 }
 
 #content_list_city {
@@ -177,6 +162,16 @@
 	font-weight: 600;
 }
 
+.filter_text_date {
+	display: block;
+	float:left;
+	color: black;
+	font-size: 15pt;
+	margin-left: 13px;
+	margin-top: 20px;	
+	font-weight: 600;
+}
+
 .filter_block, input[type=date]  {	
 	display: block;
 	float:left;	
@@ -201,11 +196,10 @@ div .filter_block {
 	overflow: hidden;
 }
 
-input[type=date]  {	
+input[type=date], #city_select  {	
 	width: 80%;
 	margin-top: 5px;
 	margin-left: 40px;
-    color: red;	
 }
 
 #list_city {

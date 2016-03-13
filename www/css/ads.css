@@ -24,15 +24,21 @@
 	margin-bottom: 8px;
 }
 
-.rate_block_ads {
+.hide_block_ads, .hide_block_inform {
 	clear:both;
-}
-
-.like_ads, .rate_ads, .dislike_ads {
+	height: 18px;
 	float: left;
+	background-color: RGBA(0, 0, 0, 0.3);
+	-webkit-border-top-right-radius: 2px;
+	-moz-border-radius-topright: 2px;
+	border-top-right-radius: 2px;
 }
 
-.rate_ads {
-	margin-left: 4px;
-	margin-right: 4px;
+.hide_ads, .hide_inform {
+	margin: 0px 3px 4px 3px;		
+	color: white;
+	font-family: OpenSansLight; 
+	font-size: 12px;
+	font-weight: normal;
+	text-shadow: 0px -1px 0px RGBA(0, 0, 0, 0.3);
 }

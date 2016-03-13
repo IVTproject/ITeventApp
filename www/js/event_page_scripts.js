@@ -58,30 +58,42 @@ function fill_actions(data) {
 }
 
 function show_hide_schedule() {	
-    $(".block_schedule_click").click(function() {
+	/*ПЕРЕДЕЛАТЬ - НАЧАЛО*/
+    $(".content_schedule").click(function() {
         var c = $(this).parent().next().is(":visible");		
 		$(this).parent().next().toggle("slow");		
-		$(".arrow_to_down_up_schedule", this).attr("src", c ? "img/arrow_to_down_schedule.svg" : "img/arrow_to_up_schedule.svg");	
+		$($(this).parent().next().next().children()).attr("src", c ? "img/arrow_to_down_schedule.svg" : "img/arrow_to_up_schedule.svg");
+		$(this).css("white-space", c ? "nowrap" : "pre-wrap");		
     });
+	
+	$(".show_hide_schedule").click(function() {
+        var c = $(this).prev().is(":visible");		
+		$(this).prev().toggle("slow");		
+		$($(this).children()).attr("src", c ? "img/arrow_to_down_schedule.svg" : "img/arrow_to_up_schedule.svg");	
+		$($(this).prev()).css("white-space", c ? "nowrap" : "pre-wrap");
+    });	
 	
 	$(".more_info_schedule").click(function() {
         var c = $(this).is(":visible");		
 		$(this).toggle("slow");		
 		$(".arrow_to_down_up_schedule", $(this).parent()).attr("src", c ? "img/arrow_to_down_schedule.svg" : "img/arrow_to_up_schedule.svg");	
+		$($(this).prev().children().next()).css("white-space", c ? "nowrap" : "pre-wrap");
     });
+	/*ПЕРЕДЕЛАТЬ - КОНЕЦ*/
 	
-    //Галочка я пойду или нет
+	
+    //Галочка я пойду или нет (РАБОТАЕТ ВЕРНО!!!)
     $(".im_going_block").click(function() {
         //Галочка я пойду или нет            
 		$(this).children('.im_going').toggleClass('im_not_going');
 		if ($(this).children().is('.im_not_going')) {					
 			$(this).children('.im_going_text').text("Иду"); 
 			$(this).children('.im_going_text').css("color", "#1e96f5");
-			$(this).children('.im_going_text').css("margin-left", "7px");
+			$(this).children('.im_going_text').css("margin-left", "15px");
 		}else {					
-			$(this).children('.im_going_text').text("Не Иду");
+			$(this).children('.im_going_text').text("Не иду");
 			$(this).children('.im_going_text').css("color", "#c2c2c2") ;					
-			$(this).children('.im_going_text').css("margin-left", "1px");
+			$(this).children('.im_going_text').css("margin-left", "6px");
 		}
     });
 }
@@ -93,8 +105,11 @@ function chek_data_user() {
         localStorage.setItem("first_name", first_name);
         localStorage.setItem("second_name", second_name);
         change_refresh_button("event_page");
-        change_title(localStorage.getItem('last_evet_name'), localStorage.getItem(
-        'last_evet_name'));
+        if(!click_input_event) {
+            click_input_event = true;
+            change_title(localStorage.getItem('last_evet_name'), localStorage.getItem(
+            'last_evet_name'));
+        }
         load_schedule();
         load_informal(0, 15);
         load_notice(0, 15);
@@ -140,7 +155,7 @@ function creat_blok_notice(inf) {
     if(is_have_assessed(inf.id) == -1) {
         return "";
     }
-    return '<div id="block_notice_'+inf.id+'"><div class="ads_content"><div class="title_ads">'+inf.name+'</div><div class="dop_contents_ads"><div class="information_ads">'+inf.information+'</div><div class="contacts_inf_ads"><b>Контактная информация:</b></div><div class="contacts_name_blocks_ads"><div class="contacts_phone_ads">'+inf.contact+'</div><div class="contacts_phone_name">'+inf.FIO+'</div></div></div><div class="rate_block_ads"><div class="dislike_ads" onclick="dislike_notice('+inf.id+');">-</div></div></div></div>';
+    return '<div id="block_notice_'+inf.id+'"><div class="ads_content"><div class="title_ads">'+inf.name+'</div><div class="dop_contents_ads"><div class="information_ads">'+inf.information+'</div><div class="contacts_inf_ads"><b>Контактная информация:</b></div><div class="contacts_name_blocks_ads"><div class="contacts_phone_ads">'+inf.contact+'</div><div class="contacts_phone_name">'+inf.FIO+'</div></div></div><div class="hide_block_ads" onclick="dislike_notice('+inf.id+');"><p class="hide_ads">Скрыть объявление</p></div></div></div>';
 }
 
 function creat_blok_informal(inf) {
@@ -163,9 +178,22 @@ function creat_block_schedule(inf) {
             inf.additional_fields[i].value + " </p>";
     }
     dop += "<p><b>На лекцию идёт: </b>" + inf.who_is_coming.split(",").length +
-        " человек</p></div></div>";
+        " человек</p>";
 	
-	result += '<div class="block_schedule"><div class="block_schedule_vis"><div class="im_going_block"><div class="im_going"></div><div class="im_going_text">Не Иду</div></div><div class="block_schedule_click"><div class="content_schedule"><b>'+time[0]+':'+time[1]+' — </b>'+inf.name+'</div><div class="show_hide_schedule"><img width="21" src="img/arrow_to_down_schedule.svg" onerror="this.onerror=null; this.src=\'img/arrow_to_down_schedule.png\'" class="arrow_to_down_up_schedule"></div></div></div><div class="more_info_schedule">'+dop+'</div></div>';
+	result += 
+		'<div class="block_schedule">'+
+			'<div class="block_schedule_vis">'+				
+				'<div class="content_schedule"><b>'+time[0]+':'+time[1]+' — </b>'+inf.name+'</div>'+
+				'<div class="im_going_block">'+
+					'<div class="im_going"></div>'+
+					'<div class="im_going_text">Не иду</div>'+
+				'</div>'+
+			'</div>'+			
+			'<div class="more_info_schedule">'+dop+'</div>'+
+			'<div class="show_hide_schedule">'+
+				'<img width="21" src="img/arrow_to_down_schedule.svg" onerror="this.onerror=null; this.src=\'img/arrow_to_down_schedule.png\'" class="arrow_to_down_up_schedule">'+
+			'</div>'+
+		'</div>';
 	
     return result;
 }

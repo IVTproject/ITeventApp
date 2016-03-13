@@ -1937,7 +1937,7 @@ input[type="tel"],
 input[type="color"],
 .input-group {
   background: inherit;
-  color: inherit;
+  color: #c2c2c2;
 }
 input.toggle + label:after {
   color: inherit;
@@ -3759,11 +3759,12 @@ p {
   width: 45%;
   z-index: 1;
   height: 44px;
-  font-size: 18px;
+  font-size: 26px;
   font-weight: bold;
   left: 27.5%;
+  font-family: 'Myriad Pro Condensed';
   color: #ffffff;
-  padding: 10px 0;
+  padding: 6px 0;
   text-shadow: rgba(0, 0, 0, 0.8) 0 -1px 0;
   text-align: center;
   white-space: nowrap;
@@ -4271,9 +4272,7 @@ header .menuButton:after {
 }
 .win8,
 .win8 .view,
-.win8 .view .pages {
-  font: 14px "Segoe UI Semilight", "HelveticaNeue-light", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+.win8 .view .pages {  
   background: #dee5eb;
   color: #fff;
 }
@@ -4575,8 +4574,9 @@ header .menuButton:after {
 .win8 input[type="tel"],
 .win8 input[type="color"],
 .win8 .input-group {
-  background: black;
-  color: inherit;
+  	color: #898989;
+	font-family: 'Myriad Pro Condensed';
+	font-size: 16px;
 }
 .win8.light select,
 .win8.light textarea,

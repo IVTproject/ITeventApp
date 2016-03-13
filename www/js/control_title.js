@@ -1,4 +1,5 @@
 var stack_title = [];
+var click_input_event = false;
 
 function change_title(new_title, prev_title) {
     stack_title.push(prev_title);
@@ -20,6 +21,7 @@ function duble_title() {
 }
 
 function back(e) {
+	click_input_event = false;
     if (stack_title.length != 0) {
         if (stack_title.length == 1) {
             document.getElementById('top_title').innerHTML = "<h1>" +
@@ -36,7 +38,7 @@ function filter(filter) {
     if (filter == "list_events") {
         $('#filter_conteiner').text("");
         $('#filter_conteiner').append(
-            "<img src='img/filter.png' class='settings' onclick=\"show('#filter_black');\">"
+            "<img src=\"img/filter.svg\" width=\"26\" onerror=\"this.onerror=null; this.src='img/filter.png'\" class='settings' onclick=\"show('#filter_black');\">"
         );
     }
     if (filter == "none") {

@@ -11,6 +11,7 @@
 #events_content {
 	background-color: #dee5eb;	
 	color:black;	
+	font-size: 18px;
 }
 
 #ava_event {	
@@ -52,16 +53,16 @@
 }
 
 .name_block {	
-	margin-left: 15px;
+	margin-left: 15px !important;
 	font-weight: bold;
-	font-family:'Myriad Pro Condensed';
+	font-family:'Myriad Pro Condensed' !important;
 	color: black;
 }
 
 .content_event {
 	margin-left: 30px;
 	margin-right: 15px;
-	font-size: 12pt;
+	font-size: 18px;
 	color: black;
 }
 
@@ -126,9 +127,8 @@ input[type="submit"] {
 	padding-right: 14px;	
 	height: 100%;
 	padding-top: 10px;
-	font-family:'Myriad Pro Condensed';
-	
-	font-size: 12pt;
+	font-family:'Myriad Pro Condensed';	
+	font-size: 19px;
 }
 
 #scroll_menu a {		
@@ -143,7 +143,7 @@ input[type="submit"] {
 
 /*Расписание*/
 .block_schedule {	
-	margin: 5px 5px 0 5px;
+	margin: 5px 5px 12px 5px;
 	border: 1px solid #d8dbe0;	
 	font-family:'Myriad Pro Condensed';
 	font-weight:normal;	
@@ -154,7 +154,8 @@ input[type="submit"] {
 	box-shadow:         0px 1px 1px 0px rgba(50, 50, 50, 0.47);
 	transition: 0.5s;
 	background-color: #fff;
-	color:black;		
+	color:black;	
+	overflow: hidden;
 }
 
 .block_schedule_vis {
@@ -167,8 +168,8 @@ input[type="submit"] {
 
 
 .im_going_block { 
-  	min-width: 50px;
-  	overflow: hidden;
+  	min-width: 45px;
+  	overflow: hidden;	
 }
 
 .im_going {
@@ -183,45 +184,45 @@ input[type="submit"] {
 	background-size: 25px 25px;
 	height: 25px;
 	width: 25px;	
-	margin-left: 7px;
-	margin-top: 5px;
+	margin-left: 12px;
+	margin-top: 12px;
 }
 
 .im_going_text {
 	color: #c2c2c2;
 	font-size: 16px;
-	margin-left: 1px;
+	margin-left: 6px;
 }
 
 
-.block_schedule_click {
+.block_schedule_vis {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: stretch;
-	flex-grow: 1;
 }
 
 .content_schedule {	
 	flex-grow: 1;
-	padding-top: 15px;	
+	padding-top: 14px;
+	padding-left: 12px;
 	white-space: nowrap;
     overflow: hidden;
 	text-overflow: ellipsis;
 	text-align: left;
+	font-size: 18px;
 }
 
 .show_hide_schedule {	
-	min-width: 50px;	
+	width: 100%;	
+	height: 15px;
+	clear: both;
 }
 
 .arrow_to_down_up_schedule {	
-	margin-top: 18px;
-	margin-right: 3px;
-	float: right;
+	margin-left: 47.1%;
+	
 }
-
-
 
 .more_info_schedule {
 	display: none;
