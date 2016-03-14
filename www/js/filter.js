@@ -16,14 +16,11 @@ function filter_city(name_city) {
 
 function creat_filter(data) {
     array_city = JSON.parse(data);
-    var html_text = "";
+    var html_text = '<option disabled selected>Выберите город</option>';
     for (var i = 0; array_city[i]; i++) {
-        html_text += " <input type='checkbox' class='checkbox' id='" +
-            array_city[i] + "'" + " onclick=\"filter_city(\'" + array_city[
-                i] + "\');\"/>" + " <label for='" + array_city[i] + "'>" +
-            array_city[i] + "</label>";
+        html_text += '<option value="'+array_city[i]+'">'+array_city[i]+'</option>';
     }
-    document.getElementById('content_list_city').innerHTML += html_text;
+    document.getElementById('city_select').innerHTML = html_text;
 }
 
 function get_text_format_filter() {

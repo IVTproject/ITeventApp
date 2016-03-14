@@ -78,11 +78,7 @@
                                     onclick="hide('#filter_black'); list_filter_events();" onerror="this.onerror=null; this.src='img/close.png'">
                                 <div class="filter_text">Город:</div>
                                 <select id="city_select" name="city">
-									<option disabled selected>Выберите город</option>
-									<option value="Ульяновск">Ульяновск</option>
-									<option value="Москва">Москва</option>
-									<option value="Самара">Самара</option>
-									<option value="Вологда">Вологда</option>
+                                    <script>get_list_city();</script>
 								</select>
 
                                 <div class="clearer">&nbsp;</div>
