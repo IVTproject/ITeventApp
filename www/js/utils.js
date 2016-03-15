@@ -53,3 +53,15 @@ function get_month(mm) {
 			break;
 	}
 }
+
+function show(str){
+	$(str).css({
+    	display:'block'
+	});	
+}
+
+function hide(str){
+	$(str).css({
+    	display:'none'
+	})
+}
