@@ -17,17 +17,7 @@
         <link rel="stylesheet" href="css/ads.css">
         <script type="text/javascript" charset="utf-8" src="lib/jquery.min.js"></script>
         <script type="text/javascript" charset="utf-8"
-            src="lib/fastclick.min.js"></script>
-        <script type="text/javascript" charset="utf-8"
             src="lib/appframework/appframework.ui.min.js"></script>
-        <script type="text/javascript" language="javascript"
-            src="lib/jquery.dotdotdot.js"></script>
-        <script
-            src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <script src="http://falbar.ru/uploads/storage/demos/2014/11/NWZmOTljN/jquery.dotdotdot.min.js"
-            type="text/javascript"></script>
-        <script
-            src="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
         <script src="cordova.js" id="xdkJScordova_"></script>
         <script src="js/app.js"></script>
         <script src="js/init-app.js"></script>
@@ -308,35 +298,8 @@
                 <!--Добавить Тусовку конец-->
 				
             </div>
-        </div>
-        <script type="text/javascript" language="javascript">          
-			
-            var menu_swipe = ['#content', '#ads', '#inform'];
-			var content_swipe = ['#1', '#2', '#3'];
-            var swipe_menu_count = 0;
-            $(function() {
-				$('#event_schedule').bind('swipeleft', function(event) {
-					if (swipe_menu_count < 2) {
-						$(menu_swipe[swipe_menu_count]).hide(500);
-						$("#scroll_menu li").removeClass("active1");
-						swipe_menu_count++;
-						$(content_swipe[swipe_menu_count]).addClass("active1");
-						$(menu_swipe[swipe_menu_count]).show(500)
-					}					
-				});
-				
-				$('#event_schedule').bind('swiperight', function(event) {
-					if (swipe_menu_count > 0) {
-						$(menu_swipe[swipe_menu_count]).hide(500);
-						$("#scroll_menu li").removeClass("active1");
-						swipe_menu_count--;
-						$(content_swipe[swipe_menu_count]).addClass("active1");
-						$(menu_swipe[swipe_menu_count]).show(500)
-					}					
-				});
-            });			
-			
-        </script>
+		</div>
+		
         <script type="text/javascript" language="javascript">	
             $('#heading').css( "border-bottom","none" );	
             $('#3087256678').attr('data-title', 'Название мероприятия');
@@ -373,11 +336,6 @@
             	$('#ads').hide(500);
             	$('#inform').show(500);			
             });	
-			
-			function textAreaAdjust(o) {
-				o.style.height = "1px";
-				o.style.height = (25+o.scrollHeight)+"px";
-			}
         </script>
     </body>
 </html>
