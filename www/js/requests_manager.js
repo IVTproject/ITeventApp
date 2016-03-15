@@ -1,22 +1,46 @@
-function list_all_events() {
+function list_all_events(begin, count) {
     show('#preloader_events');
     $.get("http://it-event.esy.es/api.php", {
-        mod: "list_all_events"
+        mod: "list_all_events",
+        begin: begin,
+        count: count
     }, function(data) {
-        fill_list_events("events_write", data);
+        fill_list_events(data, begin + count);
         hide('#preloader_events');
     });
+    localStorage.setItem("begin_event", begin);
+    localStorage.setItem("count_event", count);
 }
 
-function list_filter_events() {
+function list_filter_events(begin, count) {
     hide('#events_write');
     show('#preloader_events');
-    $.get("http://it-event.esy.es/api.php?mod=list_filter_events&" +
+    $.get("http://it-event.esy.es/api.php?begin="+begin+"&count="+count+"&mod=list_filter_events&" +
         get_text_format_filter(), {}, function(data) {
-            fill_list_events("events_write", data);
+            fill_list_events(data, count);
             hide('#preloader_events');
             show('#events_write');
         });
+    localStorage.setItem("begin_event", begin);
+    localStorage.setItem("count_event", count);
+}
+
+function get_min_and_max_date() {
+    $.get("http://it-event.esy.es/api.php", {
+        mod: "get_min_and_max_date"
+    }, function(data) {
+        past_date_to_filter(data);
+    });
+}
+
+function get_more_events(begin, count) {
+    $('#more_event_button').remove();
+    $.get("http://it-event.esy.es/api.php?begin="+begin+"&count="+count+"&mod=list_filter_events&" +
+        get_text_format_filter(), {}, function(data) {
+            append_list_events(data, count);
+        });
+    localStorage.setItem("begin_event", begin);
+    localStorage.setItem("count_event", count);
 }
 
 function get_list_city() {
@@ -28,12 +52,12 @@ function get_list_city() {
 }
 
 
-function get_notice_from_event(id_event, begin, end) {
+function get_notice_from_event(id_event, begin, count) {
     $.get("http://it-event.esy.es/api.php", {
         mod: "get_notice_from_event",
         id_event: id_event,
         begin: begin,
-        end: end
+        count: count
     }, function(data) {
         fill_notice(data);
     }); 
@@ -48,12 +72,12 @@ function get_actios_from_event(id_event) {
     });
 }
 
-function get_informal_from_event(id_event, num_begin, num_end) {
+function get_informal_from_event(id_event, num_begin, count) {
     $.get("http://it-event.esy.es/api.php", {
         mod: "get_informal",
         id_event: id_event,
         begin: num_begin,
-        end: num_end
+        count: count
     }, function(data) {
         fill_informal(data);
     });

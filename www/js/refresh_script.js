@@ -3,7 +3,7 @@ function refresh_actions() {
 }
 
 function refresh_events() {
-    list_all_events();
+    list_all_events(0, 5);
 }
 
 function refresh_informal() {

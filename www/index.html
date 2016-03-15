@@ -32,8 +32,9 @@
         <script src="js/app.js"></script>
         <script src="js/init-app.js"></script>
         <script src="xdk/init-dev.js"></script>
-        <script src="js/utils.js"></script>
+        <script src="js/utils.js"></script>more_see.js
         <script src="js/control_title.js"></script>
+        <script src="js/more_see.js"></script>
         <script src="js/create_events.js"></script>
         <script src="js/filter.js"></script>
         <script src="js/add_informal-notice.js"></script>
@@ -42,7 +43,7 @@
         <script src="js/event_page_scripts.js"></script>
 		<script src="js/refresh_script.js"></script>
     </head>
-    <body onload="list_all_events();">
+    <body onload="list_all_events(0, 3);">
         <div id="splashscreen" class='ui-loader heavy'>
             App Framework - Single View <br> <br>
             <!span class='ui-icon ui-icon-loading spin'>
@@ -69,7 +70,7 @@
                         <div class="filter_white">
                             <form>
                                 <img src="img/close.svg" id="close" width="27"
-                                    onclick="hide('#filter_black'); list_filter_events();" onerror="this.onerror=null; this.src='img/close.png'">
+                                    onclick="hide('#filter_black'); list_filter_events(0, 5);" onerror="this.onerror=null; this.src='img/close.png'">
                                 <div class="filter_text">Город:</div>
                                 <select id="city_select" name="city">
                                     <script>get_list_city();</script>
@@ -82,6 +83,7 @@
                                     name="calendar_start" value="2015-02-22"> <input type="date"
                                     id="end_date" class="filter_block" name="calendar_end"
                                     value="2017-02-22">
+                                <script>get_min_and_max_date();</script>
                             </form>
                         </div>
 

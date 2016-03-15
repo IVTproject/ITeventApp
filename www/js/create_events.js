@@ -1,10 +1,23 @@
-function fill_list_events(id_container, events) {
+function fill_list_events(events, max_count) {
     var json = JSON.parse(events);
-    var container = document.getElementById(id_container);
-    container.innerHTML = "";
+    $('#events_write').text("");
     var array_event = json.list_events;
     for (var i = 0; array_event[i]; i++) {
-        container.innerHTML += creat_block(array_event[i]);
+       $('#events_write').append(creat_block(array_event[i]));
+    }
+    if(array_event.length == max_count) {
+        $('#events_write').append('<div class="more_events_click" id="more_event_button" onclick="more_events();">Ещё</div>');
+    }
+}
+
+function append_list_events(events, max_count) {
+    var json = JSON.parse(events);
+    var array_event = json.list_events;
+    for (var i = 0; array_event[i]; i++) {
+       $('#events_write').append(creat_block(array_event[i]));
+    }
+    if(array_event.length == max_count) {
+        $('#events_write').append('<div class="more_events_click" id="more_event_button" onclick="more_events();">Ещё</div>');
     }
 }
 
