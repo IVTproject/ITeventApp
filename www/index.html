@@ -202,8 +202,7 @@
                 
                 <div class="panel" id="event_schedule">
                     <ul id="scroll_menu">
-					<li id="1" class="active1"><a href="#schedule.html">Расписание</a>
-					</li>
+						<li id="1" class="active1"><a href="#schedule.html">Расписание</a></li>
                         <li id="2"><a href="#ads.html">Объявления</a></li>
                         <li id="3"><a href="#hangout.html">Тусовка</a></li>
                     </ul>
@@ -325,7 +324,7 @@
                     <div class="info_event">
                         <div class="name_block">Место встречи:</div>
                         <div class="content_event">
-                            <input type="text" class="textbox" name="place_inf" id="place_inf" placeholder="Контактная информация">
+                            <input type="text" class="textbox" name="place_inf" id="place_inf" placeholder="Место встречи">
                         </div>
                     </div>
                     <div class="content_event">
@@ -355,7 +354,7 @@
                 
             });
             
-            $("#1").click(function() {
+           $("#1").click(function() {
                 change_refresh_button("action");
                 past_filter("none");
 				swipe_menu_count=0;
@@ -380,7 +379,7 @@
             	$('#content').hide(500);
             	$('#ads').hide(500);
             	$('#inform').show(500);			
-            });	
+            });
         </script>
     </body>
 </html>

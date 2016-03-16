@@ -83,7 +83,7 @@ function show_hide_schedule() {
         var c = $(this).parent().next().is(":visible");		
 		$(this).parent().next().toggle("slow");		
 		$($(this).parent().next().next().children()).attr("src", c ? "img/arrow_to_down_schedule.svg" : "img/arrow_to_up_schedule.svg");
-		$(this).css("white-space", c ? "nowrap" : "pre-wrap");		
+		$(this).css("white-space", c ? "nowrap" : "normal");	
     });
 	
 	$(".show_hide_schedule").click(function() {
