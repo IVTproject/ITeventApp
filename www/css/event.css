@@ -115,24 +115,22 @@ input[type="submit"] {
 
 /*Начало - Кокретное мероприятие после регистрации*/
 #scroll_menu {
-  width: 100%;
-  height: 50px;
-  background-color: #1e96f5;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: stretch;
-  position: fixed;
+	width: 100%;
+	height: 50px;
+	background-color: #1e96f5;
+	display:table;table-layout: fixed; width: 100%;
+	position: fixed;
 }
 
 #scroll_menu li {
-  display: inline-block;
-  text-align: center;
-  vertical-align: middle;
-  padding-top: 20px;
-  font-family: 'Myriad Pro Condensed';
-  font-size: 19px;
-  flex-grow: 1;
+	display: inline-block;
+	text-align: center;
+	padding-top: 20px;
+	font-family: 'Myriad Pro Condensed';
+	font-size: 19px;
+	display: table-cell;
+	width: 25%;
+	word-wrap: break-word;
 }
 
 #scroll_menu a {
