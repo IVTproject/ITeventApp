@@ -91,14 +91,14 @@ function show_hide_schedule() {
         var c = $(this).prev().is(":visible");		
 		$(this).prev().toggle("slow");		
 		$($(this).children()).attr("src", c ? "img/arrow_to_down_schedule.svg" : "img/arrow_to_up_schedule.svg");	
-		$($(this).prev()).css("white-space", c ? "nowrap" : "pre-wrap");
+		$($(this).prev().prev().children()).css("white-space", c ? "nowrap" : "pre-wrap");
     });	
 	
 	$(".more_info_schedule").click(function() {
         var c = $(this).is(":visible");		
 		$(this).toggle("slow");		
 		$(".arrow_to_down_up_schedule", $(this).parent()).attr("src", c ? "img/arrow_to_down_schedule.svg" : "img/arrow_to_up_schedule.svg");	
-		$($(this).prev().children().next()).css("white-space", c ? "nowrap" : "pre-wrap");
+		$(this).prev().children().css("white-space", c ? "nowrap" : "pre-wrap");
     });
 	/*ПЕРЕДЕЛАТЬ - КОНЕЦ*/
 	
