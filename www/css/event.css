@@ -118,17 +118,19 @@ input[type="submit"] {
 	width: 100%;
 	height: 38px;
 	background-color: #1e96f5;
+     display: table; position: fixed;
 }
 
 #scroll_menu li {
 	display: inline-block;
-	float: left;
-	padding-left: 14px;
-	padding-right: 14px;	
+	display: table-cell;
+    text-align: center; vertical-align: middle;
+
 	height: 100%;
 	padding-top: 10px;
 	font-family:'Myriad Pro Condensed';	
 	font-size: 19px;
+    
 }
 
 #scroll_menu a {		

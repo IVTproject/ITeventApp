@@ -47,7 +47,7 @@
                 </div>
                 <div id="filter_conteiner">
                     <img src="img/filter.svg" width="26" class="settings" onerror="this.onerror=null; this.src='img/filter.png'"
-                        onclick="show('#filter_black');">
+                        onclick="show('#filter_black_events');">
                 </div>
                 <div id="refresh_button"><img src="img/refresh.svg" width="26" class="settings" onerror="this.onerror=null; this.src='img/refresh.png'" onclick="refresh_events();"></div>
             </header>
@@ -56,13 +56,13 @@
 
                     <div id="preloader_events"></div>
 
-                    <div id="filter_black" style="display: none">
+                    <div id="filter_black_events" style="display: none">
                         <div class="filter_white">
                             <form>
                                 <img src="img/close.svg" id="close" width="27"
-                                    onclick="hide('#filter_black'); list_filter_events(0, 5);" onerror="this.onerror=null; this.src='img/close.png'">
+                                    onclick="hide('#filter_black_events'); list_filter_events(0, 5);" onerror="this.onerror=null; this.src='img/close.png'">
                                 <div class="filter_text">Город:</div>
-                                <select id="city_select" name="city">
+                                <select id="city_select" multiple name="city">
                                     <script>get_list_city();</script>
 								</select>
 
@@ -87,7 +87,7 @@
                 </div>
 				
 			<!-- Страница конкретного мероприятия -->
-                <div class="panel" id="event_page">
+                <div class="panel" id="event_page" >
 
                     <div id="preloader_event"></div>
 
@@ -195,6 +195,11 @@
 				
 				
 				<!-- Страница конкретного мероприятия после регистрации начало-->
+                
+                
+                
+                
+                
                 <div class="panel" id="event_schedule">
                     <ul id="scroll_menu">
 					<li id="1" class="active1"><a href="#schedule.html">Расписание</a>
@@ -210,7 +215,23 @@
                     <!--Расписание конец-->
                     <!--Объявления начало-->
                     <div id="ads" style="display: none;">
-                        <a id="add_ads" href="#add_ads_content" onclick="duble_title();"></a>
+                        <a id="add_ads" href="#add_ads_content" onclick="next_page(localStorage.getItem('last_evet_name'), 'none', 'none');"></a>
+                        <div id="filter_black_ads">
+                            <div class="filter_white">
+                                <form>
+                                    <img src="img/close.svg" id="close" width="27" onclick="hide('#filter_black_ads'); list_filter_events(0, 5);" onerror="this.onerror=null; this.src='img/close.png'">
+                                    <div class="filter_text">Категории:</div>
+                                    <select class="select_filter" id="categories_ads" multiple name="categories_ads">
+                                        <option disabled selected>Выберите категорию</option>
+                                        <option value="Работа">Работа</option>
+                                        <option value="Купить">Купить</option>
+                                        <option value="Продать">Продать</option>
+                                        <option value="Прочее">Прочее</option>
+                                    </select>
+                                </form>
+                            </div>
+                        </div>
+                        
                         <div id="notice_bloks_content">
                         
                         </div>
@@ -219,7 +240,22 @@
                     <!--Тусовка начало-->
                     <div id="inform" style="display: none;">
                         <a id="add_inform" href="#add_inform_content"
-                            onclick="duble_title();"></a>
+                            onclick="next_page(localStorage.getItem('last_evet_name'), 'none', 'none');"></a>
+                        
+                        <div id="filter_black_inform">
+                            <div class="filter_white">
+                                <form>
+                                    <img src="img/close.svg" id="close" width="27" onclick="hide('#filter_black_inform'); list_filter_events(0, 5);" onerror="this.onerror=null; this.src='img/close.png'">
+                                    <div class="filter_text">Выводить по:</div>
+                                    <select class="select_filter" id="categories_ads" name="categories_ads">                                        
+                                        <option disabled selected>Выберите тип сортировки</option>
+                                        <option value="Времени (возрастанию)">Времени (возрастанию)</option>
+                                        <option value="Времени (убыванию)">Времени (убыванию)</option>
+                                        <option value="Популярности">Популярности</option>						   	
+                                    </select>
+                                </form>
+                            </div>
+                        </div>
                         <div id="bloks_informals">
                         </div>
                     </div>
@@ -316,16 +352,21 @@
             $("#scroll_menu li").click(function() {				
             	$("#scroll_menu li").removeClass("active1");
             	$(this).addClass("active1");
+                
             });
             
             $("#1").click(function() {
+                change_refresh_button("action");
+                past_filter("none");
 				swipe_menu_count=0;
             	$('#inform').hide(500);
             	$('#ads').hide(500);
             	$('#content').show(500);				
             });
             	
-            $("#2").click(function() {	
+            $("#2").click(function() {
+                change_refresh_button("notice");
+                past_filter("list_notice");
 				swipe_menu_count=1;
             	$('#inform').hide(500);	
             	$('#content').hide(500);
@@ -333,6 +374,8 @@
             });
             
             $("#3").click(function() {	
+                change_refresh_button("informal");
+                past_filter("list_infomal");
 				swipe_menu_count=2;
             	$('#content').hide(500);
             	$('#ads').hide(500);

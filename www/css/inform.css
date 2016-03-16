@@ -113,6 +113,9 @@
 	height: 50px;
 	background: url('../img/add.svg') no-repeat;
   	background-size: 49px 50px;
+    /*-webkit-box-shadow: 10px 15px 30px 0px rgba(0, 0, 0, 0.24);
+    -moz-box-shadow:    10px 15px 30px 0px rgba(0, 0, 0, 0.24);
+    box-shadow:         10px 15px 30px 0px rgba(0, 0, 0, 0.24);*/
 }
 
 /*Добавить встречу*/

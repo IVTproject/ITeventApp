@@ -59,7 +59,6 @@ function fill_notice(data) {
 }
 
 function fill_actions(data) {
-    filter("none");
     var json_array = JSON.parse(data).list_actions;
     var num = 0;
     var number_day = 1;
@@ -125,16 +124,15 @@ function chek_data_user() {
     if (first_name.length >= 2 && second_name.length >= 2) {
         localStorage.setItem("first_name", first_name);
         localStorage.setItem("second_name", second_name);
-        change_refresh_button("event_page");
         if(!click_input_event) {
+            next_page(localStorage.getItem("last_evet_name"), "none", "none");
             click_input_event = true;
-            change_title(localStorage.getItem('last_evet_name'), localStorage.getItem(
-            'last_evet_name'));
         }
         load_schedule();
         load_informal(0, 15);
         load_notice(0, 15);
         document.getElementById('go_schedule').click();
+        document.getElementById('1').click();
     } else {
         alert("Заполните поля выше");
     }
