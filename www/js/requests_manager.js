@@ -99,7 +99,7 @@ function get_notice_from_event_filter(id_event, begin, count, callBackF) {
         begin: begin,
         count: count,
         types: get_text_format_filter_notice()
-    }, function (data) { callBackF(data) }); 
+    }, function (data) { callBackF(data, count) }); 
     var last_id_event = localStorage.getItem('last_evet_id');
     localStorage.setItem("begin_notice_" + last_id_event, begin);
     localStorage.setItem("count_notice_" + last_id_event, count);
