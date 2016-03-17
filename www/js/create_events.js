@@ -49,7 +49,7 @@ function get_inform_event(event_inform) {
     next_page(info.name, "none", "none");
     localStorage.setItem("last_evet_id", info.id);
     localStorage.setItem("last_evet_name", info.name);
-    localStorage.setItem("last_event", event_inform);
+    localStorage.setItem("last_event_inf", event_inform);
     $('#date_event').text(date_deg_format(info.begin_date));
     $('#img_ava_event').attr("src", info.pictures);
     $('#name_event').text(info.name);

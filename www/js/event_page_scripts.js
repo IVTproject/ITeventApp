@@ -174,6 +174,7 @@ function chek_data_user() {
             next_page(localStorage.getItem("last_evet_name"), "none", "none");
             click_input_event = true;
         }
+        localStorage.setItem("last_event", localStorage.getItem("last_event_inf"));
         rewrite_actions();
         rewrite_informal();
         load_notice(0, 15);
