@@ -10,23 +10,38 @@ function creat_filter(data) {
 }
 
 function get_text_format_filter() {
-    var list_city = document.getElementById('city_select').value;
-    //var is_first = true;
-  /*  for (var i = 0; filter_object[i]; i++) {
-        if (filter_object[i].ischecked) {
-            if (is_first) {
+    var list_city = "";
+    var is_first = true;
+    $('#city_select option').each(function(){
+        if(this.selected && this.value != "") {
+            if(is_first)
                 is_first = false;
-            } else {
+            else
                 list_city += ",";
-            }
-            list_city += filter_object[i].name;
+            list_city += this.value;
         }
-    }*/
+    });
+  
     var begin_date = document.getElementById('begin_date').value;
     var end_date = document.getElementById('end_date').value;
     if (list_city != "") return ("list_city=" + list_city + "&begin_date=" +
         begin_date + "&end_date=" + end_date);
     else return ("begin_date=" + begin_date + "&end_date=" + end_date);
+}
+
+function get_text_format_filter_notice() {
+    var types = "";
+    var is_first = true;
+    $('#categories_ads option').each(function(){
+        if(this.selected && this.value != "") {
+            if(is_first)
+                is_first = false;
+            else
+                types += ",";
+            types += this.value;
+        }
+    });
+    return types;
 }
 
 function past_date_to_filter(data) {

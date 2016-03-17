@@ -1,6 +1,14 @@
 function fill_list_events(events, max_count) {
-    var json = JSON.parse(events);
     $('#events_write').text("");
+    var last_event = localStorage.getItem('last_event');
+    if(last_event && last_event != "undefined") {
+        $('#events_write').append("<div class='What_a_day'>Последнее</div>");
+        $('#events_write').append(creat_block(JSON.parse(last_event)));
+    }
+    if(!events)
+        return;
+    $('#events_write').append("<div class='What_a_day'>Все</div>");
+    var json = JSON.parse(events);
     var array_event = json.list_events;
     for (var i = 0; array_event[i]; i++) {
        $('#events_write').append(creat_block(array_event[i]));
@@ -41,6 +49,7 @@ function get_inform_event(event_inform) {
     next_page(info.name, "none", "none");
     localStorage.setItem("last_evet_id", info.id);
     localStorage.setItem("last_evet_name", info.name);
+    localStorage.setItem("last_event", event_inform);
     $('#date_event').text(date_deg_format(info.begin_date));
     $('#img_ava_event').attr("src", info.pictures);
     $('#name_event').text(info.name);

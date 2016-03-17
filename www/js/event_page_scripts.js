@@ -2,14 +2,31 @@ function load_schedule() {
     get_actios_from_event(localStorage.getItem("last_evet_id"));
 }
 
-function load_informal(begin, end) {
-    get_informal_from_event(localStorage.getItem("last_evet_id"), begin,
-        end);
+function load_informal() {
+    get_informal_from_event(localStorage.getItem("last_evet_id"));
 }
 
 function load_notice(begin, end) {
-    get_notice_from_event(localStorage.getItem("last_evet_id"), begin,
-        end);
+    $('#notice_bloks_content').text("");
+    fill_notice_filter();
+}
+
+function rewrite_informal() {
+    var data = localStorage.getItem("list_informal_" + localStorage.getItem('last_evet_id'));
+    if(data && data != "undefined") {
+        fill_informal(data);  
+    } else {
+        load_informal();
+    }
+}
+
+function rewrite_actions() {
+    var data = localStorage.getItem("list_actions_" + localStorage.getItem('last_evet_id'));
+    if(data && data != "undefined") {
+        fill_actions(data);  
+    } else {
+        load_schedule();
+    }
 }
 
 function fill_informal(data) {
@@ -19,25 +36,26 @@ function fill_informal(data) {
         if(is_my_informal(json_array[i].id))
             $('#bloks_informals').append(creat_blok_informal(json_array[i]));
     }
-    var a = [];
-    for(var i = 0; json_array[i]; i++) {
-        var pos = json_array[i].like;
-        var n = json_array[i].like + json_array[i].dislike;
-        if(n != 0) {
-            phat = 1.0*pos/n;
-            var z = 1.96*1.96;
-            var x = (phat + z/(2*n) - 1.96 * Math.sqrt((phat*(1-phat)+z/(4*n))/n))/(1+z/n);
-            a[json_array[i].id] = x;
-        } else  {
-            a[json_array[i].id] = 0;
+    if($('#sort_informal').val() == "Популярности") {
+        var a = [];
+        for(var i = 0; json_array[i]; i++) {
+            var pos = json_array[i].like;
+            var n = json_array[i].like + json_array[i].dislike;
+            if(n != 0) {
+                phat = 1.0*pos/n;
+                var z = 1.96*1.96;
+                var x = (phat + z/(2*n) - 1.96 * Math.sqrt((phat*(1-phat)+z/(4*n))/n))/(1+z/n);
+                a[json_array[i].id] = x;
+            } else  {
+                a[json_array[i].id] = 0;
+            }
         }
+        json_array.sort(function(x, y){return a[y.id] - a[x.id]});
     }
-    json_array.sort(function(x, y){return a[y.id] - a[x.id]});
     for (var i = 0; json_array[i]; i++) {
         if(!is_my_informal(json_array[i].id))
             $('#bloks_informals').append(creat_blok_informal(json_array[i]));
     }
-    
     click_informal();
 }
 
@@ -50,11 +68,32 @@ function click_informal() {
     });	
 }
 
-function fill_notice(data) {
+function fill_notice_filter() {
+    get_notice_from_event_filter(localStorage.getItem("last_evet_id"), 0, 10, fill_notice);
+}
+
+function fill_notice_filter_more(begin, count) {
+    get_notice_from_event_filter(localStorage.getItem("last_evet_id"), begin, count, append_notice_more);
+}
+
+function append_notice_more(data, count) {
+    var json_array = JSON.parse(data);
+    for (var i = 0; json_array[i]; i++) {
+        $('#notice_bloks_content').append(creat_blok_notice(json_array[i]));
+    }
+    if(json_array.length >= count) {
+        $('#notice_bloks_content').append('<div class="more_events_click" id="more_notice_button" onclick="more_notice();">Ещё</div>');
+    }
+}
+
+function fill_notice(data, count) {
     var json_array = JSON.parse(data);
     $('#notice_bloks_content').text("");
     for (var i = 0; json_array[i]; i++) {
         $('#notice_bloks_content').append(creat_blok_notice(json_array[i]));
+    }
+    if(json_array.length >= count) {
+        $('#notice_bloks_content').append('<div class="more_events_click" id="more_notice_button" onclick="more_notice();">Ещё</div>');
     }
 }
 
@@ -135,8 +174,8 @@ function chek_data_user() {
             next_page(localStorage.getItem("last_evet_name"), "none", "none");
             click_input_event = true;
         }
-        load_schedule();
-        load_informal(0, 15);
+        rewrite_actions();
+        rewrite_informal();
         load_notice(0, 15);
         document.getElementById('go_schedule').click();
         document.getElementById('1').click();

@@ -34,7 +34,7 @@
 		<script src="js/refresh_script.js"></script>
 		<script src="js/notification.js"></script>
     </head>
-    <body onload="list_all_events(0, 3);">
+    <body onload="list_all_events(0, 10);">
         <div id="splashscreen" class='ui-loader heavy'>
             App Framework - Single View <br> <br>
             <!span class='ui-icon ui-icon-loading spin'>
@@ -61,7 +61,7 @@
                         <div class="filter_white">
                             <form>
                                 <img src="img/close.svg" id="close" width="27"
-                                    onclick="hide('#filter_black_events'); list_filter_events(0, 5);" onerror="this.onerror=null; this.src='img/close.png'">
+                                    onclick="hide('#filter_black_events'); list_filter_events(0, 10);" onerror="this.onerror=null; this.src='img/close.png'">
                                 <div class="filter_text">Город:</div>
                                 <select id="city_select" multiple name="city">
                                     <script>get_list_city();</script>
@@ -219,10 +219,10 @@
                         <div id="filter_black_ads">
                             <div class="filter_white">
                                 <form>
-                                    <img src="img/close.svg" id="close" width="27" onclick="hide('#filter_black_ads'); list_filter_events(0, 5);" onerror="this.onerror=null; this.src='img/close.png'">
+                                    <img src="img/close.svg" id="close" width="27" onclick="hide('#filter_black_ads'); fill_notice_filter();" onerror="this.onerror=null; this.src='img/close.png'">
                                     <div class="filter_text">Категории:</div>
                                     <select class="select_filter" id="categories_ads" multiple name="categories_ads">
-                                        <option disabled selected>Выберите категорию</option>
+                                        <option value="" selected>Все</option>
                                         <option value="Работа">Работа</option>
                                         <option value="Купить">Купить</option>
                                         <option value="Продать">Продать</option>
@@ -245,13 +245,11 @@
                         <div id="filter_black_inform">
                             <div class="filter_white">
                                 <form>
-                                    <img src="img/close.svg" id="close" width="27" onclick="hide('#filter_black_inform'); list_filter_events(0, 5);" onerror="this.onerror=null; this.src='img/close.png'">
-                                    <div class="filter_text">Выводить по:</div>
-                                    <select class="select_filter" id="categories_ads" name="categories_ads">                                        
-                                        <option disabled selected>Выберите тип сортировки</option>
-                                        <option value="Времени (возрастанию)">Времени (возрастанию)</option>
-                                        <option value="Времени (убыванию)">Времени (убыванию)</option>
-                                        <option value="Популярности">Популярности</option>						   	
+                                    <img src="img/close.svg" id="close" width="27" onclick="hide('#filter_black_inform'); rewrite_informal();" onerror="this.onerror=null; this.src='img/close.png'">
+                                    <div class="filter_text">Сортировать по:</div>
+                                    <select class="select_filter" id="sort_informal" name="categories_ads">  
+                                        <option value="Популярности" selected>Популярности</option>	  
+                                        <option value="Времени">Времени</option>					   	
                                     </select>
                                 </form>
                             </div>
