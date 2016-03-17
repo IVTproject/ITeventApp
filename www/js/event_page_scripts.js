@@ -104,16 +104,23 @@ function show_hide_schedule() {
 	
     //Галочка я пойду или нет (РАБОТАЕТ ВЕРНО!!!)
     $(".im_going_block").click(function() {
-        //Галочка я пойду или нет            
-		$(this).children('.im_going').toggleClass('im_not_going');
-		if ($(this).children().is('.im_not_going')) {					
-			$(this).children('.im_going_text').text("Иду"); 
-			$(this).children('.im_going_text').css("color", "#1e96f5");
-			$(this).children('.im_going_text').css("margin-left", "15px");
-		}else {					
-			$(this).children('.im_going_text').text("Не иду");
-			$(this).children('.im_going_text').css("color", "#c2c2c2") ;					
-			$(this).children('.im_going_text').css("margin-left", "6px");
+        //Галочка я пойду или нет      	
+		$target_class = $(this).children('.im_going');
+		$target_text = $(this).children('.im_going_text');
+		if (!$target_class.is('.im_not_going')) {					
+			send_notification($target_class.data(), 9, function() {
+				$target_text.text("Иду"); 
+				$target_text.css("color", "#1e96f5");
+				$target_text.css("margin-left", "15px");
+				$target_class.toggleClass('im_not_going', true);
+			});
+		} else {					
+			cancel_notification($target_class.data('idNotification'), function() {
+				$target_text.text("Не иду");
+				$target_text.css("color", "#c2c2c2") ;		
+				$target_text.css("margin-left", "6px");
+				$target_class.toggleClass('im_not_going', false);
+			});	
 		}
     });
 }
@@ -241,6 +248,7 @@ function creat_block_schedule(inf) {
     var time = inf.time.split(" ")[1].split(":");
 	var dop = "";
 	for (var i = 0; inf.additional_fields[i]; i++) {
+		//console.log(inf);
         dop += "<p><b> " + inf.additional_fields[i].name + " :</b> " +
             inf.additional_fields[i].value + " </p>";
     }
@@ -251,7 +259,7 @@ function creat_block_schedule(inf) {
 			'<div class="block_schedule_vis">'+				
 				'<div class="content_schedule"><b>'+time[0]+':'+time[1]+' — </b>'+inf.name+'</div>'+
 				'<div class="im_going_block">'+
-					'<div class="im_going"></div>'+
+					'<div class="im_going" data-id-notification="' + inf.id + '" data-text-notification="' + inf.name +'" data-time-notification="' + inf.time + '"></div>'+
 					'<div class="im_going_text">Не иду</div>'+
 				'</div>'+
 			'</div>'+			
