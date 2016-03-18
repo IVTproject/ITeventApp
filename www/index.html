@@ -352,32 +352,32 @@
             	$(this).addClass("active1");
                 
             });
-            
+            hide('#content');
            $("#1").click(function() {
                 change_refresh_button("action");
                 past_filter("none");
 				swipe_menu_count=0;
-            	$('#inform').hide(500);
-            	$('#ads').hide(500);
-            	$('#content').show(500);				
+            	$('#inform').fadeOut(10);
+            	$('#ads').fadeOut(10);
+            	$('#content').slideToggle(700);				
             });
             	
             $("#2").click(function() {
                 change_refresh_button("notice");
                 past_filter("list_notice");
 				swipe_menu_count=1;
-            	$('#inform').hide(500);	
-            	$('#content').hide(500);
-            	$('#ads').show(500);				
+            	$('#inform').fadeOut(10);	
+            	$('#content').fadeOut(10);
+            	$('#ads').slideToggle(700);				
             });
             
             $("#3").click(function() {	
                 change_refresh_button("informal");
                 past_filter("list_infomal");
 				swipe_menu_count=2;
-            	$('#content').hide(500);
-            	$('#ads').hide(500);
-            	$('#inform').show(500);			
+            	$('#content').fadeOut(10);
+            	$('#ads').fadeOut(10);
+            	$('#inform').slideToggle(700);			
             });
         </script>
     </body>
