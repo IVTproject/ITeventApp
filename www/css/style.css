@@ -102,6 +102,7 @@
 	padding: 10px;	
 	font-size: 18px;
 	font-weight: normal;
+	line-height: 20px;
 }
 
 #filter_black_events, #filter_black_inform, #filter_black_ads {

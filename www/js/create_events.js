@@ -39,7 +39,7 @@ function creat_block(event) {
         "</div> <div class='event_title'> <div class='event_name'>" + event
         .name + "</div>" + "<div class='event_date'>" + date_format(event.begin_date) +
         "</div> </div> </div>" +
-        "<div class='clearer'>&nbsp;</div> <div class='event_content'>" +
+        "<div class='clearer'>&nbsp;</div> <div class='event_content' style='line-height: 20px;' data-truncate-lines=\"3\">" +
         event.information + "</div> </div></a>";
 }
 

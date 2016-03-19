@@ -15,14 +15,14 @@
         <link rel="stylesheet" href="css/event.css">
         <link rel="stylesheet" href="css/inform.css">
         <link rel="stylesheet" href="css/ads.css">
-        <script type="text/javascript" charset="utf-8" src="lib/jquery.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" charset="utf-8"
             src="lib/appframework/appframework.ui.min.js"></script>
         <script src="cordova.js" id="xdkJScordova_"></script>
         <script src="js/app.js"></script>
         <script src="js/init-app.js"></script>
         <script src="xdk/init-dev.js"></script>
-        <script src="js/utils.js"></script>more_see.js
+        <script src="js/utils.js"></script>
         <script src="js/control_title.js"></script>
         <script src="js/more_see.js"></script>
         <script src="js/create_events.js"></script>
@@ -32,7 +32,8 @@
         <script src="xdk/init-dev.js"></script>
         <script src="js/event_page_scripts.js"></script>
 		<script src="js/refresh_script.js"></script>
-		<script src="js/notification.js"></script>
+		<script src="js/notification.js"></script>		
+	
     </head>
     <body onload="list_all_events(0, 10);">
         <div id="splashscreen" class='ui-loader heavy'>
@@ -81,6 +82,7 @@
                     </div>
 					
 					<!--Вёрстка тусовки-->
+					<a id="lolol" onclick="row_truncation();">fsdfsd</a>
                     <div id='events_write'>
                         <!-- Список мероприятий -->
                     </div>
@@ -380,5 +382,19 @@
             	$('#inform').slideToggle(700);			
             });
         </script>
+		<script type="text/javascript" src="js/truncate.js"></script>
+		<script type="text/javascript">
+			function row_truncation() {
+				$('.event_content').each(function() {
+					var $el = $(this);
+					
+					$el.truncate({
+						lines: $el.data('truncate-lines'),
+						lineHeight: $el.css('line-height')
+					});
+
+				});				
+			}
+		</script>
     </body>
 </html>
