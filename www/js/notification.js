@@ -17,7 +17,8 @@ function send_notification(notif_item, wait_mins, callback) {
 		title: notif_item.textNotification,
 		text: text,
 		at: time,
-		icon: "http://it-event.tk/img/icon.png"
+		icon: "file://../img/icon.png",
+		smallIcon: "http://it-event.tk/img/icon.png"
 		//data: { meetingId:"123#fg8" }
 	}, callback);
 	
@@ -28,14 +29,11 @@ function cancel_notification(id, callback) {
 		cordova.plugins.notification.local.cancel(id, callback)
 	});
 }
+
 /*
 cordova.plugins.notification.local.on("click", function (notification) {
 	alert("dsfgb");
 });
 */
-notif_item = ' { "id" : "1", "title" : "Hello", "text" : "Hello world", "time" : "2016-03-11 15:35:00" } ';
-	notif_item = JSON.parse(notif_item);
-function ok() {
-	send_notification(notif_item);
-}
+
 

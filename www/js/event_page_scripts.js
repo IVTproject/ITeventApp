@@ -141,24 +141,30 @@ function show_hide_schedule() {
 	/*ПЕРЕДЕЛАТЬ - КОНЕЦ*/
 	
 	
-    //Галочка я пойду или нет (РАБОТАЕТ ВЕРНО!!!)
+        //Галочка я пойду или нет (РАБОТАЕТ ВЕРНО!!!)
     $(".im_going_block").click(function() {
         //Галочка я пойду или нет      	
 		$target_class = $(this).children('.im_going');
 		$target_text = $(this).children('.im_going_text');
-		if (!$target_class.is('.im_not_going')) {					
+		if (!$target_class.is('.im_not_going')) {	
+			$target_text.text("Иду"); 
+			$target_text.css("color", "#1e96f5");
+			$target_text.css("margin-left", "15px");
+			$target_class.toggleClass('im_not_going', true);
 			send_notification($target_class.data(), 9, function() {
-				$target_text.text("Иду"); 
-				$target_text.css("color", "#1e96f5");
-				$target_text.css("margin-left", "15px");
-				$target_class.toggleClass('im_not_going', true);
+				if (!$target_class.is('.im_not_going')) {
+					cancel_notification($target_class.data('idNotification'));
+				}
 			});
-		} else {					
+		} else {	
+			$target_text.text("Не иду");
+			$target_text.css("color", "#c2c2c2") ;		
+			$target_text.css("margin-left", "6px");
+			$target_class.toggleClass('im_not_going', false);
 			cancel_notification($target_class.data('idNotification'), function() {
-				$target_text.text("Не иду");
-				$target_text.css("color", "#c2c2c2") ;		
-				$target_text.css("margin-left", "6px");
-				$target_class.toggleClass('im_not_going', false);
+				if ($target_class.is('.im_not_going')) {
+					send_notification($target_class.data(), 9);
+				}
 			});	
 		}
     });
