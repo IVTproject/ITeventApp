@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/welcome_main.less.css" class="main-less">
+    <link rel="stylesheet" type="text/css" href="css/welcome.css" class="main-less">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+    <script src="intelxdk.js"></script>
+    <script src="cordova.js"></script>
+    <script src="xhr.js"></script>
+    <script src="xdk/init-dev.js"></script>    
+    <script src="js/jquery-2.1.1.min.js"></script>    
+    <script src="js/welcome_preview.js"></script>    
+  </head>
+
+  <body id="afui" class="v2">
+    <div class="upage vertical-col left view" id="mainpage" data-header="none" data-footer="none">
+      <div class="pages">
+		  <div id="welcome_content">
+			  <div id="welcome_content_home">
+				  <div id="welcome_title" style="display: none;">Привет!</div>
+				  <div id="welcome_information" style="display: none;">Наше приложение облегчит поиск IT мероприятий в твоём городе.</div>
+			  
+				  <div id="welcome_information_dynamically" style="display: none;">Для получения полного функционала, зарегистрируйся или авторизируйся в приложении!</div>
+
+				  <div id="welcome_sign_up" style="display: none;" onclick="sign_up_show();">
+					<div id="welcome_sign_up_icon"></div>
+					<div class="welcome_sign_text">Зарегистрироваться</div>
+					<div class="welcome_sign_arrows_icon"></div>
+				  </div>
+				  <div id="welcome_sign_in" style="display: none;" onclick="sign_in_show();">
+					<div id="welcome_sign_in_icon"></div>
+					<div class="welcome_sign_text">Авторизироваться</div>
+					<div class="welcome_sign_arrows_icon"></div>
+				  </div>
+
+				  <div onclick="welcome_skip();" class="welcome_button" style="display: none;">Пропустить</div>
+			  </div>
+			  
+			  <div id="welcome_content_fio" style="display: none;">
+			  	<div id="welcome_fio_dynamically">Если ты хочешь только просматривать мероприятия и получать уведомления, то тебе нужно представиться. Ввести имя и фамилию.</div>
+				<div id="welcome_sign_introduce">
+					<div id="welcome_fio_icon"></div>
+					<div class="welcome_sign_text" onclick="sign_show();">Представиться</div>
+					<div class="welcome_sign_arrows_icon"></div>					
+				</div>
+				<div onclick="welcome_back();" class="welcome_button" style="display: none;">Назад</div>
+			  </div>
+			  
+			  <div id="welcome_content_sign_up" style="display: none;">
+				  <div class="welcome_text_sign">Регистрация</div>
+				  <form id="welcome_sign_up_form" name="welcome_sign_up_form">
+				      <input id="welcome_sign_up_input_first_name" name="first_name" placeholder="Имя">
+				      <input id="welcome_sign_up_input_last_name" name="last_name" placeholder="Фамилия">
+				      <input id="welcome_sign_up_input_email" name="email" placeholder="E-mail">
+				      <input type="password" id="welcome_sign_up_input_password" name="password" placeholder="Пароль">
+				      <input type="password" id="welcome_sign_up_input_re_password" name="re_password" placeholder="Повторите пароль">
+					  <div onclick="welcome_sign_up();" class="welcome_button">Зарегистрироваться</div>
+				  </form>
+			  </div>
+			  
+			  <div id="welcome_content_sign_in" style="display: none;">
+				  <div class="welcome_text_sign">Авторизироваться</div>
+				  <form id="welcome_sign_in_form" name="welcome_sign_in_form">				      
+				      <input id="welcome_sign_in_input_email" name="email" placeholder="E-mail">
+				      <input type="password" id="welcome_sign_in_input_password" name="password" placeholder="Пароль">				      
+					  <div onclick="welcome_sign_in();" class="welcome_button">Войти</div>
+				  </form>
+			  </div>
+			  
+			  <div id="welcome_content_sign" style="display: none;">
+				  <div class="welcome_text_sign">Представься</div>
+				  <form id="welcome_sign_form" name="welcome_sign_form">				      
+				       <input id="welcome_sign_input_first_name" name="first_name" placeholder="Имя">
+				      <input id="welcome_sign_input_last_name" name="last_name" placeholder="Фамилия">			      
+					  <div onclick="welcome_sign();" class="welcome_button">Войти</div>
+				  </form>
+			  </div>
+		  </div>
+		  
+		  
+      </div>
+    </div>
+  </body>
+
+</html>

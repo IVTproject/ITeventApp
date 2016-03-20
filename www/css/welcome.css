@@ -1,0 +1,229 @@
+@font-face {
+    font-family: SF-UI-Display; /* Имя шрифта */
+    src: url('../fonts/SF-UI-Display-Ultralight.ttf'); /* Путь к файлу со шрифтом */
+}
+
+@font-face {
+    font-family: OpenSansSemibold; /* Имя шрифта */
+    src: url('../fonts/OpenSans-Semibold.ttf'); /* Путь к файлу со шрифтом */
+}
+
+@font-face {
+    font-family: OpenSansLight; /* Имя шрифта */
+    src: url('../fonts/OpenSans-Light.ttf'); /* Путь к файлу со шрифтом */
+}
+
+#welcome_content {
+	width: 320px;
+	margin: 0 auto;
+}
+
+#welcome_title {
+	text-align: center;
+	font-family: SF-UI-Display;
+	font-size: 48px;
+	font-weight: normal;
+	padding: 0;
+	margin: 0;
+}
+
+.welcome_text_sign {
+	text-align: center;
+	font-family: SF-UI-Display;
+	font-size: 38px;
+	font-weight: normal;
+	padding: 0;
+	margin: 0;
+}
+
+#welcome_information, #welcome_information_dynamically, #welcome_fio_dynamically {
+	text-align: center;
+	font-family: OpenSansLight;
+	font-size: 18px;
+	font-weight: normal;
+	padding: 0;
+	margin-top: 15px;
+}
+
+
+/*Начало - Кнопки зарегистрироваться, авторизироваться*/
+/*Зарегистрироваться*/
+#welcome_sign_up, #welcome_sign_in, #welcome_sign_introduce { /*Блоки зарегистрироваться, авторизироваться*/
+	height: 48px;
+	width: 100%;	
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: stretch;
+	cursor: pointer;
+}
+
+#welcome_sign_up {/*Блок зарегистрироваться*/
+	margin-top: 50px;	
+	border: 1px solid #dadada;
+	-webkit-border-top-left-radius: 3px;
+	-webkit-border-top-right-radius: 3px;
+	-moz-border-radius-topleft: 3px;
+	-moz-border-radius-topright: 3px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+}
+
+#welcome_sign_up_icon, #welcome_sign_in_icon, #welcome_fio_icon {/*Левая иконка*/	
+	width: 25px;
+	margin-left: 6px;
+}
+
+#welcome_sign_up_icon {/*Левая иконка*/
+	background: url('../img/welcome/sign_up.svg') no-repeat center center;
+}
+
+#welcome_fio_icon {
+	background: url('../img/welcome/welcome_fio.svg') no-repeat center center;	
+	background-size: 25px 25px;
+}
+
+.welcome_sign_text {
+	flex-grow: 1;
+	font-variant: small-caps;
+	font-family: OpenSansLight;
+	font-size: 18px;
+	margin-top: 10px;
+	margin-left: 8px;
+}
+
+.welcome_sign_arrows_icon {/*Правая иконка*/
+	background: url('../img/welcome/sign_arrows.svg') no-repeat center center;
+	width: 17px;	
+	margin-right: 11px;
+}
+
+/*Авторизироваться*/
+#welcome_sign_in {/*Блок авторизироваться*/
+	border-left: 1px solid #dadada;
+	border-bottom: 1px solid #dadada;
+	border-right: 1px solid #dadada;
+	border-top: none;		
+	-webkit-border-bottom-right-radius: 3px;
+	-webkit-border-bottom-left-radius: 3px;	
+	-moz-border-radius-bottomright: 3px;
+	-moz-border-radius-bottomleft: 3px;	
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;	
+}
+
+#welcome_sign_in_icon {/*Левая иконка*/
+	background: url('../img/welcome/sign_in.svg') no-repeat center center;	
+}
+/*конец - Кнопки зарегистрироваться, авторизироваться*/
+
+.welcome_button {
+	background-color: #1e96f5;	
+	padding: 8px 10px;
+	text-align: center;
+	color: white;
+	font-family: OpenSansLight;
+	font-size: 18px;
+	font-weight: normal;
+	display: table;
+	border-radius: 18px;
+	margin: auto;
+	margin-top: 23px;
+}
+
+/*Sign Up*/
+#welcome_sign_up_input_first_name, #welcome_sign_up_input_last_name,#welcome_sign_up_input_email, #welcome_sign_up_input_password, #welcome_sign_up_input_re_password, #welcome_sign_in_input_email, #welcome_sign_in_input_password, #welcome_sign_input_first_name, #welcome_sign_input_last_name {
+	height: 48px;
+	width: 100%;	
+	font-variant: small-caps;
+	font-family: OpenSansLight;
+	font-size: 18px;	
+	padding-left: 35px;
+}
+
+#welcome_sign_up_input_first_name {
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	border: 1px solid #dadada;
+	background: url('../img/welcome/first_name.svg') no-repeat left center;
+	background-size: 25px 25px;
+	background-position-x: 2%;
+}
+
+#welcome_sign_up_input_last_name {	
+	border: 1px solid #dadada;
+	border-top: none; 
+	background: url('../img/welcome/last_name.svg') no-repeat left center;
+	background-size: 25px 25px;
+	background-position-x: 2%;
+}
+
+#welcome_sign_up_input_email {	
+	border: 1px solid #dadada;
+	border-top: none; 
+	background: url('../img/welcome/email.svg') no-repeat left center;
+	background-size: 25px 25px;
+	background-position-x: 2%;
+}
+
+#welcome_sign_up_input_password {	
+	border: 1px solid #dadada;
+	border-top: none; 
+	background: url('../img/welcome/password.svg') no-repeat left center;
+	background-size: 25px 25px;
+	background-position-x: 2%;
+}
+
+#welcome_sign_up_input_re_password {
+	border: 1px solid #dadada;
+	border-top: none; 
+	background: url('../img/welcome/password.svg') no-repeat left center;
+	background-size: 25px 25px;
+	background-position-x: 2%;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;	
+}
+
+
+#welcome_sign_in_input_email {
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	border: 1px solid #dadada;
+	background: url('../img/welcome/email.svg') no-repeat left center;
+	background-size: 25px 25px;
+	background-position-x: 2%;
+}
+
+#welcome_sign_in_input_password {
+	border: 1px solid #dadada;
+	border-top: none; 
+	background: url('../img/welcome/password.svg') no-repeat left center;
+	background-size: 25px 25px;
+	background-position-x: 2%;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;	
+}
+
+#welcome_sign_input_first_name {
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	border: 1px solid #dadada;
+	background: url('../img/welcome/first_name.svg') no-repeat left center;
+	background-size: 25px 25px;
+	background-position-x: 2%;
+}
+
+
+#welcome_sign_input_last_name {
+	border: 1px solid #dadada;
+	border-top: none; 
+	background: url('../img/welcome/last_name.svg') no-repeat left center;
+	background-size: 25px 25px;
+	background-position-x: 2%;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;	
+}
+
+#welcome_sign_up_form, #welcome_sign_in_form, #welcome_sign_form {
+	margin-top: 25px;
+}
