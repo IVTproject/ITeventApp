@@ -57,6 +57,9 @@ function fill_informal(data) {
             $('#bloks_informals').append(creat_blok_informal(json_array[i]));
     }
     click_informal();
+	if (json_array.length == 0) {
+		$('#bloks_informals').append("<p class='empty_message'>Список объявлений пуст, нажмите на 'плюс', чтобы добавить объявление</p>");
+	}
 }
 
 function click_informal() {
@@ -114,6 +117,9 @@ function fill_actions(data) {
         $('#content').append(creat_block_schedule(json_array[i]));
     }
     show_hide_schedule();
+	if (json_array.length == 0) {
+		$('#content').append("<p class='empty_message'>Расписание пусто, обратитесь к организаторам</p>");
+	}
 }
 
 function show_hide_schedule() {	

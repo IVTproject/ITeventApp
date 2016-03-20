@@ -17,11 +17,13 @@ function send_notification(notif_item, wait_mins, callback) {
 		title: notif_item.textNotification,
 		text: text,
 		at: time,
-		icon: "file://../img/icon.png",
+		icon: "http://it-event.tk/img/icon.png",
 		smallIcon: "http://it-event.tk/img/icon.png"
 		//data: { meetingId:"123#fg8" }
 	}, callback);
-	
+	click_notif();
+	//trigger_notif();
+	//schedule_notif();
 }
 
 function cancel_notification(id, callback) {
@@ -29,11 +31,24 @@ function cancel_notification(id, callback) {
 		cordova.plugins.notification.local.cancel(id, callback)
 	});
 }
+function trigger_notif() {
+	cordova.plugins.notification.local.on("trigger", function(notification) {
+		alert("triggered: " + notification.id);
+	});
+}
 
-/*
-cordova.plugins.notification.local.on("click", function (notification) {
-	alert("dsfgb");
-});
-*/
+function schedule_notif() {
+	cordova.plugins.notification.local.on("schedule", function(notification) {
+		alert("scheduled: " + notification.id);
+	});
+}
+
+function click_notif() {
+	cordova.plugins.notification.local.on("click", function (notification) {
+		alert("clicked: " + notification.id);
+	});
+}
+
+
 
 

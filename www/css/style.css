@@ -232,15 +232,20 @@ input[type=date], #city_select, .select_filter  {
 	text-decoration: none;
 	display: block;
 }
-#preloader_event, #preloader_events {
+#preloader_event, #preloader_events, #preloader_notice, #preloader_schedule, #preloader_informal {
 	background: url(../img/preloader.gif);
 	background-repeat: no-repeat;
 	width: 64px;
 	height: 64px;
    	text-align: center;
 	margin-top: 40px;
+	margin-bottom: 40px;
 	margin-left: auto;
 	margin-right: auto;
+	display: none;
+}
+#preloader_schedule, #preloader_notice, #preloader_informal {
+	margin-top: 85px;
 }
 
 #content, #notice_bloks_content, #bloks_informals {
@@ -274,4 +279,9 @@ input[type=date], #city_select, .select_filter  {
     margin-bottom: 10px;
     text-align: center;
 }
-
+.empty_message {
+	color: black;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 65px;
+}

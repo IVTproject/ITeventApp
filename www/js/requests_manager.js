@@ -12,14 +12,14 @@ function list_all_events(begin, count) {
         count: count
         },
         error: function(req, text, error) {
-            fill_list_events(null, count);
-            hide('#preloader_events');
+			hide('#preloader_events');
             show('#events_write');
+            fill_list_events(null, count);
         },
         success: function(data) {
-            fill_list_events(JSON.stringify(data), begin + count);
-            show('#events_write');
+			show('#events_write');
             hide('#preloader_events');
+            fill_list_events(JSON.stringify(data), begin + count);
         },
         dataType: 'json'
     });
@@ -35,14 +35,14 @@ function list_filter_events(begin, count) {
         url: "http://it-event.esy.es/api.php?begin="+begin+"&count="+count+"&mod=list_filter_events&" + get_text_format_filter(),
         data: {},
         error: function(req, text, error) {
-            fill_list_events(null, count);
-            hide('#preloader_events');
+			hide('#preloader_events');
             show('#events_write');
+            fill_list_events(null, count);
         },
         success: function(data) {
-            fill_list_events(JSON.stringify(data), count);
-            hide('#preloader_events');
+			hide('#preloader_events');
             show('#events_write');
+            fill_list_events(JSON.stringify(data), count);
         },
         dataType: 'json'
     });
@@ -76,6 +76,8 @@ function get_list_city() {
 
 
 function get_notice_from_event(id_event, begin, count) {
+	hide("#notice_bloks_content");
+	show("#preloader_notice");
     $('#more_notice_button').remove();
     $.get("http://it-event.esy.es/api.php", {
         mod: "get_notice_from_event",
@@ -83,6 +85,8 @@ function get_notice_from_event(id_event, begin, count) {
         begin: begin,
         count: count
     }, function(data) {
+		hide("#preloader_notice");
+		show("#notice_bloks_content");
         fill_notice(data, count);
     }); 
     var last_id_event = localStorage.getItem('last_evet_id');
@@ -93,34 +97,49 @@ function get_notice_from_event(id_event, begin, count) {
 
 function get_notice_from_event_filter(id_event, begin, count, callBackF) {
     $('#more_notice_button').remove();
+	hide("#notice_bloks_content");
+	show("#preloader_notice");
     $.get("http://it-event.esy.es/api.php", {
         mod: "get_notice_from_event",
         id_event: id_event,
         begin: begin,
         count: count,
         types: get_text_format_filter_notice()
-    }, function (data) { callBackF(data, count) }); 
+    }, function (data) {
+		hide("#preloader_notice");
+		show("#notice_bloks_content");
+		callBackF(data, count);
+	}); 
     var last_id_event = localStorage.getItem('last_evet_id');
     localStorage.setItem("begin_notice_" + last_id_event, begin);
     localStorage.setItem("count_notice_" + last_id_event, count);
+	
 }
 
 function get_actios_from_event(id_event) {
+	hide("#content");
+	show("#preloader_schedule");
     $.get("http://it-event.esy.es/api.php", {
         mod: "list_actios_from_event",
         id: id_event
     }, function(data) {
-        localStorage.setItem("list_actions_" + localStorage.getItem('last_evet_id'), data);
+        localStorage.setItem("list_actions_" + localStorage.getItem('last_evet_id'), data);	
+		hide("#preloader_schedule");
+		show("#content");
         fill_actions(data);
     });
 }
 
 function get_informal_from_event(id_event) {
+	hide("#bloks_informals");
+	show("#preloader_informal");
     $.get("http://it-event.esy.es/api.php", {
         mod: "get_informal",
         id_event: id_event
     }, function(data) {
         localStorage.setItem("list_informal_" + localStorage.getItem('last_evet_id'), data);
+		hide("#preloader_informal");
+		show("#bloks_informals");
         fill_informal(data);
     });
 }
@@ -175,8 +194,6 @@ function make_inactive_informal(id_informal) {
 }
 
 function get_event_information(id) {
-    
-    
     hide("#event_pane");
     show("#preloader_event");
     $.ajax({
