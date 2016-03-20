@@ -81,8 +81,6 @@
 
                     </div>
 					
-					<!--Вёрстка тусовки-->
-					<!--<a id="lolol" onclick="row_truncation();">fsdfsd</a>-->
                     <div id='events_write'>
                         <!-- Список мероприятий -->
                     </div>
@@ -355,14 +353,15 @@
             	$(this).addClass("active1");
                 
             });
-            hide('#content');
+           show('#content');
            $("#1").click(function() {
                 change_refresh_button("action");
                 past_filter("none");
 				swipe_menu_count=0;
             	$('#inform').fadeOut(10);
             	$('#ads').fadeOut(10);
-            	$('#content').slideToggle(700);				
+                if(!$('#content').is(":visible"))
+            	   $('#content').fadeIn(700);				
             });
             	
             $("#2").click(function() {
@@ -371,7 +370,8 @@
 				swipe_menu_count=1;
             	$('#inform').fadeOut(10);	
             	$('#content').fadeOut(10);
-            	$('#ads').slideToggle(700);				
+                if(!$('#ads').is(":visible"))
+            	   $('#ads').fadeIn(700);				
             });
             
             $("#3").click(function() {	
@@ -380,7 +380,8 @@
 				swipe_menu_count=2;
             	$('#content').fadeOut(10);
             	$('#ads').fadeOut(10);
-            	$('#inform').slideToggle(700);			
+                if(!$('#inform').is(":visible"))
+            	   $('#inform').fadeIn(700);			
             });
         </script>
 		<script type="text/javascript" src="js/truncate.js"></script>

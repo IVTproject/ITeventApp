@@ -105,12 +105,12 @@ function get_notice_from_event_filter(id_event, begin, count, callBackF) {
         begin: begin,
         count: count,
         types: get_text_format_filter_notice()
-    }, function (data) {
+    }, function (data) {	
 		callBackF(data, count);
 	}); 
     var last_id_event = localStorage.getItem('last_evet_id');
-    localStorage.setItem("begin_notice_" + last_id_event, begin);
-    localStorage.setItem("count_notice_" + last_id_event, count);
+    localStorage.setItem("begin_notice", begin);
+    localStorage.setItem("count_notice", count);
 	
 }
 
@@ -153,6 +153,15 @@ function change_rang_informal(id_informal, inc, is_throwing) {
     });
 }
 
+function delete_notice(id) {
+    $.get("http://it-event.esy.es/api.php", {
+        mod: "delete_notice",
+        id: id
+    }, function(data) {
+        $("#block_notice_" + id).hide("slow", function(){$(this).remove();});
+    });
+}
+
 function add_notice_to_server(id_event, name, FIO, type, information, contact) {
     $.get("http://it-event.esy.es/api.php", {
         mod: "add_notice_form_event",
@@ -163,6 +172,7 @@ function add_notice_to_server(id_event, name, FIO, type, information, contact) {
         information: information,
         contact: contact
     }, function(data) {
+        remember_id_notice(data);
         load_notice(0, 15);
         click_back_button();
     });

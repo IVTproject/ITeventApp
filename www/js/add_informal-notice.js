@@ -22,6 +22,20 @@ function remember_id_informal(data) {
     }
 }
 
+function remember_id_notice(data) {
+    if(data >= 0) {
+        if(localStorage.getItem("my_notice_" + localStorage.getItem("last_evet_id")) &&
+           localStorage.getItem("my_notice_" + localStorage.getItem("last_evet_id")) != "undefined") {
+            var my_informals = JSON.parse(localStorage.getItem("my_notice_" + 
+                localStorage.getItem("last_evet_id")));
+            my_informals.push(data);
+            localStorage.setItem("my_notice_" + localStorage.getItem("last_evet_id"), JSON.stringify(my_informals));
+        } else {
+            localStorage.setItem("my_notice_" + localStorage.getItem("last_evet_id"), JSON.stringify([data]));
+        }
+    }
+}
+
 function chek_and_write_notice() {
     var name_ads = document.getElementById('name_ads').value;
     var type_notice = document.getElementById('type_notice').value;

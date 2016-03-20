@@ -1,9 +1,11 @@
 function fill_list_events(events, max_count) {
     $('#events_write').text("");
-    var last_event = localStorage.getItem('last_event');
-    if(last_event && last_event != "undefined") {
+    var last_events = localStorage.getItem('last_events');
+    if(last_events && last_events != "undefined") {
         $('#events_write').append("<div class='What_a_day'>Последнее</div>");
-        $('#events_write').append(creat_block(JSON.parse(last_event)));
+        var last_events = JSON.parse(last_events);
+        for(var i = 0; last_events[i]; i++)
+            $('#events_write').append(creat_block(last_events[i]));
     }
     if(!events) {
 		$('#events_write').append("<p class='empty_message'>Список мероприятий пуст. Добавьте свое мероприятие на сайте: http://it-event.tk</p>");
@@ -17,7 +19,10 @@ function fill_list_events(events, max_count) {
     }
     if(array_event.length == max_count) {
         $('#events_write').append('<div class="more_events_click" id="more_event_button" onclick="more_events();">Ещё</div>');
+    } else {
+        $('#events_write').append('<div class="paragraph"></div>');
     }
+    row_truncation();
 }
 
 function append_list_events(events, max_count) {
@@ -28,7 +33,10 @@ function append_list_events(events, max_count) {
     }
     if(array_event.length == max_count) {
         $('#events_write').append('<div class="more_events_click" id="more_event_button" onclick="more_events();">Ещё</div>');
+    } else {
+        $('#events_write').append('<div class="paragraph"></div>');
     }
+    row_truncation();
 }
 
 function creat_block(event) {
@@ -41,7 +49,7 @@ function creat_block(event) {
         "</div> <div class='event_title'> <div class='event_name'>" + event
         .name + "</div>" + "<div class='event_date'>" + date_format(event.begin_date) +
         "</div> </div> </div>" +
-        "<div class='clearer'>&nbsp;</div> <div class='event_content' style='line-height: 20px;' data-truncate-lines=\"3\">" +
+        "<div class='clearer'>&nbsp;</div> <div class='event_content' style='line-height: 20px;' data-truncate-lines=\"5\">" +
         event.information + "</div> </div></a>";
 }
 
@@ -51,7 +59,7 @@ function get_inform_event(event_inform) {
     next_page(info.name, "none", "none");
     localStorage.setItem("last_evet_id", info.id);
     localStorage.setItem("last_evet_name", info.name);
-    localStorage.setItem("last_event_inf", event_inform);
+    localStorage.setItem("last_event", event_inform);
     $('#date_event').text(date_deg_format(info.begin_date));
     $('#img_ava_event').attr("src", info.pictures);
     $('#name_event').text(info.name);

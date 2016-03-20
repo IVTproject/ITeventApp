@@ -20,6 +20,15 @@ function rewrite_informal() {
     }
 }
 
+function rewrite_notice() {
+    var data = localStorage.getItem("list_notice_" + localStorage.getItem('last_evet_id'));
+    if(data && data != "undefined") {
+        fill_notice(data, 100000);  
+    } else {
+       fill_notice_filter();
+    }
+}
+
 function rewrite_actions() {
     var data = localStorage.getItem("list_actions_" + localStorage.getItem('last_evet_id'));
     if(data && data != "undefined") {
@@ -84,17 +93,22 @@ function fill_notice_filter_more(begin, count) {
 }
 
 function append_notice_more(data, count) {
-	$('#more_preloader').remove();
     var json_array = JSON.parse(data);
+    var l_s = JSON.parse(localStorage.getItem("list_notice_" + localStorage.getItem('last_evet_id')));
+    localStorage.setItem("list_notice_" + localStorage.getItem('last_evet_id'), data);
+	$('#more_preloader').remove();
     for (var i = 0; json_array[i]; i++) {
         $('#notice_bloks_content').append(creat_blok_notice(json_array[i]));
+        l_s.push(json_array[i]);
     }
+    localStorage.setItem("list_notice_" + localStorage.getItem('last_evet_id'), JSON.stringify(l_s));
     if(json_array.length >= count) {
         $('#notice_bloks_content').append('<div class="more_events_click" id="more_notice_button" onclick="more_notice();">Ещё</div>');
     }
 }
 
 function fill_notice(data, count) {
+    localStorage.setItem("list_notice_" + localStorage.getItem('last_evet_id'), data);
 	hide("#preloader_notice");
 	show("#notice_bloks_content");
     var json_array = JSON.parse(data);
@@ -195,16 +209,42 @@ function chek_data_user() {
         if(!click_input_event) {
             next_page(localStorage.getItem("last_evet_name"), "none", "none");
             click_input_event = true;
+            add_last_event(JSON.parse(localStorage.getItem("last_event")));
         }
-        localStorage.setItem("last_event", localStorage.getItem("last_event_inf"));
         rewrite_actions();
         rewrite_informal();
-        load_notice(0, 15);
+        rewrite_notice();
         document.getElementById('go_schedule').click();
         document.getElementById('1').click();
     } else {
         alert("Заполните поля выше");
     }
+}
+
+function add_last_event(event) {
+    var last_events = localStorage.getItem("last_events");
+    if(last_events && last_events != "undefined") {
+        last_events = JSON.parse(last_events);
+        for(var i = 0; last_events[i]; i++) {
+            if(last_events[i].id == event.id)
+                return;
+        }
+        if(last_events.length >= 3) {
+            var d_e = last_events.shift();
+            localStorage.removeItem("list_informal_" + d_e.id);
+            localStorage.removeItem("list_actions_" + d_e.id);
+            localStorage.removeItem("list_notice_" + d_e.id);
+            localStorage.removeItem("have_assessed_notice" + d_e.id);
+            localStorage.removeItem("have_assessed_informal" + d_e.id);
+            localStorage.removeItem("my_informals_" + d_e.id);
+            localStorage.removeItem("my_notice_" + d_e.id);
+        } 
+        last_events.push(event);
+    } else {
+        last_events = [];
+        last_events.push(event);
+    }
+    localStorage.setItem("last_events", JSON.stringify(last_events));
 }
 
 function is_have_assessed(id) {
@@ -252,11 +292,28 @@ function is_my_informal(id) {
     return false;
 }
 
+function is_my_notice(id) {
+    if(localStorage.getItem("my_notice_" + localStorage.getItem("last_evet_id")) &&
+    localStorage.getItem("my_notice_" + localStorage.getItem("last_evet_id")) != "undefined") {
+    var my_notice = JSON.parse(localStorage.getItem("my_notice_" + localStorage.getItem("last_evet_id")));
+    for(var i = 0; my_notice[i]; i++) {
+        if(my_notice[i] == id) {
+            return true;
+        }
+    }
+    }
+    return false;
+}
+
 function creat_blok_notice(inf) {
     if(is_have_assessed(inf.id) == -1) {
         return "";
     }
-    return '<div id="block_notice_'+inf.id+'"><div class="ads_content"><div class="title_ads">'+inf.type+': '+inf.name+'</div><div class="dop_contents_ads"><div class="information_ads">'+inf.information+'</div><div class="contacts_inf_ads"><b>Контактная информация:</b></div><div class="contacts_name_blocks_ads"><div class="contacts_phone_ads">'+inf.contact+'</div><div class="contacts_phone_name">'+inf.FIO+'</div></div></div><div class="hide_block_ads" onclick="dislike_notice('+inf.id+');"><p class="hide_ads">Скрыть объявление</p></div></div></div>';
+    var left_bottom = '<div class="hide_block_ads" onclick="dislike_notice('+inf.id+');"><p class="hide_ads">Скрыть объявление</p></div>';
+    if(is_my_notice(inf.id)) {
+        var left_bottom = '<div class="hide_block_ads" onclick="delete_notice('+inf.id+');"><p class="hide_ads">Удалить объявление</p></div>';
+    }
+    return '<div id="block_notice_'+inf.id+'"><div class="ads_content"><div class="title_ads">'+inf.type+': '+inf.name+'</div><div class="dop_contents_ads"><div class="information_ads">'+inf.information+'</div><div class="contacts_inf_ads"><b>Контактная информация:</b></div><div class="contacts_name_blocks_ads"><div class="contacts_phone_ads">'+inf.contact+'</div><div class="contacts_phone_name">'+inf.FIO+'</div></div></div>'+left_bottom+'</div></div>';
 }
 
 function complete_informsl(id) {
