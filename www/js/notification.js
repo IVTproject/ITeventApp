@@ -17,12 +17,12 @@ function send_notification(notif_item, wait_mins, callback) {
 		title: notif_item.textNotification,
 		text: text,
 		at: time,
-		icon: "http://it-event.tk/img/icon.png",
-		smallIcon: "http://it-event.tk/img/icon.png"
+		//icon: "res://icon36",
+		//smallIcon: "http://it-event.tk/img/icon.png"
 		//data: { meetingId:"123#fg8" }
 	}, callback);
 	click_notif();
-	//trigger_notif();
+	trigger_notif();
 	//schedule_notif();
 }
 
@@ -33,13 +33,13 @@ function cancel_notification(id, callback) {
 }
 function trigger_notif() {
 	cordova.plugins.notification.local.on("trigger", function(notification) {
-		alert("triggered: " + notification.id);
+		navigator.vibrate([500, 500, 500, 500, 500]);
 	});
 }
 
 function schedule_notif() {
 	cordova.plugins.notification.local.on("schedule", function(notification) {
-		alert("scheduled: " + notification.id);
+		//alert("scheduled: " + notification.id);
 	});
 }
 

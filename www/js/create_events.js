@@ -5,8 +5,10 @@ function fill_list_events(events, max_count) {
         $('#events_write').append("<div class='What_a_day'>Последнее</div>");
         $('#events_write').append(creat_block(JSON.parse(last_event)));
     }
-    if(!events)
+    if(!events) {
+		$('#events_write').append("<p class='empty_message'>Список мероприятий пуст. Добавьте свое мероприятие на сайте: http://it-event.tk</p>");
         return;
+	}
     $('#events_write').append("<div class='What_a_day'>Все</div>");
     var json = JSON.parse(events);
     var array_event = json.list_events;

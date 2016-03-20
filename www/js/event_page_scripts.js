@@ -58,7 +58,7 @@ function fill_informal(data) {
     }
     click_informal();
 	if (json_array.length == 0) {
-		$('#bloks_informals').append("<p class='empty_message'>Список объявлений пуст, нажмите на 'плюс', чтобы добавить объявление</p>");
+		$('#bloks_informals').append("<p class='empty_message'>Список тусовок пуст, нажмите на «плюс», чтобы добавить свою тусовку</p>");
 	}
 }
 
@@ -72,14 +72,19 @@ function click_informal() {
 }
 
 function fill_notice_filter() {
+	hide("#notice_bloks_content");
+	show("#preloader_notice");
     get_notice_from_event_filter(localStorage.getItem("last_evet_id"), 0, 10, fill_notice);
+	
 }
 
 function fill_notice_filter_more(begin, count) {
+	$('#notice_bloks_content').append('<div id="more_preloader"></div>');
     get_notice_from_event_filter(localStorage.getItem("last_evet_id"), begin, count, append_notice_more);
 }
 
 function append_notice_more(data, count) {
+	$('#more_preloader').remove();
     var json_array = JSON.parse(data);
     for (var i = 0; json_array[i]; i++) {
         $('#notice_bloks_content').append(creat_blok_notice(json_array[i]));
@@ -90,6 +95,8 @@ function append_notice_more(data, count) {
 }
 
 function fill_notice(data, count) {
+	hide("#preloader_notice");
+	show("#notice_bloks_content");
     var json_array = JSON.parse(data);
     $('#notice_bloks_content').text("");
     for (var i = 0; json_array[i]; i++) {
@@ -98,6 +105,9 @@ function fill_notice(data, count) {
     if(json_array.length >= count) {
         $('#notice_bloks_content').append('<div class="more_events_click" id="more_notice_button" onclick="more_notice();">Ещё</div>');
     }
+	if (json_array.length == 0) {
+		$('#notice_bloks_content').append("<p class='empty_message'>Список объявлений пуст, нажмите на «плюс», чтобы добавить свое объявление</p>");
+	}
 }
 
 function fill_actions(data) {

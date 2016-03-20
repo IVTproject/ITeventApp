@@ -58,8 +58,10 @@ function get_min_and_max_date() {
 
 function get_more_events(begin, count) {
     $('#more_event_button').remove();
+	$('#events_write').append('<div id="more_preloader"></div>');
     $.get("http://it-event.esy.es/api.php?begin="+begin+"&count="+count+"&mod=list_filter_events&" +
         get_text_format_filter(), {}, function(data) {
+			$('#more_preloader').remove();
             append_list_events(data, count);
         });
     localStorage.setItem("begin_event", begin);
@@ -76,8 +78,8 @@ function get_list_city() {
 
 
 function get_notice_from_event(id_event, begin, count) {
-	hide("#notice_bloks_content");
-	show("#preloader_notice");
+	//hide("#notice_bloks_content");
+	//show("#preloader_notice");
     $('#more_notice_button').remove();
     $.get("http://it-event.esy.es/api.php", {
         mod: "get_notice_from_event",
@@ -85,8 +87,8 @@ function get_notice_from_event(id_event, begin, count) {
         begin: begin,
         count: count
     }, function(data) {
-		hide("#preloader_notice");
-		show("#notice_bloks_content");
+		//hide("#preloader_notice");
+		//show("#notice_bloks_content");
         fill_notice(data, count);
     }); 
     var last_id_event = localStorage.getItem('last_evet_id');
@@ -97,8 +99,6 @@ function get_notice_from_event(id_event, begin, count) {
 
 function get_notice_from_event_filter(id_event, begin, count, callBackF) {
     $('#more_notice_button').remove();
-	hide("#notice_bloks_content");
-	show("#preloader_notice");
     $.get("http://it-event.esy.es/api.php", {
         mod: "get_notice_from_event",
         id_event: id_event,
@@ -106,8 +106,6 @@ function get_notice_from_event_filter(id_event, begin, count, callBackF) {
         count: count,
         types: get_text_format_filter_notice()
     }, function (data) {
-		hide("#preloader_notice");
-		show("#notice_bloks_content");
 		callBackF(data, count);
 	}); 
     var last_id_event = localStorage.getItem('last_evet_id');
