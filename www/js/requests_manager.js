@@ -80,10 +80,42 @@ function get_list_city() {
     });
 }
 
+function get_information_about_event(id) {
+    var email = localStorage.getItem('email');
+    if(email && email != "undefined") {
+    $.get(url_api, {
+        mod: "get_information_about_event",
+        id_event: id,
+        email: email,
+        hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
+    }, function(data) {
+        var data = JSON.parse(data);
+        if(data.have_assessed_notice)
+            localStorage.setItem("have_assessed_notice_" + id, JSON.stringify(data.have_assessed_notice));
+        if(data.have_assessed_informal)
+            localStorage.setItem("have_assessed_informal_" + id, JSON.stringify(data.have_assessed_informal));
+        if(data.my_informals)                     
+            localStorage.setItem("my_informals_" + id, JSON.stringify(data.my_informals));
+        if(data.my_notice)
+            localStorage.setItem("my_notice_" + id, JSON.stringify(data.my_notice));
+    });
+    }
+}
+
+function set_information_about_event(id) {
+    var email = localStorage.getItem('email');
+    if(email && email != "undefined") {
+    $.get(url_api, {
+        mod: "set_information_about_event",
+        id_event: id,
+        email: email,
+        information: gather_information(id),
+        hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
+    }, function(data) {});
+    }
+}
 
 function get_notice_from_event(id_event, begin, count) {
-	//hide("#notice_bloks_content");
-	//show("#preloader_notice");
     $('#more_notice_button').remove();
     $.get(url_api, {
         mod: "get_notice_from_event",
@@ -92,8 +124,6 @@ function get_notice_from_event(id_event, begin, count) {
         count: count,
 		hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
     }, function(data) {
-		//hide("#preloader_notice");
-		//show("#notice_bloks_content");
         fill_notice(data, count);
     }); 
     var last_id_event = localStorage.getItem('last_evet_id');
@@ -159,6 +189,7 @@ function change_rang_informal(id_informal, inc, is_throwing) {
 		hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
     }, function(data) {
         change_rangs_to_informal(id_informal, data);
+        set_information_about_event(localStorage.getItem('last_evet_id'));
     });
 }
 
@@ -169,6 +200,7 @@ function delete_notice(id) {
 		hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
     }, function(data) {
         $("#block_notice_" + id).hide("slow", function(){$(this).remove();});
+        set_information_about_event(localStorage.getItem('last_evet_id'));
     });
 }
 
@@ -186,6 +218,7 @@ function add_notice_to_server(id_event, name, FIO, type, information, contact) {
         remember_id_notice(data);
         load_notice(0, 15);
         click_back_button();
+        set_information_about_event(localStorage.getItem('last_evet_id'));
     });
 }
 
@@ -203,6 +236,7 @@ function add_informal_to_server(id_event, theme, organize, information, place) {
         remember_id_informal(data);
         load_informal();
         click_back_button();
+        set_information_about_event(localStorage.getItem('last_evet_id'));
     });
 }
 
@@ -211,7 +245,9 @@ function make_inactive_informal(id_informal) {
         mod: "make_inactive_informal",
         id_informal: id_informal,
 		hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
-    }, function(data) {});
+    }, function(data) {
+        set_information_about_event(localStorage.getItem('last_evet_id'));
+    });
 }
 
 function get_event_information(id) {
@@ -283,7 +319,7 @@ function auth_user(email, pass) {
 		} else {
 			json = JSON.parse(data);
 			var f_name = json.first_name;
-			var l_name = json.last_name;
+			var l_name = json.second_name;
 			localStorage.setItem('email', $('#welcome_sign_in_input_email').val());
 			localStorage.setItem('first_name', f_name);
 			localStorage.setItem('second_name', l_name);

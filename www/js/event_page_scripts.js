@@ -200,25 +200,18 @@ function show_hide_schedule() {
     });
 }
 
-function chek_data_user() {
-    var first_name = document.getElementsByName('first_name')[0].value;
-    var second_name = document.getElementsByName('second_name')[0].value;
-    if (first_name.length >= 2 && second_name.length >= 2) {
-        localStorage.setItem("first_name", first_name);
-        localStorage.setItem("second_name", second_name);
-        if(!click_input_event) {
-            next_page(localStorage.getItem("last_evet_name"), "none", "none");
-            click_input_event = true;
-            add_last_event(JSON.parse(localStorage.getItem("last_event")));
-        }
-        rewrite_actions();
-        rewrite_informal();
-        rewrite_notice();
-        document.getElementById('go_schedule').click();
-        document.getElementById('1').click();
-    } else {
-        alert("Заполните поля выше");
+function go_schedule() {
+    if(!click_input_event) {
+        next_page(localStorage.getItem("last_evet_name"), "none", "none");
+        click_input_event = true;
+        add_last_event(JSON.parse(localStorage.getItem("last_event")));
+        get_information_about_event(localStorage.getItem("last_evet_id"));
     }
+    rewrite_actions();
+    rewrite_informal();
+    rewrite_notice();
+    document.getElementById('go_schedule').click();
+    document.getElementById('1').click();
 }
 
 function add_last_event(event) {
@@ -234,8 +227,8 @@ function add_last_event(event) {
             localStorage.removeItem("list_informal_" + d_e.id);
             localStorage.removeItem("list_actions_" + d_e.id);
             localStorage.removeItem("list_notice_" + d_e.id);
-            localStorage.removeItem("have_assessed_notice" + d_e.id);
-            localStorage.removeItem("have_assessed_informal" + d_e.id);
+            localStorage.removeItem("have_assessed_notice_" + d_e.id);
+            localStorage.removeItem("have_assessed_informal_" + d_e.id);
             localStorage.removeItem("my_informals_" + d_e.id);
             localStorage.removeItem("my_notice_" + d_e.id);
         } 
@@ -245,6 +238,16 @@ function add_last_event(event) {
         last_events.push(event);
     }
     localStorage.setItem("last_events", JSON.stringify(last_events));
+}
+
+function gather_information(id) {
+    var info = '{';
+    info += '"have_assessed_notice":' + localStorage.getItem("have_assessed_notice_" + id) + ',';
+    info += '"have_assessed_informal":' + localStorage.getItem("have_assessed_informal_" + id) + ',';
+    info += '"my_informals":' + localStorage.getItem("my_informals_" + id) + ',';
+    info += '"my_notice":' + localStorage.getItem("my_notice_" + id) + '}';
+    return info;
+    
 }
 
 function is_have_assessed(id) {
@@ -277,6 +280,7 @@ function have_assessed(id) {
 function dislike_notice(id) {
     $("#block_notice_" + id).hide("slow", function(){$(this).remove();});
     have_assessed(id);
+    set_information_about_event(localStorage.getItem('last_evet_id'));
 }
 
 function is_my_informal(id) {

@@ -2,9 +2,16 @@ function chek_and_write_informal() {
     var theme = document.getElementById('theme').value;
     var information = document.getElementById('information').value;
     var place = document.getElementById('place_inf').value;
+    var email = localStorage.getItem('email');
+    if(!email || email == "undefined") {
+        alert("Для добавления вы должны быть авторизированы.");
+        return;
+    }
     if(theme.length > 0 && place.length > 0) {
         var organize = localStorage.getItem('first_name') + " " + localStorage.getItem('second_name');
         add_informal_to_server(localStorage.getItem('last_evet_id'), theme, organize, information, place);
+    } else {
+        alert("Заполните поля");
     }
 }
 
@@ -42,6 +49,11 @@ function chek_and_write_notice() {
     var info_ads = document.getElementById('info_ads').value;
     var caontact_ads = document.getElementById('caontact_ads').value;
     var FIO = localStorage.getItem('first_name') + " " + localStorage.getItem('second_name');
+    var email = localStorage.getItem('email');
+    if(!email || email == "undefined") {
+        alert("Для добавления вы должны быть авторизированы.");
+        return;
+    }
     if(name_ads != "" && type_notice != "Выберите категорию" && caontact_ads != "") {
         add_notice_to_server(localStorage.getItem("last_evet_id"), name_ads, FIO, type_notice, info_ads, caontact_ads);
     }

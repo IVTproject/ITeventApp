@@ -48,7 +48,7 @@
             <h1>Starting app</h1>
         </div>
         <div class="view">
-            <header id="heading">
+            <header id="heading" style="display:none;">
                 <div id="top_title">
                     <h1>Мероприятия</h1>
                 </div>
@@ -61,7 +61,7 @@
             <div class="pages">
                 <div class="panel" id="item1" style="background-color: #dee5eb">
                     
-					<div id="welcome_content">
+					<div id="welcome_content" style="display:none;">
 						<div id="welcome_content_home">
 						  <div id="welcome_title" style="display: none;">Привет!</div>
 						  <div id="welcome_information" style="display: none;">Наше приложение облегчит поиск IT мероприятий в твоём городе.</div>
@@ -152,7 +152,7 @@
 
                     </div>
 					
-                    <div id='events_write'>
+                    <div id='events_write' style="display:none;">
                         <!-- Список мероприятий -->
                     </div>
 
@@ -245,13 +245,10 @@
                         <div class="paragraph"></div>
 
                         <div class="info_event">
-                            <div class="name_block">Авторизация:</div>
+                            <div class="paragraph"></div>
                             <div class="content_event">
                                 <form name="auth">
-                                    <input type="text" class="textbox" name="first_name"
-                                        placeholder="Имя" id="inputtext"> <input type="text"
-                                        class="textbox" name="second_name" placeholder="Фамилия"
-                                        id="inputtext"> <a href="#" onclick="chek_data_user();"
+                                    <a href="#" onclick="go_schedule();"
                                         id="enter">Войти</a> <a id="go_schedule" href="#event_schedule"
                                         style="display: none;"></a>
                                 </form>

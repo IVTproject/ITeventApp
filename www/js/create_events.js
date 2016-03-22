@@ -71,11 +71,4 @@ function get_inform_event(event_inform) {
     $('#site_info').text(info.site);
     $('#text_begin_date_info').text(date_time_format(info.begin_date));
     $('#text_end_date_info').text(date_time_format(info.end_date));
-    if (localStorage.getItem("first_name") && localStorage.getItem(
-        "second_name")) {
-        document.getElementsByName('first_name')[0].value = localStorage.getItem(
-            "first_name");
-        document.getElementsByName('second_name')[0].value = localStorage.getItem(
-            "second_name");
-    }
 }
