@@ -1,4 +1,4 @@
-.title_ads {
+/*.title_ads {
 	font-family: OpenSansSemibold;
 	color: black;
 	font-size: 16px;
@@ -41,4 +41,59 @@
 	font-size: 12px;
 	font-weight: normal;
 	text-shadow: 0px -1px 0px RGBA(0, 0, 0, 0.3);
+}*/
+
+.ads_block {
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #eaeaea;
+  padding: 5px 0 5px 0;
+}
+
+.ads_title {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.ads_img {
+  border-radius: 19px;
+  margin: auto;
+	width: 38px;
+}
+
+.ads_title_name {
+  flex-grow: 1;
+  padding-left: 7px;
+  font-family: OpenSansLight;
+  font-size: 13px;
+	color: black;
+}
+
+.ads_title_name_date {
+  color: #07999b;
+}
+
+.ads_title_icon_dop_info {
+  background: url('../img/ads_info.svg') no-repeat center center;
+	background-size: 22px 22px;
+  width: 26px;
+  height: 26px;
+  margin: auto;
+}
+
+.ads_more_info {
+  font-family: OpenSansLight;
+  font-size: 13px;
+  margin-left: 45px;
+	color: black;
+	display: none;
+}
+
+.ads_more_info p {
+  margin-top: 4px;
+  margin-bottom: 1px;
+	color: black;
 }

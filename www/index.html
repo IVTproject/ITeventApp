@@ -59,7 +59,7 @@
                 <div id="refresh_button"><img src="img/refresh.svg" width="26" class="settings" onerror="this.onerror=null; this.src='img/refresh.png'" onclick="refresh_events();"></div>
             </header>
             <div class="pages">
-                <div class="panel" id="item1" style="background-color: #dee5eb">
+                <div class="panel" id="item1" style="background-color: #fff">
                     
 					<div id="welcome_content" style="display:none;">
 						<div id="welcome_content_home">
@@ -300,6 +300,45 @@
                             </div>
                         </div>
                         <div id="preloader_notice"></div>
+						<!--Новая вёрстка блоков-->
+						<div class="ads_block" style="margin-top: 55px;" onclick="show_ads_more_info();">
+							<div class="ads_title">
+								<img src="https://i.ytimg.com/vi/rlGIxzp5HMw/maxresdefault.jpg" class="ads_img" width="38" height="38">
+								<div class="ads_title_name">
+									<div class="ads_title_name_1"><b style="font-weight: 500;">Курсы по программированию</b> ведёт Фолунин</div>
+									<div class="ads_title_name_date"><b style="font-weight: 500;">Начало:</b> 18.02.16</div>
+								</div>
+								<div class="ads_title_icon_dop_info"></div>
+							</div>
+
+							<div class="ads_more_info">
+								<p>Научит алгоритмам и кодингу</p>
+								<p><b style="font-weight: 500;">Стоимость:</b> Бесплатно + Еда</p>
+								<p><b style="font-weight: 500;">Место:</b> 3-й корпус</p>
+								<p><b style="font-weight: 500;">Контактная информация:</b> 3-й корпус</p>
+							</div>
+						</div>		
+						
+						<!--Вставлять в скрипт этот блок-->
+						<div class="ads_block" >
+							<div class="ads_title">
+								<img src="https://i.ytimg.com/vi/rlGIxzp5HMw/maxresdefault.jpg" class="ads_img" width="38" height="38">
+								<div class="ads_title_name">
+									<div class="ads_title_name_1"><b style="font-weight: 500;">Курсы по программированию</b> ведёт Фолунин</div>
+									<div class="ads_title_name_date"><b style="font-weight: 500;">Начало:</b> 18.02.16</div>
+								</div>
+								<div class="ads_title_icon_dop_info"></div>
+							</div>
+
+							<div class="ads_more_info">
+								<p>Научит алгоритмам и кодингу</p>
+								<p><b style="font-weight: 500;">Стоимость:</b> Бесплатно + Еда</p>
+								<p><b style="font-weight: 500;">Место:</b> 3-й корпус</p>
+								<p><b style="font-weight: 500;">Контактная информация:</b> 3-й корпус</p>
+							</div>
+						</div>
+
+						<!--Новая вёрстка блоков-->
                         <div id="notice_bloks_content">
                         
                         </div>
@@ -464,6 +503,9 @@
 					});
 
 				});				
+			}
+			function show_ads_more_info() {
+				$('.ads_more_info').slideToggle();
 			}
 		</script>
     </body>

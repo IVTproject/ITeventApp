@@ -16,9 +16,12 @@
 #welcome_content {
     background-color: white;
     color: black;
-	width: 100%;
-    height: 100%;
+	width: 320px;   
 	margin: 0 auto;
+}
+
+@media screen and (max-width: 320px) {
+	width: 200px; 
 }
 
 #welcome_title {
@@ -131,7 +134,8 @@
 	display: table;
 	border-radius: 18px;
 	margin: auto;
-	margin-top: 23px;
+	margin-top: 23px;	
+	margin-bottom: 13px;	
 }
 
 /*Sign Up*/
@@ -141,7 +145,8 @@
 	font-variant: small-caps;
 	font-family: OpenSansLight;
 	font-size: 18px;	
-	padding-left: 35px;
+	padding-left: 42px;
+	margin: 0;
 }
 
 #welcome_sign_up_input_first_name {
