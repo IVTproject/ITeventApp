@@ -1,3 +1,4 @@
+var url_api = "http://it-event.tk/api.php";
 function list_all_events(begin, count) {
     hide('#events_write');
     show('#preloader_events');
@@ -5,11 +6,12 @@ function list_all_events(begin, count) {
     localStorage.setItem("count_event", count);
      $.ajax({
         type: 'GET',
-        url: 'http://it-event.tk/api.php',
+        url: url_api,
         data: {
         mod: "list_all_events",
-        begin: begin,
-        count: count
+			begin: begin,
+			count: count,
+			hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
         },
         error: function(req, text, error) {
 			hide('#preloader_events');
@@ -32,7 +34,7 @@ function list_filter_events(begin, count) {
     localStorage.setItem("count_event", count);
      $.ajax({
         type: 'GET',
-        url: "http://it-event.esy.es/api.php?begin="+begin+"&count="+count+"&mod=list_filter_events&" + get_text_format_filter(),
+        url: url_api + "?begin="+begin+"&count="+count+"&mod=list_filter_events&" + get_text_format_filter()+"&hash_key=ab2e0d69c72beb3c3817f79c7520fec6",
         data: {},
         error: function(req, text, error) {
 			hide('#preloader_events');
@@ -49,8 +51,9 @@ function list_filter_events(begin, count) {
 }
 
 function get_min_and_max_date() {
-    $.get("http://it-event.esy.es/api.php", {
-        mod: "get_min_and_max_date"
+    $.get(url_api, {
+        mod: "get_min_and_max_date",
+		hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
     }, function(data) {
         past_date_to_filter(data);
     });
@@ -59,8 +62,8 @@ function get_min_and_max_date() {
 function get_more_events(begin, count) {
     $('#more_event_button').remove();
 	$('#events_write').append('<div id="more_preloader"></div>');
-    $.get("http://it-event.esy.es/api.php?begin="+begin+"&count="+count+"&mod=list_filter_events&" +
-        get_text_format_filter(), {}, function(data) {
+    $.get(url_api + "?begin="+begin+"&count="+count+"&mod=list_filter_events&" +
+        get_text_format_filter()+"&hash_key=ab2e0d69c72beb3c3817f79c7520fec6", {}, function(data) {
 			$('#more_preloader').remove();
             append_list_events(data, count);
         });
@@ -69,8 +72,9 @@ function get_more_events(begin, count) {
 }
 
 function get_list_city() {
-    $.get("http://it-event.esy.es/api.php", {
-        mod: "get_list_city"
+    $.get(url_api, {
+        mod: "get_list_city",
+		hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
     }, function(data) {
         creat_filter(data);
     });
@@ -81,11 +85,12 @@ function get_notice_from_event(id_event, begin, count) {
 	//hide("#notice_bloks_content");
 	//show("#preloader_notice");
     $('#more_notice_button').remove();
-    $.get("http://it-event.esy.es/api.php", {
+    $.get(url_api, {
         mod: "get_notice_from_event",
         id_event: id_event,
         begin: begin,
-        count: count
+        count: count,
+		hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
     }, function(data) {
 		//hide("#preloader_notice");
 		//show("#notice_bloks_content");
@@ -99,12 +104,13 @@ function get_notice_from_event(id_event, begin, count) {
 
 function get_notice_from_event_filter(id_event, begin, count, callBackF) {
     $('#more_notice_button').remove();
-    $.get("http://it-event.esy.es/api.php", {
+    $.get(url_api, {
         mod: "get_notice_from_event",
         id_event: id_event,
         begin: begin,
         count: count,
-        types: get_text_format_filter_notice()
+        types: get_text_format_filter_notice(),
+		hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
     }, function (data) {	
 		callBackF(data, count);
 	}); 
@@ -117,9 +123,10 @@ function get_notice_from_event_filter(id_event, begin, count, callBackF) {
 function get_actios_from_event(id_event) {
 	hide("#content");
 	show("#preloader_schedule");
-    $.get("http://it-event.esy.es/api.php", {
+    $.get(url_api, {
         mod: "list_actios_from_event",
-        id: id_event
+        id: id_event,
+		hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
     }, function(data) {
         localStorage.setItem("list_actions_" + localStorage.getItem('last_evet_id'), data);	
 		hide("#preloader_schedule");
@@ -131,9 +138,10 @@ function get_actios_from_event(id_event) {
 function get_informal_from_event(id_event) {
 	hide("#bloks_informals");
 	show("#preloader_informal");
-    $.get("http://it-event.esy.es/api.php", {
+    $.get(url_api, {
         mod: "get_informal",
-        id_event: id_event
+        id_event: id_event,
+		hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
     }, function(data) {
         localStorage.setItem("list_informal_" + localStorage.getItem('last_evet_id'), data);
 		hide("#preloader_informal");
@@ -143,34 +151,37 @@ function get_informal_from_event(id_event) {
 }
 
 function change_rang_informal(id_informal, inc, is_throwing) {
-    $.get("http://it-event.esy.es/api.php", {
+    $.get(url_api, {
         mod: "change_rang_informal",
         id_informal: id_informal,
         inc: inc,
-        is_throwing: is_throwing
+        is_throwing: is_throwing,
+		hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
     }, function(data) {
         change_rangs_to_informal(id_informal, data);
     });
 }
 
 function delete_notice(id) {
-    $.get("http://it-event.esy.es/api.php", {
+    $.get(url_api, {
         mod: "delete_notice",
-        id: id
+        id: id,
+		hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
     }, function(data) {
         $("#block_notice_" + id).hide("slow", function(){$(this).remove();});
     });
 }
 
 function add_notice_to_server(id_event, name, FIO, type, information, contact) {
-    $.get("http://it-event.esy.es/api.php", {
+    $.get(url_api, {
         mod: "add_notice_form_event",
         id_event: id_event,
         name: name,
         FIO: FIO,
         type: type,
         information: information,
-        contact: contact
+        contact: contact,
+		hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
     }, function(data) {
         remember_id_notice(data);
         load_notice(0, 15);
@@ -180,13 +191,14 @@ function add_notice_to_server(id_event, name, FIO, type, information, contact) {
 
 
 function add_informal_to_server(id_event, theme, organize, information, place) {
-    $.get("http://it-event.esy.es/api.php", {
+    $.get(url_api, {
         mod: "add_informal",
         id_event: id_event,
         theme: theme,
         organize: organize,
         information: information,
-        place: place
+        place: place,
+		hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
     }, function(data) {
         remember_id_informal(data);
         load_informal();
@@ -195,9 +207,10 @@ function add_informal_to_server(id_event, theme, organize, information, place) {
 }
 
 function make_inactive_informal(id_informal) {
-    $.get("http://it-event.esy.es/api.php", {
+    $.get(url_api, {
         mod: "make_inactive_informal",
-        id_informal: id_informal
+        id_informal: id_informal,
+		hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
     }, function(data) {});
 }
 
@@ -206,8 +219,8 @@ function get_event_information(id) {
     show("#preloader_event");
     $.ajax({
         type: 'GET',
-        url: 'http://it-event.tk/api.php',
-        data: {mod: "get_event_information", id: id},
+        url: url_api,
+        data: {mod: "get_event_information", id: id, hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"},
         error: function(req, text, error) {
             var last_event = localStorage.getItem("last_event");
             var jse = JSON.parse(last_event);
@@ -228,4 +241,57 @@ function get_event_information(id) {
         dataType: 'json'
     });
     
+}
+function reg_user(email, pass, first_name, second_name) {
+	$.get(url_api, {
+        mod: "write_normal_user",
+        email: email,
+		password_user: pass,
+		first_name: first_name,
+		second_name: second_name,
+		hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
+    }, function(data) {
+        if (data == 0) {
+			alert("Такой email уже существует");
+			$('#welcome_sign_up_input_email').val("");
+			$('#welcome_sign_up_input_password').val("");
+			$('#welcome_sign_up_input_re_password').val("");
+		} else if (data == 1) {
+			localStorage.setItem('first_name', $('#welcome_sign_up_input_first_name').val());
+			localStorage.setItem('second_name', $('#welcome_sign_up_input_last_name').val());
+			localStorage.setItem('email', $('#welcome_sign_up_input_email').val());
+		 	alert("Регистрация прошла успешно");
+			$('#welcome_content').fadeOut();
+			$('#heading').fadeIn();
+			$('#events_write').fadeIn();
+			list_all_events(0, 10);
+		} else {
+			alert("Произошла ошибка, повторите попытку");
+		}
+    });
+}
+function auth_user(email, pass) {
+	$.get(url_api, {
+        mod: "chek_normal_user",
+        email: email,
+		password_user: pass,
+		hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
+    }, function(data) {
+        if (data == 0) {
+			$('#welcome_sign_in_input_password').val("");
+			alert("Такого пользователя не существует или неверный пароль");
+		} else {
+			json = JSON.parse(data);
+			var f_name = json.first_name;
+			var l_name = json.last_name;
+			localStorage.setItem('email', $('#welcome_sign_in_input_email').val());
+			localStorage.setItem('first_name', f_name);
+			localStorage.setItem('second_name', l_name);
+			alert("Вы успешно авторизировались");
+			$('#welcome_content').fadeOut();
+			$('#heading').fadeIn();
+			$('#events_write').fadeIn();
+			list_all_events(0, 10);
+		}
+    });
 }
