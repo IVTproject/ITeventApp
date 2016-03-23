@@ -150,21 +150,21 @@ function show_hide_schedule() {
 	/*ПЕРЕДЕЛАТЬ - НАЧАЛО*/
     $(".content_schedule").click(function() {
         var c = $(this).parent().next().is(":visible");		
-		$(this).parent().next().toggle("slow");		
+		$(this).parent().next().slideToggle();		
 		$($(this).parent().next().next().children()).attr("src", c ? "img/arrow_to_down_schedule.svg" : "img/arrow_to_up_schedule.svg");
 		$(this).css("white-space", c ? "nowrap" : "normal");	
     });
 	
 	$(".show_hide_schedule").click(function() {
         var c = $(this).prev().is(":visible");		
-		$(this).prev().toggle("slow");		
+		$(this).prev().slideToggle();	
 		$($(this).children()).attr("src", c ? "img/arrow_to_down_schedule.svg" : "img/arrow_to_up_schedule.svg");	
 		$($(this).prev().prev().children()).css("white-space", c ? "nowrap" : "pre-wrap");
     });	
 	
 	$(".more_info_schedule").click(function() {
         var c = $(this).is(":visible");		
-		$(this).toggle("slow");		
+		$(this).slideToggle();	
 		$(".arrow_to_down_up_schedule", $(this).parent()).attr("src", c ? "img/arrow_to_down_schedule.svg" : "img/arrow_to_up_schedule.svg");	
 		$(this).prev().children().css("white-space", c ? "nowrap" : "pre-wrap");
     });
@@ -233,11 +233,11 @@ function fill_chat(data) {
 }
 
 function block_my_message(inf) {
-    return '<div class="chat_message_me"><div class="chat_message_me_left"></div><div class="chat_message_me_right">'+inf.message+'</div></div>'
+    return '<div class="chat_message_me"><div class="chat_message_me_left"></div><div class="chat_message_me_right"><p>17:04:03</p>'+inf.message+'</div></div>'
 }
 function block_not_my_message(inf) {
     return '<div class="chat_message_your"><div class="chat_message_your_left">' +
-			'<p>'+inf.name+'</p>'+inf.message+'</div><div class="chat_message_your_right"></div></div>';
+			'<p><b>'+inf.name+'</b>&nbsp&nbsp17:04:03</p>'+inf.message+'</div><div class="chat_message_your_right"></div></div>';
 }
 
 function go_schedule() {

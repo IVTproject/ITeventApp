@@ -5,6 +5,7 @@
 .chat {
   background-color: #435163;
   height: 100%;
+	margin-bottom: 50px;
 }
 
 .chat_message_your,
@@ -27,17 +28,24 @@
 }
 
 .chat_message_your_left {
-  text-align: right;
+  text-align: left;
   color: #fff;
   background-color: #7781e6;
 }
 
-.chat_message_your_left p {
+.chat_message_your_left p, .chat_message_me_right p {
   padding: 0;
   margin: 0;
-  text-align: left;
   font-size: 12px;
   font-weight: 400;
+}
+
+.chat_message_your_left p {
+	text-align: left;
+}
+
+.chat_message_me_right p {
+	text-align: right;
 }
 
 .chat_message_me_left,
@@ -72,6 +80,8 @@
   font-size: 13px;
   resize: none;	
 	margin-left: 5px;
+	margin-top: 5px;
+	color: black;
 }
 
 
@@ -83,4 +93,5 @@
   border-radius: 6px;
   border: 2px solid #9b5aef;
 	margin-right: 5px;
+	margin-top: 5px;
 }
