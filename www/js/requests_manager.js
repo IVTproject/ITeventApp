@@ -102,6 +102,36 @@ function get_information_about_event(id) {
     }
 }
 
+function get_message_chat(last_time, id_event) {
+    $.ajax({
+        type: 'GET',
+        url: url_api,
+        data: {mod: "get_message_chat", id_event: id_event, last_time: last_time, hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"},
+        error: function(req, text, error) {
+            //alert("error");
+        },
+        success: function (data) {
+            fill_chat(data);
+        },
+        dataType: 'json'
+    });  
+}
+
+function send_message_server(id_user, id_event, name_user, message) {
+    $.ajax({
+        type: 'GET',
+        url: url_api,
+        data: {mod: "write_message_user", id_user: id_user, id_event: id_event, name_user: name_user, message: message, hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"},
+        error: function(req, text, error) {
+            //alert("error");
+        },
+        success: function (data) {
+            
+        },
+        dataType: 'json'
+    }); 
+}
+
 function set_information_about_event(id) {
     var email = localStorage.getItem('email');
     if(email && email != "undefined") {
@@ -278,6 +308,17 @@ function get_event_information(id) {
     });
     
 }
+
+function get_id_by_email(email) {
+    $.get(url_api, {
+        mod: "get_id_by_email",
+        email: email,
+		hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
+    }, function(data) {
+        localStorage.setItem('id_user', data);
+    });
+}
+
 function reg_user(email, pass, first_name, second_name) {
 	$.get(url_api, {
         mod: "write_normal_user",
@@ -293,6 +334,7 @@ function reg_user(email, pass, first_name, second_name) {
 			$('#welcome_sign_up_input_password').val("");
 			$('#welcome_sign_up_input_re_password').val("");
 		} else if (data == 1) {
+            get_id_by_email($('#welcome_sign_up_input_email').val());
 			localStorage.setItem('first_name', $('#welcome_sign_up_input_first_name').val());
 			localStorage.setItem('second_name', $('#welcome_sign_up_input_last_name').val());
 			localStorage.setItem('email', $('#welcome_sign_up_input_email').val());
@@ -320,6 +362,7 @@ function auth_user(email, pass) {
 			json = JSON.parse(data);
 			var f_name = json.first_name;
 			var l_name = json.second_name;
+            get_id_by_email($('#welcome_sign_in_input_email').val());
 			localStorage.setItem('email', $('#welcome_sign_in_input_email').val());
 			localStorage.setItem('first_name', f_name);
 			localStorage.setItem('second_name', l_name);

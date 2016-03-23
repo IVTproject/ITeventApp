@@ -41,7 +41,7 @@
 		<script src="js/welcome_preview.js"></script>    
 		<script src="js/reg_aut_scripts.js"></script>    
     </head>
-    <body onload="select_start_page();">
+    <body onload="select_start_page(); refresh_chat();">
         <div id="splashscreen" class='ui-loader heavy'>
             App Framework - Single View <br> <br>
             <!span class='ui-icon ui-icon-loading spin'>
@@ -286,51 +286,16 @@
 					
 					<!--Чат начало-->
 					<div id="chat" style="display: none;">
-						<div class="chat">
-							<div class="chat_message_your">
-								<div class="chat_message_your_left">
-									<p>Вася Пупкин</p>
-									Wow that’s sound fair! me to
-								</div>
-								<div class="chat_message_your_right"></div>
-							</div>
-
-							<div class="chat_message_me">
-								<div class="chat_message_me_left"></div>
-								<div class="chat_message_me_right">
-								My friends name is Danis Serobyan, he’s a fine Laravel developer. He lives here in Paris)))
-								</div>
-							</div>
+						<div class="chat" id="chat_message">
 							
-							<div class="chat_message_me">
-								<div class="chat_message_me_left"></div>
-								<div class="chat_message_me_right">
-								My friends name is Danis Serobyan, he’s a fine Laravel developer. He lives here in Paris)))
-								</div>
-							</div>
-							<div class="chat_message_me">
-								<div class="chat_message_me_left"></div>
-								<div class="chat_message_me_right">
-								My friends name is Danis Serobyan, he’s a fine Laravel developer. He lives here in Paris)))
-								</div>
-							</div>
-							<div class="chat_message_me">
-								<div class="chat_message_me_left"></div>
-								<div class="chat_message_me_right">
-								My friends name is Danis Serobyan, he’s a fine Laravel developer. He lives here in Paris)))
-								</div>
-							</div>
-							<div class="chat_message_me">
-								<div class="chat_message_me_left"></div>
-								<div class="chat_message_me_right">
-								My friends name is Danis Serobyan, he’s a fine Laravel developer. He lives here in Paris)))
-								</div>
-							</div>
+
+							
+							
 						</div>
 
 						<div id="write_message">
 							<textarea id="textarea_message" rows="2" placeholder="Ваше сообщение"></textarea>
-							<button id="enter_message"></button>
+							<button id="enter_message" onclick="send_message();"></button>
 						</div>
 					</div>
 					<!--Чат конец-->
@@ -521,6 +486,7 @@
 				swipe_menu_count=0;
             	$('#inform').fadeOut(10);
             	$('#ads').fadeOut(10);
+            	$('#chat').fadeOut(10);
                 if(!$('#content').is(":visible"))
             	   $('#content').fadeIn(700);				
             });
@@ -531,6 +497,7 @@
 				swipe_menu_count=1;
             	$('#inform').fadeOut(10);	
             	$('#content').fadeOut(10);
+            	$('#chat').fadeOut(10);
                 if(!$('#ads').is(":visible"))
             	   $('#ads').fadeIn(700);				
             });
@@ -541,19 +508,21 @@
 				swipe_menu_count=2;
             	$('#content').fadeOut(10);
             	$('#ads').fadeOut(10);
+            	$('#chat').fadeOut(10);
                 if(!$('#inform').is(":visible"))
             	   $('#inform').fadeIn(700);			
             });
 			
 			$("#4").click(function() {	
-                change_refresh_button("informal");
-                past_filter("list_infomal");
-				swipe_menu_count=2;
+                change_refresh_button("chat");
+                past_filter("none");
+				swipe_menu_count=3;
             	$('#content').fadeOut(10);
             	$('#ads').fadeOut(10);
             	$('#inform').fadeOut(10);
-                if(!$('#chat').is(":visible"))
-            	   $('#chat').fadeIn(700);			
+                if(!$('#chat').is(":visible")) {
+            	   $('#chat').fadeIn(700);	
+                }
             });
         </script>
 		<script type="text/javascript" src="js/truncate.js"></script>

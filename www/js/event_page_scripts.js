@@ -200,12 +200,53 @@ function show_hide_schedule() {
     });
 }
 
+function send_message() {
+    var text = $('#textarea_message').val();
+    $('#textarea_message').val("");
+    if(text.length > 0) {
+        $('#chat_message').append(block_my_message({message: text}));
+    
+        var name_user = localStorage.getItem("second_name") + " " + localStorage.getItem("first_name");
+        send_message_server(localStorage.getItem('id_user'), localStorage.getItem("last_evet_id"), name_user, text);
+    }
+}
+
+function refresh_chat() {
+    setInterval(function () {
+        var id_event = localStorage.getItem("last_evet_id");
+        if(id_event && id_event != "undefined" && $('#chat').is(":visible")) {
+            get_message_chat(0, id_event);
+        }
+    }, 1000);
+}
+
+function fill_chat(data) {
+    var id_user = localStorage.getItem('id_user');
+    $('#chat_message').text("");
+    for(var i = 0; data[i]; i++) {
+        if(data[i].id_user == id_user) {
+            $('#chat_message').append(block_my_message(data[i]));
+        } else {
+            $('#chat_message').append(block_not_my_message(data[i]));
+        }
+    }
+}
+
+function block_my_message(inf) {
+    return '<div class="chat_message_me"><div class="chat_message_me_left"></div><div class="chat_message_me_right">'+inf.message+'</div></div>'
+}
+function block_not_my_message(inf) {
+    return '<div class="chat_message_your"><div class="chat_message_your_left">' +
+			'<p>'+inf.name+'</p>'+inf.message+'</div><div class="chat_message_your_right"></div></div>';
+}
+
 function go_schedule() {
     if(!click_input_event) {
         next_page(localStorage.getItem("last_evet_name"), "none", "none");
         click_input_event = true;
         add_last_event(JSON.parse(localStorage.getItem("last_event")));
         get_information_about_event(localStorage.getItem("last_evet_id"));
+        $('#chat_message').text("");
     }
     rewrite_actions();
     rewrite_informal();
