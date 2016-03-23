@@ -105,6 +105,7 @@ function append_notice_more(data, count) {
     if(json_array.length >= count) {
         $('#notice_bloks_content').append('<div class="more_events_click" id="more_notice_button" onclick="more_notice();">Ещё</div>');
     }
+    $('.ads_block').click(function(e) {$(this).children().next().slideToggle();});
 }
 
 function fill_notice(data, count) {
@@ -122,6 +123,7 @@ function fill_notice(data, count) {
 	if (json_array.length == 0) {
 		$('#notice_bloks_content').append("<p class='empty_message'>Список объявлений пуст, нажмите на «плюс», чтобы добавить свое объявление</p>");
 	}
+    $('.ads_block').click(function(e) {$(this).children().next().slideToggle();});
 }
 
 function fill_actions(data) {
@@ -230,14 +232,26 @@ function fill_chat(data) {
             $('#chat_message').append(block_not_my_message(data[i]));
         }
     }
+    CometServer().start({dev_id:1});
+}
+
+function cut_time(date_time) {
+    var date = new Date(new Date(date_time).getTime() + 3600000 * 2);
+    var time = "";
+    time += date.getHours() < 10 ? ("0" + date.getHours()) : date.getHours();
+    time += ":";
+    time += date.getMinutes() < 10 ? ("0" + date.getMinutes()) : date.getMinutes();
+    time += ":";
+    time += date.getSeconds() < 10 ? ("0" + date.getSeconds()) : date.getSeconds();
+    return time;
 }
 
 function block_my_message(inf) {
-    return '<div class="chat_message_me"><div class="chat_message_me_left"></div><div class="chat_message_me_right"><p>17:04:03</p>'+inf.message+'</div></div>'
+    return '<div class="chat_message_me"><div class="chat_message_me_left"></div><div class="chat_message_me_right"><p>'+cut_time(inf.date)+'</p>'+inf.message+'</div></div>'
 }
 function block_not_my_message(inf) {
     return '<div class="chat_message_your"><div class="chat_message_your_left">' +
-			'<p><b>'+inf.name+'</b>&nbsp&nbsp17:04:03</p>'+inf.message+'</div><div class="chat_message_your_right"></div></div>';
+			'<p><b>'+inf.name+'</b>&nbsp&nbsp'+cut_time(inf.date)+'</p>'+inf.message+'</div><div class="chat_message_your_right"></div></div>';
 }
 
 function go_schedule() {
@@ -351,14 +365,7 @@ function is_my_notice(id) {
 }
 
 function creat_blok_notice(inf) {
-    if(is_have_assessed(inf.id) == -1) {
-        return "";
-    }
-    var left_bottom = '<div class="hide_block_ads" onclick="dislike_notice('+inf.id+');"><p class="hide_ads">Скрыть объявление</p></div>';
-    if(is_my_notice(inf.id)) {
-        var left_bottom = '<div class="hide_block_ads" onclick="delete_notice('+inf.id+');"><p class="hide_ads">Удалить объявление</p></div>';
-    }
-    return '<div id="block_notice_'+inf.id+'"><div class="ads_content"><div class="title_ads">'+inf.type+': '+inf.name+'</div><div class="dop_contents_ads"><div class="information_ads">'+inf.information+'</div><div class="contacts_inf_ads"><b>Контактная информация:</b></div><div class="contacts_name_blocks_ads"><div class="contacts_phone_ads">'+inf.contact+'</div><div class="contacts_phone_name">'+inf.FIO+'</div></div></div>'+left_bottom+'</div></div>';
+    return '<div class="ads_block" ><div class="ads_title"><img src="'+inf.image+'" style="border-radius: 50px; width:70px;" class="ads_img" width="70" height="70"><div class="ads_title_name"><div class="ads_title_name_1"><b style="font-weight: 500;">'+inf.type+',</b> ведёт '+inf.FIO+'</div><div class="ads_title_name_date"><b style="font-weight: 500;">Начало:</b> '+inf.date+'</div></div><div class="ads_title_icon_dop_info"></div></div><div class="ads_more_info" style="display:none"><p>'+inf.information+'</p><p><b style="font-weight: 500;">Стоимость:</b> '+inf.price+'</p><p><b style="font-weight: 500;">Место:</b> '+inf.place+'</p><p><b style="font-weight: 500;">Контактная информация:</b> '+inf.contact+'</p></div></div>';
 }
 
 function complete_informsl(id) {
