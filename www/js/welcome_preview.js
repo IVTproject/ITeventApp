@@ -1,4 +1,6 @@
-$( document ).ready(function() {
+$( document ).ready(ready);
+
+function ready() {
 	$("#welcome_title").fadeIn(1800);
 	var time = 800;
 	$("#welcome_information").delay(time).fadeIn(1800);
@@ -8,7 +10,19 @@ $( document ).ready(function() {
 	$("#welcome_sign_up").delay(time).fadeIn(1800);
 	$("#welcome_sign_in").delay(time).fadeIn(1800);
 	$(".welcome_button").delay(time).fadeIn(1900);
-});
+}
+
+function all_fedeOut() {
+    
+	$("#welcome_title").fadeOut(0);
+	$("#welcome_information").fadeOut(0);
+	$("#welcome_information_dynamically").fadeOut(0);
+	$("#welcome_sign_up").fadeOut(0);
+	$("#welcome_sign_in").fadeOut(0);
+	$(".welcome_button").fadeOut(0);
+	$("#welcome_content_home").fadeOut(0);
+	$("#welcome_content_fio").fadeOut(0);		
+}
 
 function welcome_skip() {
 	$("#welcome_content_home").fadeOut(1000);

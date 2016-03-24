@@ -203,16 +203,24 @@ function show_hide_schedule() {
 }
 function on_confirm(button_index) {
     if (button_index == 1) {
-		//$("#welcome_content").css("display", "block");
+        try {
+        while(click_back_button()) {
+        }
+        } catch(e) {
+            
+        }
+        $('#events_write').text("");
+        localStorage.clear();
+        location.reload(); 
 	}
 }
 
 function show_confirm() {
     navigator.notification.confirm(
-        'Для того, чтобы писать в чате - нужно пройти регистрацию', 
+        'Для того, чтобы использовать эту функцию необходимо авторизироваться.', 
          on_confirm,            
-        'Зарегистрироваться?',           
-        ['Регистрация','Отмена']        
+        'Авторизироваться?',           
+        ['Да','Отмена']        
     );
 }
 
@@ -223,7 +231,7 @@ function send_message() {
 		var text = $('#textarea_message').val();
 		$('#textarea_message').val("");
 		if(text.length > 0) {
-			$('#chat_message').append(block_my_message({message: text}));
+			$('#chat_message').append(block_my_message({message: text, date: new Date().getTime() - 3600000 * 2}));
 			var name_user = localStorage.getItem("second_name") + " " + localStorage.getItem("first_name");
 			send_message_server(localStorage.getItem('id_user'), localStorage.getItem("last_evet_id"), name_user, text);
 			var block = document.getElementById("event_schedule");

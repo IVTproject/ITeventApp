@@ -3,8 +3,11 @@
     var second_name = localStorage.getItem('second_name');
     var email = localStorage.getItem('email');
     if(!first_name || !second_name) {
+        $('#heading').fadeOut();
+        $('#events_write').fadeOut();
         $('#welcome_content').fadeIn();
     } else {
+        $('#welcome_content').fadeOut();
         $('#heading').fadeIn();
         $('#events_write').fadeIn();
         list_all_events(0, 10);

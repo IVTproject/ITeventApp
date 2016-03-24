@@ -22,7 +22,9 @@ function click_back_button() {
     var backButton = document.getElementsByClassName('backButton');
     if (backButton) {
         backButton[0].click();
+        return true;
     }
+    return false;
 }
 
 function back(e) {
@@ -33,8 +35,8 @@ function back(e) {
             document.getElementById('top_title').innerHTML = prev_header.title;
         document.getElementById('filter_conteiner').innerHTML = prev_header.filter;
         document.getElementById('refresh_button').innerHTML = prev_header.refresh;
-        if(stack_header.length == 0)
-            list_filter_events(0, 10);
+        //if(stack_header.length == 0)
+           // list_filter_events(0, 10);
     }
 }
 

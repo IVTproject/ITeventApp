@@ -3,8 +3,8 @@ function chek_and_write_informal() {
     var information = document.getElementById('information').value;
     var place = document.getElementById('place_inf').value;
     var email = localStorage.getItem('email');
-    if(!email || email == "undefined") {
-        alert("Для добавления вы должны быть авторизированы.");
+    if (!(localStorage.getItem("email") && localStorage.getItem("id_user"))) {
+		show_confirm();
         return;
     }
     if(theme.length > 0 && place.length > 0) {
