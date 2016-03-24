@@ -329,7 +329,7 @@ function reg_user(email, pass, first_name, second_name) {
 		hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
     }, function(data) {
         if (data == 0) {
-			alert("Такой email уже существует");
+			navigator.notification.alert("Такой email уже существует",function(){} , 'Ошибка');
 			$('#welcome_sign_up_input_email').val("");
 			$('#welcome_sign_up_input_password').val("");
 			$('#welcome_sign_up_input_re_password').val("");
@@ -338,13 +338,13 @@ function reg_user(email, pass, first_name, second_name) {
 			localStorage.setItem('first_name', $('#welcome_sign_up_input_first_name').val());
 			localStorage.setItem('second_name', $('#welcome_sign_up_input_last_name').val());
 			localStorage.setItem('email', $('#welcome_sign_up_input_email').val());
-		 	alert("Регистрация прошла успешно");
+			navigator.notification.alert("Регистрация прошла успешно",function(){} , 'Поздравляем');
 			$('#welcome_content').fadeOut();
 			$('#heading').fadeIn();
 			$('#events_write').fadeIn();
 			list_all_events(0, 10);
 		} else {
-			alert("Произошла ошибка, повторите попытку");
+			navigator.notification.alert("Произошла ошибка, повторите попытку",function(){} , 'Ошибка');
 		}
     });
 }
@@ -357,7 +357,7 @@ function auth_user(email, pass) {
     }, function(data) {
         if (data == 0) {
 			$('#welcome_sign_in_input_password').val("");
-			alert("Такого пользователя не существует или неверный пароль");
+			navigator.notification.alert("Такого пользователя не существует или неверный пароль",function(){} , 'Ошибка');
 		} else {
 			json = JSON.parse(data);
 			var f_name = json.first_name;
@@ -366,7 +366,7 @@ function auth_user(email, pass) {
 			localStorage.setItem('email', $('#welcome_sign_in_input_email').val());
 			localStorage.setItem('first_name', f_name);
 			localStorage.setItem('second_name', l_name);
-			alert("Вы успешно авторизировались");
+			navigator.notification.alert("Вы успешно авторизировались", function(){} , 'Поздравляем');
 			$('#welcome_content').fadeOut();
 			$('#heading').fadeIn();
 			$('#events_write').fadeIn();

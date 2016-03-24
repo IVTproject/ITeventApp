@@ -454,7 +454,7 @@
             	$('#ads').fadeOut(10);
             	$('#chat').fadeOut(10);
                 if(!$('#content').is(":visible"))
-            	   $('#content').fadeIn(700);				
+            	   $('#content').fadeIn(700);	
             });
             	
             $("#2").click(function() {
@@ -465,7 +465,7 @@
             	$('#content').fadeOut(10);
             	$('#chat').fadeOut(10);
                 if(!$('#ads').is(":visible"))
-            	   $('#ads').fadeIn(700);				
+            	   $('#ads').fadeIn(700);	
             });
             
             $("#3").click(function() {	
@@ -476,7 +476,7 @@
             	$('#ads').fadeOut(10);
             	$('#chat').fadeOut(10);
                 if(!$('#inform').is(":visible"))
-            	   $('#inform').fadeIn(700);			
+            	   $('#inform').fadeIn(700);
             });
 			
 			$("#4").click(function() {	
@@ -489,6 +489,11 @@
                 if(!$('#chat').is(":visible")) {
             	   $('#chat').fadeIn(700);	
                 }
+				if (!(localStorage.getItem("email") && localStorage.getItem("id_user"))) {
+					$('#textarea_message').attr("disabled", "true");
+				} else {
+					$('#textarea_message').removeAttr("disabled");
+				}
             });
         </script>
 		<script type="text/javascript" src="js/truncate.js"></script>

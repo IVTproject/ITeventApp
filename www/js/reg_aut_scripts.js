@@ -13,8 +13,8 @@
 
 function introduce() {
 	var re = /^[a-zа-яё]+$/i;
-	var f_name = $('#welcome_sign_input_first_name').val();
-	var l_name = $('#welcome_sign_input_last_name').val();
+	var f_name = $('#welcome_sign_input_first_name').val().trim();
+	var l_name = $('#welcome_sign_input_last_name').val().trim();
 	if (re.test(f_name) && re.test(l_name) && f_name.length >= 2 && l_name.length >= 2) {
 		localStorage.setItem('first_name', f_name);
 		localStorage.setItem('second_name', l_name);
@@ -23,26 +23,25 @@ function introduce() {
 		$('#events_write').fadeIn();
 		list_all_events(0, 10);
 	} else {
-		alert("Имя и фамилия должны содержать только русские буквы");
+		navigator.notification.alert("Имя и фамилия должны содержать только русские буквы", function(){} , 'Ошибка');
 	}
 }
 
 function user_reg() {
-	var first_name = $('#welcome_sign_up_input_first_name').val();
-	var last_name = $('#welcome_sign_up_input_last_name').val();
-	var email = $('#welcome_sign_up_input_email').val();
-	var pass = $('#welcome_sign_up_input_password').val();
-	var pass_repeat = $('#welcome_sign_up_input_re_password').val();
+	var first_name = $('#welcome_sign_up_input_first_name').val().trim();
+	var last_name = $('#welcome_sign_up_input_last_name').val().trim();
+	var email = $('#welcome_sign_up_input_email').val().trim();
+	var pass = $('#welcome_sign_up_input_password').val().trim();
+	var pass_repeat = $('#welcome_sign_up_input_re_password').val().trim();
 	var re = /^[a-zа-яё]+$/i;
 	if (!(re.test(first_name) && re.test(last_name) && first_name.length >= 2 && last_name.length >= 2)) {
-		alert(re.test(first_name));
-		alert("Имя и фамилия должны содержать только буквы и не быть пустыми");
+		navigator.notification.alert("Имя и фамилия должны содержать только буквы и не быть пустыми",function(){} , 'Ошибка');
 	} else if (email.length == 0) {
-		alert("Введите E-mail");
+		navigator.notification.alert("Введите E-mail",function(){} , 'Ошибка');
 	}else if(pass.length == 0) {
-		alert("Введите пароль");
+		navigator.notification.alert("Введите пароль",function(){} , 'Ошибка');
 	}else if(pass != pass_repeat) {
-		alert("Пароли не совпадают");
+		navigator.notification.alert("Пароли не совпадают",function(){} , 'Ошибка');
 		$('#welcome_sign_up_input_password').val("");
 		$('#welcome_sign_up_input_re_password').val("");		
 	} else {
@@ -51,7 +50,7 @@ function user_reg() {
 }
 
 function user_auth() {
-	var email = $('#welcome_sign_in_input_email').val(); 
-	var pass = $('#welcome_sign_in_input_password').val();
+	var email = $('#welcome_sign_in_input_email').val().trim(); 
+	var pass = $('#welcome_sign_in_input_password').val().trim();
 	auth_user(email, pass);
 }

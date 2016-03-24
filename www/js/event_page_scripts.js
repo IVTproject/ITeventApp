@@ -201,29 +201,57 @@ function show_hide_schedule() {
 		}
     });
 }
+function onConfirm(buttonIndex) {
+    if (buttonIndex == 1) {
+		//$("#welcome_content").css("display", "block");
+	}
+}
+
+function showConfirm() {
+    navigator.notification.confirm(
+        'Для того, чтобы писать в чате - нужно пройти регистрацию', 
+         onConfirm,            
+        'Зарегистрироваться?',           
+        ['Регистрация','Отмена']        
+    );
+}
 
 function send_message() {
-    var text = $('#textarea_message').val();
-    $('#textarea_message').val("");
-    if(text.length > 0) {
-        $('#chat_message').append(block_my_message({message: text}));
-    
-        var name_user = localStorage.getItem("second_name") + " " + localStorage.getItem("first_name");
-        send_message_server(localStorage.getItem('id_user'), localStorage.getItem("last_evet_id"), name_user, text);
-    }
+	if (!(localStorage.getItem("email") && localStorage.getItem("id_user"))) {
+		showConfirm();
+	} else {
+		var text = $('#textarea_message').val();
+		$('#textarea_message').val("");
+		if(text.length > 0) {
+			$('#chat_message').append(block_my_message({message: text}));
+			var name_user = localStorage.getItem("second_name") + " " + localStorage.getItem("first_name");
+			send_message_server(localStorage.getItem('id_user'), localStorage.getItem("last_evet_id"), name_user, text);
+			var block = document.getElementById("event_schedule");
+			block.scrollTop = block.scrollHeight;
+		}
+	}
 }
+
+var is_first_scroll = true;
 
 function refresh_chat() {
     setInterval(function () {
+		//alert(is_first_scroll);
         var id_event = localStorage.getItem("last_evet_id");
         if(id_event && id_event != "undefined" && $('#chat').is(":visible")) {
             get_message_chat(0, id_event);
-        }
+        } else {
+			is_first_scroll = true;
+		}
     }, 1000);
 }
 
 function fill_chat(data) {
     var id_user = localStorage.getItem('id_user');
+	var is_scroll = false;
+	var block = document.getElementById("event_schedule");
+	if (block.scrollTop == block.scrollHeight)
+		is_scroll = true;
     $('#chat_message').text("");
     for(var i = 0; data[i]; i++) {
         if(data[i].id_user == id_user) {
@@ -232,7 +260,10 @@ function fill_chat(data) {
             $('#chat_message').append(block_not_my_message(data[i]));
         }
     }
-    CometServer().start({dev_id:1});
+	if (is_scroll || is_first_scroll)
+  		block.scrollTop = block.scrollHeight;
+	is_first_scroll = false;
+    //CometServer().start({dev_id:1});
 }
 
 function cut_time(date_time) {

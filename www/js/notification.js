@@ -45,7 +45,8 @@ function schedule_notif() {
 
 function click_notif() {
 	cordova.plugins.notification.local.on("click", function (notification) {
-		alert("clicked: " + notification.id);
+		cancel_notification(notification.id);
+		$('#1').click();
 	});
 }
 
