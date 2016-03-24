@@ -201,16 +201,16 @@ function show_hide_schedule() {
 		}
     });
 }
-function onConfirm(buttonIndex) {
-    if (buttonIndex == 1) {
+function on_confirm(button_index) {
+    if (button_index == 1) {
 		//$("#welcome_content").css("display", "block");
 	}
 }
 
-function showConfirm() {
+function show_confirm() {
     navigator.notification.confirm(
         'Для того, чтобы писать в чате - нужно пройти регистрацию', 
-         onConfirm,            
+         on_confirm,            
         'Зарегистрироваться?',           
         ['Регистрация','Отмена']        
     );
@@ -218,7 +218,7 @@ function showConfirm() {
 
 function send_message() {
 	if (!(localStorage.getItem("email") && localStorage.getItem("id_user"))) {
-		showConfirm();
+		show_confirm();
 	} else {
 		var text = $('#textarea_message').val();
 		$('#textarea_message').val("");
