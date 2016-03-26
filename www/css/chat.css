@@ -15,6 +15,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: stretch;
+	word-wrap: break-word;
 }
 
 .chat_message_your_left,
@@ -24,7 +25,7 @@
   font-family: 'Open Sans';
   font-size: 15px;
   max-width: 91%;
-  margin: 10px;
+  margin: 10px;	
 }
 
 .chat_message_your_left {
@@ -54,7 +55,7 @@
 }
 
 .chat_message_me_right {
-  background-color: #edeef0;
+  background-color: #fff;
   text-align: left;
   color: #353535;
   padding: 8px 15px 8px 15px;
