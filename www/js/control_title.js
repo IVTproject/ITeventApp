@@ -55,7 +55,7 @@ function past_filter(filter) {
     if(filter == "list_infomal") {
         onclick = "show('#filter_black_inform');";
     }
-    $('#filter_conteiner').append("<img src=\"img/filter.svg\" width=\"26\" onerror=\"this.onerror=null; this.src='img/filter.png'\" class='settings' onclick=\""+onclick+"\">");
+    $('#filter_conteiner').append("<img src=\"img/filter.svg\" width=\"20\" onerror=\"this.onerror=null; this.src='img/filter.png'\" class='settings' onclick=\""+onclick+"\">");
 }
 
 function refresh_actions() {
@@ -83,15 +83,15 @@ function change_refresh_button(name_refresh_button) {
         return;
     }
     if(name_refresh_button == "action") {
-        $('#refresh_button').append('<img src="img/refresh.svg" width="26" class="settings" onerror="this.onerror=null; this.src=\'img/refresh.png\'" onclick="refresh_actions();">');
+        $('#refresh_button').append('<img src="img/refresh.svg" width="20" class="settings" onerror="this.onerror=null; this.src=\'img/refresh.png\'" onclick="refresh_actions();">');
     }
     if(name_refresh_button == "notice") {
-        $('#refresh_button').append('<img src="img/refresh.svg" width="26" class="settings" onerror="this.onerror=null; this.src=\'img/refresh.png\'" onclick="refresh_notice();">');
+        $('#refresh_button').append('<img src="img/refresh.svg" width="20" class="settings" onerror="this.onerror=null; this.src=\'img/refresh.png\'" onclick="refresh_notice();">');
     }
     if(name_refresh_button == "informal") {
-        $('#refresh_button').append('<img src="img/refresh.svg" width="26" class="settings" onerror="this.onerror=null; this.src=\'img/refresh.png\'" onclick="refresh_informal();">');
+        $('#refresh_button').append('<img src="img/refresh.svg" width="20" class="settings" onerror="this.onerror=null; this.src=\'img/refresh.png\'" onclick="refresh_informal();">');
     }
     if(name_refresh_button == "event_list") {
-        $('#refresh_button').append('<img src="img/refresh.svg" width="26" onerror="this.onerror=null; this.src=\'img/refresh.png\'" class="settings" onclick="refresh_events();">');
+        $('#refresh_button').append('<img src="img/refresh.svg" width="20" onerror="this.onerror=null; this.src=\'img/refresh.png\'" class="settings" onclick="refresh_events();">');
     }
 }
