@@ -231,7 +231,7 @@ function send_message() {
 		var text = $('#textarea_message').val();
 		$('#textarea_message').val("");
 		if(text.length > 0) {
-			$('#chat_message').append(block_my_message({message: text, date: new Date().getTime() - 3600000 * 2}));
+			$('#chat_message').append(block_my_message({message: text, date: new Date().getTime() - 3600000 * 1}));
 			var name_user = localStorage.getItem("second_name") + " " + localStorage.getItem("first_name");
 			send_message_server(localStorage.getItem('id_user'), localStorage.getItem("last_evet_id"), name_user, text);
 			var block = document.getElementById("event_schedule");
@@ -261,6 +261,7 @@ function fill_chat(data) {
 	if (block.scrollTop == block.scrollHeight)
 		is_scroll = true;
     $('#chat_message').text("");
+	data = data.reverse();
     for(var i = 0; data[i]; i++) {
         if(data[i].id_user == id_user) {
             $('#chat_message').append(block_my_message(data[i]));
@@ -268,6 +269,8 @@ function fill_chat(data) {
             $('#chat_message').append(block_not_my_message(data[i]));
         }
     }
+	hide('#preloader_chat');
+	show('#chat_message');
 	if (is_scroll || is_first_scroll)
   		block.scrollTop = block.scrollHeight;
 	is_first_scroll = false;

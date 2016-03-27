@@ -285,6 +285,7 @@
                     <!--Расписание конец-->
 					
 					<!--Чат начало-->
+					<div id="preloader_chat"></div>
 					<div id="chat" style="display: none;">
 						<div class="chat" id="chat_message">
 							
@@ -302,7 +303,7 @@
 					
                     <!--Объявления начало-->
                     <div id="ads" style="display: none;">
-                        <a id="add_ads" href="#add_ads_content" onclick="next_page(localStorage.getItem('last_evet_name'), 'none', 'none');"></a>
+                        <!--<a id="add_ads" href="#add_ads_content" onclick="next_page(localStorage.getItem('last_evet_name'), 'none', 'none');"></a>-->
                         <div id="filter_black_ads">
                             <div class="filter_white">
                                 <form>
@@ -447,6 +448,9 @@
             });
            show('#content');
            $("#1").click(function() {
+			   	hide('#preloader_notice');
+			   	hide('#preloader_informal');
+			   	hide('#preloader_chat');
                 change_refresh_button("action");
                 past_filter("none");
 				swipe_menu_count=0;
@@ -458,8 +462,11 @@
             });
             	
             $("#2").click(function() {
+			   	hide('#preloader_informal');
+			   	hide('#preloader_chat');
+			   	hide('#preloader_schedule');
                 change_refresh_button("notice");
-                past_filter("list_notice");
+                past_filter("none");
 				swipe_menu_count=1;
             	$('#inform').fadeOut(10);	
             	$('#content').fadeOut(10);
@@ -469,6 +476,9 @@
             });
             
             $("#3").click(function() {	
+				hide('#preloader_notice');
+			   	hide('#preloader_chat');
+			   	hide('#preloader_schedule');
                 change_refresh_button("informal");
                 past_filter("list_infomal");
 				swipe_menu_count=2;
@@ -480,9 +490,14 @@
             });
 			
 			$("#4").click(function() {	
+				hide('#preloader_notice');
+			   	hide('#preloader_informal');
+			   	hide('#preloader_schedule');
                 change_refresh_button("chat");
                 past_filter("none");
 				swipe_menu_count=3;
+				hide('#chat_message');
+				show('#preloader_chat');
             	$('#content').fadeOut(10);
             	$('#ads').fadeOut(10);
             	$('#inform').fadeOut(10);

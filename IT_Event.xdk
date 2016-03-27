@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "706d557d-2e00-4c67-ad3d-7542c0740bdb",
-      "lastModifiedDate": 1459106234057,
+      "lastModifiedDate": 1459111063798,
       "creationDate": 1456137696532
     },
     "XDK-app-designer": "true",
@@ -391,15 +391,17 @@
           "android-minSdkVersion": "14",
           "android-targetSdkVersion": "19",
           "android-installLocation": "auto",
-          "android-signed": false,
-          "Fullscreen": true
+          "android-signed": true,
+          "Fullscreen": false
         },
         "isActive_": true,
         "appName_": "IT_Event",
         "appID_": "xdk.intel.blank.ad.template.crosswalk",
         "appAccess_": {
           "mode": "legacy",
-          "network": [],
+          "network": [
+            "*"
+          ],
           "intents": [],
           "navigation": [],
           "properties": {}
@@ -462,7 +464,7 @@
         ],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "certificateId_": "",
+        "certificateId_": "-J25KtSTsUS6j9DM2-uLew2",
         "cordovaCLIVersion_": "5.1.1",
         "crosswalkVersion_": "15",
         "appVersion_": "0.0.1",

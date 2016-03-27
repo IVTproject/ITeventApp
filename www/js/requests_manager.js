@@ -8,7 +8,7 @@ function list_all_events(begin, count) {
         type: 'GET',
         url: url_api,
         data: {
-        mod: "list_all_events",
+        	mod: "list_all_events",
 			begin: begin,
 			count: count,
 			hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
@@ -108,7 +108,11 @@ function get_message_chat(last_time, id_event) {
         url: url_api,
         data: {mod: "get_message_chat", id_event: id_event, last_time: last_time, hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"},
         error: function(req, text, error) {
-            //alert("error");
+           //navigator.notification.alert("Чат недоступен. Проверьте соединение с интернетом.", function(){} , 'Ошибка');
+			hide('#preloader_chat');
+			$('#chat_message').text("");
+			show('#chat_message');
+			$('#chat_message').append("<p class='empty_message'>Чат недоступен. Проверьте соединение с интернетом.</p>");
         },
         success: function (data) {
             fill_chat(data);
@@ -320,35 +324,78 @@ function get_id_by_email(email) {
 }
 
 function reg_user(email, pass, first_name, second_name) {
-	$.get(url_api, {
-        mod: "write_normal_user",
-        email: email,
-		password_user: pass,
-		first_name: first_name,
-		second_name: second_name,
-		hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
-    }, function(data) {
-        if (data == 0) {
-			navigator.notification.alert("Такой email уже существует",function(){} , 'Ошибка');
-			$('#welcome_sign_up_input_email').val("");
-			$('#welcome_sign_up_input_password').val("");
-			$('#welcome_sign_up_input_re_password').val("");
-		} else if (data == 1) {
-            get_id_by_email($('#welcome_sign_up_input_email').val());
-			localStorage.setItem('first_name', $('#welcome_sign_up_input_first_name').val());
-			localStorage.setItem('second_name', $('#welcome_sign_up_input_last_name').val());
-			localStorage.setItem('email', $('#welcome_sign_up_input_email').val());
-			navigator.notification.alert("Регистрация прошла успешно",function(){} , 'Поздравляем');
-			$('#welcome_content').fadeOut();
-			$('#heading').fadeIn();
-			$('#events_write').fadeIn();
-			list_all_events(0, 10);
-		} else {
-			navigator.notification.alert("Произошла ошибка, повторите попытку",function(){} , 'Ошибка');
-		}
-    });
+	 $.ajax({
+        type: 'GET',
+        url: url_api,
+        data: { 
+			mod: "write_normal_user",
+			email: email,
+			password_user: pass,
+			first_name: first_name,
+			second_name: second_name,
+			hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
+		},
+        error: function(req, text, error) {
+            navigator.notification.alert("Ошибка подключения. Проверьте соединение с интернетом.", function(){} , 'Ошибка');
+        },
+        success: function (data) {
+            if (data == 0) {
+				navigator.notification.alert("Такой email уже существует",function(){} , 'Ошибка');
+				$('#welcome_sign_up_input_email').val("");
+				$('#welcome_sign_up_input_password').val("");
+				$('#welcome_sign_up_input_re_password').val("");
+			} else if (data == 1) {
+				get_id_by_email($('#welcome_sign_up_input_email').val());
+				localStorage.setItem('first_name', $('#welcome_sign_up_input_first_name').val());
+				localStorage.setItem('second_name', $('#welcome_sign_up_input_last_name').val());
+				localStorage.setItem('email', $('#welcome_sign_up_input_email').val());
+				navigator.notification.alert("Регистрация прошла успешно",function(){} , 'Поздравляем');
+				$('#welcome_content').fadeOut();
+				$('#heading').fadeIn();
+				$('#events_write').fadeIn();
+				list_all_events(0, 10);
+			} else {
+				navigator.notification.alert("Произошла ошибка, повторите попытку",function(){} , 'Ошибка');
+			}
+        },
+        dataType: 'json'
+    }); 
 }
 function auth_user(email, pass) {
+	$.ajax({
+        type: 'GET',
+        url: url_api,
+        data: { 
+			mod: "chek_normal_user",
+			email: email,
+			password_user: pass,
+			hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
+		},
+        error: function(req, text, error) {
+            navigator.notification.alert("Ошибка подключения. Проверьте соединение с интернетом.", function(){} , 'Ошибка');
+        },
+        success: function (data) {
+        	if (data == 0) {
+				$('#welcome_sign_in_input_password').val("");
+				navigator.notification.alert("Такого пользователя не существует или неверный пароль",function(){} , 'Ошибка');
+			} else {
+				json = JSON.parse(data);
+				var f_name = json.first_name;
+				var l_name = json.second_name;
+				get_id_by_email($('#welcome_sign_in_input_email').val());
+				localStorage.setItem('email', $('#welcome_sign_in_input_email').val());
+				localStorage.setItem('first_name', f_name);
+				localStorage.setItem('second_name', l_name);
+				navigator.notification.alert("Вы успешно авторизировались", function(){} , 'Поздравляем');
+				$('#welcome_content').fadeOut();
+				$('#heading').fadeIn();
+				$('#events_write').fadeIn();
+				list_all_events(0, 10);
+			}
+        }
+        //dataType: 'json'
+    }); 
+	/*
 	$.get(url_api, {
         mod: "chek_normal_user",
         email: email,
@@ -373,4 +420,5 @@ function auth_user(email, pass) {
 			list_all_events(0, 10);
 		}
     });
+	*/
 }

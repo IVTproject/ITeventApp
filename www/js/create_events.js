@@ -7,8 +7,10 @@ function fill_list_events(events, max_count) {
         for(var i = 0; last_events[i]; i++)
             $('#events_write').append(creat_block(last_events[i]));
     }
+	if (!events && (!last_events || last_events == 'undefined')) {
+		$('#events_write').append("<p class='empty_message'>Ошибка подключения. Проверьте соединение с интернетом.</p>");
+	}
     if(!events) {
-		$('#events_write').append("<p class='empty_message'>Список мероприятий пуст. Добавьте свое мероприятие на сайте: http://it-event.tk</p>");
         return;
 	}
     $('#events_write').append("<div class='What_a_day'>Все</div>");

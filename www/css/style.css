@@ -119,7 +119,7 @@
 
 .filter_white {	
 	background-color: white;
-	top: 55px;	
+	top: 100px;	
 	left: 10px;
 	right: 10px;
 	/*height: 300px;	*/
@@ -128,7 +128,7 @@
 	-webkit-box-shadow: 0px 4px 6px -1px rgba(50, 50, 50, 0.87);
 	-moz-box-shadow:    0px 4px 6px -1px rgba(50, 50, 50, 0.87);
 	box-shadow:         0px 4px 6px -1px rgba(50, 50, 50, 0.87);
-	z-index: 2;
+	z-index: 9999;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
@@ -232,7 +232,7 @@ input[type=date], #city_select, .select_filter  {
 	text-decoration: none;
 	display: block;
 }
-#preloader_event, #preloader_events, #preloader_notice, #preloader_schedule, #preloader_informal {
+#preloader_event, #preloader_events, #preloader_notice, #preloader_schedule, #preloader_informal, #preloader_chat {
 	background: url(../img/preloader.gif);
 	background-repeat: no-repeat;
 	width: 64px;
@@ -244,7 +244,7 @@ input[type=date], #city_select, .select_filter  {
 	margin-right: auto;
 	display: none;
 }
-#preloader_schedule, #preloader_notice, #preloader_informal {
+#preloader_schedule, #preloader_notice, #preloader_informal, #preloader_chat {
 	margin-top: 85px;
 }
 #more_preloader {

@@ -120,6 +120,7 @@ input[type="submit"] {
 	background-color: #1e96f5;
 	display:table;table-layout: fixed; width: 100%;
 	position: fixed;
+	z-index: 999;
 }
 
 #scroll_menu li {
