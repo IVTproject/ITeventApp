@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "706d557d-2e00-4c67-ad3d-7542c0740bdb",
-      "lastModifiedDate": 1459012247607,
+      "lastModifiedDate": 1459106234057,
       "creationDate": 1456137696532
     },
     "XDK-app-designer": "true",
@@ -391,18 +391,18 @@
           "android-minSdkVersion": "14",
           "android-targetSdkVersion": "19",
           "android-installLocation": "auto",
-          "android-signed": true
+          "android-signed": false,
+          "Fullscreen": true
         },
         "isActive_": true,
         "appName_": "IT_Event",
         "appID_": "xdk.intel.blank.ad.template.crosswalk",
         "appAccess_": {
           "mode": "legacy",
-          "network": [
-            "*"
-          ],
+          "network": [],
           "intents": [],
-          "navigation": []
+          "navigation": [],
+          "properties": {}
         },
         "icons_": [
           {
@@ -430,10 +430,39 @@
             "width": 96
           }
         ],
-        "splashes_": [],
+        "splashes_": [
+          {
+            "relPath": "img/SS1.png",
+            "density": "xhdpi",
+            "height": 960,
+            "width": 720,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "img/SS2.png",
+            "density": "hdpi",
+            "height": 640,
+            "width": 480,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "img/SS3.png",
+            "density": "mdpi",
+            "height": 470,
+            "width": 320,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "img/SS4.png",
+            "density": "ldpi",
+            "height": 426,
+            "width": 320,
+            "orientation": "portrait"
+          }
+        ],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "certificateId_": "xuZ0VoBfAUC1FgxEVeYKCA2",
+        "certificateId_": "",
         "cordovaCLIVersion_": "5.1.1",
         "crosswalkVersion_": "15",
         "appVersion_": "0.0.1",

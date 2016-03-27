@@ -7,7 +7,7 @@
         <meta name="viewport"
             content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, minimal-ui">
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <link rel="stylesheet" type="text/css" href="lib/appframework/icons.css" />
         <link rel="stylesheet" type="text/css" href="lib/appframework/af.ui.css" />
@@ -20,7 +20,8 @@
 		<link rel="stylesheet" type="text/css" href="css/welcome_main.less.css" class="main-less">
     	<link rel="stylesheet" type="text/css" href="css/welcome.css" class="main-less">
     	<link rel="stylesheet" type="text/css" href="css/chat.css" class="main-less">
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
+		<script src="lib/jquery-2.2.2.min.js"></script>
         <script type="text/javascript" charset="utf-8"
             src="lib/appframework/appframework.ui.min.js"></script>
         <script src="cordova.js" id="xdkJScordova_"></script>
@@ -36,11 +37,10 @@
         <script src="js/requests_manager.js"></script>
         <script src="xdk/init-dev.js"></script>
         <script src="js/event_page_scripts.js"></script>
-		<script src="js/refresh_script.js"></script>
 		<script src="js/notification.js"></script>		
 		<script src="js/welcome_preview.js"></script>    
 		<script src="js/reg_aut_scripts.js"></script>    
-    </head>
+   	</head>
     <body onload="select_start_page(); refresh_chat();">
         <div id="splashscreen" class='ui-loader heavy'>
             App Framework - Single View <br> <br>
