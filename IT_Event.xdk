@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "706d557d-2e00-4c67-ad3d-7542c0740bdb",
-      "lastModifiedDate": 1459111063798,
+      "lastModifiedDate": 1459163132048,
       "creationDate": 1456137696532
     },
     "XDK-app-designer": "true",
@@ -94,7 +94,7 @@
         "selectedState": "Included",
         "checksum": "972a48f9",
         "dependsOn": [],
-        "topLevel": false,
+        "topLevel": true,
         "cordovaVersion": ">=3.0.0",
         "permissions": {},
         "data": {},
@@ -115,7 +115,7 @@
         "selectedState": "Included",
         "checksum": "82680a64",
         "dependsOn": [],
-        "topLevel": false,
+        "topLevel": true,
         "cordovaVersion": ">=3.0.0",
         "author": "Sebastián Katzer",
         "permissions": {},
@@ -391,8 +391,7 @@
           "android-minSdkVersion": "14",
           "android-targetSdkVersion": "19",
           "android-installLocation": "auto",
-          "android-signed": true,
-          "Fullscreen": false
+          "android-signed": true
         },
         "isActive_": true,
         "appName_": "IT_Event",
@@ -403,8 +402,7 @@
             "*"
           ],
           "intents": [],
-          "navigation": [],
-          "properties": {}
+          "navigation": []
         },
         "icons_": [
           {
@@ -432,39 +430,10 @@
             "width": 96
           }
         ],
-        "splashes_": [
-          {
-            "relPath": "img/SS1.png",
-            "density": "xhdpi",
-            "height": 960,
-            "width": 720,
-            "orientation": "portrait"
-          },
-          {
-            "relPath": "img/SS2.png",
-            "density": "hdpi",
-            "height": 640,
-            "width": 480,
-            "orientation": "portrait"
-          },
-          {
-            "relPath": "img/SS3.png",
-            "density": "mdpi",
-            "height": 470,
-            "width": 320,
-            "orientation": "portrait"
-          },
-          {
-            "relPath": "img/SS4.png",
-            "density": "ldpi",
-            "height": 426,
-            "width": 320,
-            "orientation": "portrait"
-          }
-        ],
+        "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "certificateId_": "-J25KtSTsUS6j9DM2-uLew2",
+        "certificateId_": "mqqp4_FhgUK9NwmTQrnLLQ2",
         "cordovaCLIVersion_": "5.1.1",
         "crosswalkVersion_": "15",
         "appVersion_": "0.0.1",

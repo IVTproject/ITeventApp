@@ -1,4 +1,5 @@
 var url_api = "http://it-event.tk/api.php";
+var url_api_chat = "http://it-event.mooo.com/api.php";
 function list_all_events(begin, count) {
     hide('#events_write');
     show('#preloader_events');
@@ -105,7 +106,7 @@ function get_information_about_event(id) {
 function get_message_chat(last_time, id_event) {
     $.ajax({
         type: 'GET',
-        url: url_api,
+        url: url_api_chat,
         data: {mod: "get_message_chat", id_event: id_event, last_time: last_time, hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"},
         error: function(req, text, error) {
            //navigator.notification.alert("Чат недоступен. Проверьте соединение с интернетом.", function(){} , 'Ошибка');
@@ -124,7 +125,7 @@ function get_message_chat(last_time, id_event) {
 function send_message_server(id_user, id_event, name_user, message) {
     $.ajax({
         type: 'GET',
-        url: url_api,
+        url: url_api_chat,
         data: {mod: "write_message_user", id_user: id_user, id_event: id_event, name_user: name_user, message: message, hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"},
         error: function(req, text, error) {
             //alert("error");

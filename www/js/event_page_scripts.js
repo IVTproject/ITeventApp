@@ -130,6 +130,7 @@ function fill_actions(data) {
     var num = 0;
     var number_day = 1;
     $('#content').text("");
+    var im_going_flags = [];
     for (var i = 0; json_array[i]; i++) {
         var time = json_array[i].time;
         var n = time.split(" ")[0].split("-")[2];
@@ -140,11 +141,30 @@ function fill_actions(data) {
             num = n;
         }
         $('#content').append(creat_block_schedule(json_array[i]));
+        im_going_flags.push({id:json_array[i].id, is:false});
     }
     show_hide_schedule();
 	if (json_array.length == 0) {
 		$('#content').append("<p class='empty_message'>Расписание пусто, обратитесь к организаторам</p>");
 	}
+    var prev_is_going = localStorage.getItem("is_going_falgs_" + localStorage.getItem('last_evet_id'));
+    if(prev_is_going && prev_is_going != "undefined") {
+        prev_is_going = JSON.parse(prev_is_going);
+        for(var i = 0; prev_is_going[i]; i++) {
+            if(prev_is_going[i].is) {
+                var $target_class = $($('#click_shed_'+prev_is_going[i].id)).children('.im_going');
+		        var $target_text = $($('#click_shed_'+prev_is_going[i].id)).children('.im_going_text');
+                is_going_falg = true;
+			    $target_text.text("Иду"); 
+			    $target_text.css("color", "#1e96f5");
+			    $target_text.css("margin-left", "15px");
+			    $target_class.toggleClass('im_not_going', true);
+            }
+        }
+    } else {
+        
+    }
+    localStorage.setItem("is_going_falgs_" + localStorage.getItem('last_evet_id'), JSON.stringify(im_going_flags));
 }
 
 function show_hide_schedule() {	
@@ -174,10 +194,13 @@ function show_hide_schedule() {
 	
         //Галочка я пойду или нет (РАБОТАЕТ ВЕРНО!!!)
     $(".im_going_block").click(function() {
-        //Галочка я пойду или нет      	
+        //Галочка я пойду или нет
 		$target_class = $(this).children('.im_going');
 		$target_text = $(this).children('.im_going_text');
-		if (!$target_class.is('.im_not_going')) {	
+        var id_act = $(this).children('.im_going').attr('data-id-notification');
+        var is_going_falg = false;
+		if (!$target_class.is('.im_not_going')) {
+            is_going_falg = true;
 			$target_text.text("Иду"); 
 			$target_text.css("color", "#1e96f5");
 			$target_text.css("margin-left", "15px");
@@ -188,6 +211,7 @@ function show_hide_schedule() {
 				}
 			});
 		} else {	
+            is_going_falg = false;
 			$target_text.text("Не иду");
 			$target_text.css("color", "#c2c2c2") ;		
 			$target_text.css("margin-left", "6px");
@@ -198,6 +222,14 @@ function show_hide_schedule() {
 				}
 			});	
 		}
+        var is_going_falgs = localStorage.getItem("is_going_falgs_" + localStorage.getItem('last_evet_id'));
+        is_going_falgs = JSON.parse(is_going_falgs);
+        for(var i = 0; is_going_falgs[i]; i++) {
+            if(is_going_falgs[i].id == id_act) {
+                is_going_falgs[i].is = is_going_falg;
+            }    
+        }
+        localStorage.setItem("is_going_falgs_" + localStorage.getItem('last_evet_id'), JSON.stringify(is_going_falgs));
     });
 }
 function on_confirm(button_index) {
@@ -327,6 +359,7 @@ function add_last_event(event) {
             localStorage.removeItem("have_assessed_informal_" + d_e.id);
             localStorage.removeItem("my_informals_" + d_e.id);
             localStorage.removeItem("my_notice_" + d_e.id);
+            localStorage.removeItem("is_going_falgs_" + d_e.id);
         } 
         last_events.push(event);
     } else {
@@ -470,7 +503,7 @@ function creat_block_schedule(inf) {
 	result += '<div class="block_schedule">'+
 			'<div class="block_schedule_vis">'+				
 				'<div class="content_schedule"><b>'+time[0]+':'+time[1]+' — </b>'+inf.name+'</div>'+
-				'<div class="im_going_block">'+
+				'<div class="im_going_block" id="click_shed_'+inf.id+'">'+
 					'<div class="im_going" data-event-id="'+localStorage.getItem("last_evet_id")+'" data-id-notification="' + inf.id + '" data-text-notification="' + inf.name +'" data-time-notification="' + inf.time + '"></div>'+
 					'<div class="im_going_text">Не иду</div>'+
 				'</div>'+
