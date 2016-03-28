@@ -43,7 +43,7 @@ function append_list_events(events, max_count) {
 
 function creat_block(event) {
     date_format(event.begin_date);
-    return "<a class='a_event' href='#event_page' onclick='get_event_information(" +
+    return "<a id='event_" + event.id + "' class='a_event' href='#event_page' onclick='get_event_information(" +
     event.id +
         ")'><div class='event'> <div class='event_all'> <div class='event_ava'>" +
         "<img src='" + event.pictures +

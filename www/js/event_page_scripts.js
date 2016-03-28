@@ -7,7 +7,6 @@ function load_informal() {
 }
 
 function load_notice(begin, end) {
-    $('#notice_bloks_content').text("");
     fill_notice_filter();
 }
 
@@ -472,7 +471,7 @@ function creat_block_schedule(inf) {
 			'<div class="block_schedule_vis">'+				
 				'<div class="content_schedule"><b>'+time[0]+':'+time[1]+' — </b>'+inf.name+'</div>'+
 				'<div class="im_going_block">'+
-					'<div class="im_going" data-id-notification="' + inf.id + '" data-text-notification="' + inf.name +'" data-time-notification="' + inf.time + '"></div>'+
+					'<div class="im_going" data-event-id="'+localStorage.getItem("last_evet_id")+'" data-id-notification="' + inf.id + '" data-text-notification="' + inf.name +'" data-time-notification="' + inf.time + '"></div>'+
 					'<div class="im_going_text">Не иду</div>'+
 				'</div>'+
 			'</div>'+			

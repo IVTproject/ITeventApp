@@ -11,7 +11,7 @@ function chek_and_write_informal() {
         var organize = localStorage.getItem('first_name') + " " + localStorage.getItem('second_name');
         add_informal_to_server(localStorage.getItem('last_evet_id'), theme, organize, information, place);
     } else {
-        alert("Заполните поля");
+       navigator.notification.alert("Нужно заполнить все поля.", function(){} , 'Ошибка');
     }
 }
 

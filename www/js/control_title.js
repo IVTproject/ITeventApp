@@ -11,7 +11,6 @@ function next_page(title, filter, refresh) {
         backButton[0].addEventListener("click", back);
         window.addEventListener("popstate", back);
     }   
-    
     next_title = "<h1><marquee scrollamount=\"3\">" + title + "</marquee></h1>";
     if (next_title != prev_title) document.getElementById('top_title').innerHTML = next_title;
     past_filter(filter);
@@ -28,6 +27,10 @@ function click_back_button() {
 }
 
 function back(e) {
+	setTimeout(function() {
+		$('#add_inform').css("position", "fixed");
+		$('#add_inform').fadeIn(700);
+	}, 500);
 	click_input_event = false;
     if (stack_header.length != 0) {
         var prev_header = stack_header.pop();

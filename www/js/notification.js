@@ -1,5 +1,5 @@
 function send_notification(notif_item, wait_mins, callback) {
-	
+	console.log(notif_item);
 	//var time = new Date(notif_item.time);
 	var time = new Date(notif_item.timeNotification);
 	var dif_mins = time.getTime() - (new Date()).getTime();
@@ -16,10 +16,8 @@ function send_notification(notif_item, wait_mins, callback) {
 		id: notif_item.idNotification,
 		title: notif_item.textNotification,
 		text: text,
-		at: time,
-		//icon: "res://icon36",
-		//smallIcon: "http://it-event.tk/img/icon.png"
-		//data: { meetingId:"123#fg8" }
+		at: time
+		/*data: { event_id:notif_item.eventId }*/
 	}, callback);
 	click_notif();
 	trigger_notif();
@@ -46,7 +44,11 @@ function schedule_notif() {
 function click_notif() {
 	cordova.plugins.notification.local.on("click", function (notification) {
 		cancel_notification(notification.id);
-		$('#1').click();
+		/*var st = "#event_";
+		st+ = notification.data.event_id;
+		alert(st);
+		$(st).click();
+		*/
 	});
 }
 

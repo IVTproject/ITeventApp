@@ -176,8 +176,13 @@ function get_notice_from_event_filter(id_event, begin, count, callBackF) {
         types: get_text_format_filter_notice(),
 		hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
     }, function (data) {	
+		$('#notice_bloks_content').text("");
 		callBackF(data, count);
-	}); 
+	}).error(function() {
+		show("#notice_bloks_content");
+		hide("#preloader_notice");
+		navigator.notification.alert("Невозможно обновить. Проверьте соединение с интернетом.", function(){} , 'Ошибка');
+	});; 
     var last_id_event = localStorage.getItem('last_evet_id');
     localStorage.setItem("begin_notice", begin);
     localStorage.setItem("count_notice", count);
@@ -196,7 +201,11 @@ function get_actios_from_event(id_event) {
 		hide("#preloader_schedule");
 		show("#content");
         fill_actions(data);
-    });
+    }).error(function() {
+		hide("#preloader_schedule");
+		show("#content");
+		navigator.notification.alert("Невозможно обновить. Проверьте соединение с интернетом.", function(){} , 'Ошибка');
+	});
 }
 
 function get_informal_from_event(id_event) {
@@ -211,7 +220,11 @@ function get_informal_from_event(id_event) {
 		hide("#preloader_informal");
 		show("#bloks_informals");
         fill_informal(data);
-    });
+    }).error(function() {
+		hide("#preloader_informal");
+		show("#bloks_informals");
+		navigator.notification.alert("Невозможно обновить. Проверьте соединение с интернетом.", function(){} , 'Ошибка');
+	});
 }
 
 function change_rang_informal(id_informal, inc, is_throwing) {
@@ -271,7 +284,18 @@ function add_informal_to_server(id_event, theme, organize, information, place) {
         load_informal();
         click_back_button();
         set_information_about_event(localStorage.getItem('last_evet_id'));
-    });
+		$('#theme').val("");
+		$('#information').val("");
+    	$('#place_inf').val("");
+		$('#add_inform').css("position", "absolute");
+		setTimeout(function() {
+			$('#add_inform').css("position", "fixed");
+			$('#add_inform').fadeIn(700);
+		}, 500);
+		
+    }).error(function() {
+		navigator.notification.alert("Ошибка подключения. Проверьте соединение с интернетом.", function(){} , 'Ошибка');
+	});;
 }
 
 function make_inactive_informal(id_informal) {
@@ -395,30 +419,4 @@ function auth_user(email, pass) {
         }
         //dataType: 'json'
     }); 
-	/*
-	$.get(url_api, {
-        mod: "chek_normal_user",
-        email: email,
-		password_user: pass,
-		hash_key: "ab2e0d69c72beb3c3817f79c7520fec6"
-    }, function(data) {
-        if (data == 0) {
-			$('#welcome_sign_in_input_password').val("");
-			navigator.notification.alert("Такого пользователя не существует или неверный пароль",function(){} , 'Ошибка');
-		} else {
-			json = JSON.parse(data);
-			var f_name = json.first_name;
-			var l_name = json.second_name;
-            get_id_by_email($('#welcome_sign_in_input_email').val());
-			localStorage.setItem('email', $('#welcome_sign_in_input_email').val());
-			localStorage.setItem('first_name', f_name);
-			localStorage.setItem('second_name', l_name);
-			navigator.notification.alert("Вы успешно авторизировались", function(){} , 'Поздравляем');
-			$('#welcome_content').fadeOut();
-			$('#heading').fadeIn();
-			$('#events_write').fadeIn();
-			list_all_events(0, 10);
-		}
-    });
-	*/
 }
